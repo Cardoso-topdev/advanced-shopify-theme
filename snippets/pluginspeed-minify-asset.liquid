@@ -1,0 +1,87 @@
+{%- comment -%}
+█▀▀▄ █▀▀█ 　 █▀▀▄ █▀▀█ ▀▀█▀▀ 　 █▀▀▄ █▀▀ █   █▀▀ ▀▀█▀▀ █▀▀ 
+█  █ █  █ 　 █  █ █  █   █   　 █  █ █▀▀ █   █▀▀   █   █▀▀ 
+▀▀▀  ▀▀▀▀ 　 ▀  ▀ ▀▀▀▀   ▀   　 ▀▀▀  ▀▀▀ ▀▀▀ ▀▀▀   ▀   ▀▀▀ 
+DELETING THIS FILE WILL BREAK YOUR SHOP! E-mail help@pluginspeed.com for free removal.
+{%- endcomment -%}
+
+{%- comment -%}
+  ----------------------------------------------------------------------------------
+   Plug in Speed for Shopify
+
+   Copyright (c) 2019 Pemberton Rank Ltd, a company registered in England 7341337
+
+   This file is subject to the license at https://www.pluginspeed.com/eula
+  ----------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- assign debug = false -%}
+
+{%- assign current_key = asset | asset_url | split: asset -%}
+{%- assign current_key = current_key[1] | remove_first: '?' -%}
+{%- comment -%} Note: 30 character metafield key limit {%- endcomment -%}
+{%- capture metafield_name -%}{{ asset | replace: '.','-' | md5 | truncate: 30, "" }}{%- endcapture -%}
+
+{%- assign have_minified = false -%}
+{%- if current_key == shop.metafields.pluginspeed[metafield_name] -%}
+  {%- assign have_minified = true -%}
+{%- endif -%}
+
+{%- if have_minified == true -%}
+  {%- assign target_asset = 'pluginspeed.min.' | append: asset -%}
+{%- else -%}
+  {%- assign invalidateMinifiedAssetCache = true -%}
+  {%- assign target_asset = asset -%}
+{%- endif -%}
+
+{%- assign asset_exists = null -%}
+{%- if have_minified == true -%}
+  {%- comment -%} Imperfect as we can't check the /assets, but checking /snippets is a good proxy {%- endcomment -%}
+  {%- capture asset_output -%}{%- include target_asset -%}{%- endcapture -%}
+  {%- assign error_message = 'Liquid error: Could not find asset snippets/' | append: target_asset -%}
+  {%- if asset_output contains error_message -%}
+    {%- assign asset_exists = false -%}
+  {%- else -%}
+    {%- assign asset_exists = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if debug == true -%}
+  <script type="text/template">
+   invalidate    : {{ invalidateMinifiedAssetCache }}
+   asset         : {{ asset }}
+   inline        : {{ inline }}
+   current_key   : {{ current_key }}
+   metafields    : {{ shop.metafields.pluginspeed }}
+   metafield_name: shop.metafields.pluginspeed.{{ metafield_name }}
+   metafield_key : {{ shop.metafields.pluginspeed[metafield_name] }}
+   tag           : {{ tag }}
+   have_minified : {{ have_minified }}
+   target_asset  : {{ target_asset }}
+   asset_exists  : {{ asset_exists }}
+   defer         : {{ defer }}
+  </script>
+{%- endif -%}
+
+{%- assign data_attributes = '' -%}
+{%- unless have_minified == true and asset_exists == true -%}
+  {%- capture data_attributes -%}data-pluginspeed-minifier data-asset="{{ asset }}" data-key="{{ current_key }}"{%- endcapture -%}
+{%- endunless -%}
+
+{%- unless have_minified == true and asset_exists == true -%}
+  {%- assign target_asset = asset -%}
+{%- endunless -%}
+
+{%- if tag == 'stylesheet' -%}
+  {%- if have_minified == true and inline == true and asset_exists == true -%}
+    <style>{%- include target_asset -%}</style>
+  {%- elsif liquid_tag == true -%}
+    {{ target_asset | asset_url | stylesheet_tag }}
+  {%- endif -%}
+{%- elsif tag == 'script' -%}
+  {%- if have_minified == true and inline == true and asset_exists == true -%}
+    <script>{%- include target_asset -%}</script>
+  {%- elsif liquid_tag == true -%}
+    {{ target_asset | asset_url | script_tag }}
+  {%- endif -%}
+{%- endif -%}

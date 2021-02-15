@@ -1,0 +1,207 @@
+<!-- affiliate specific css -->
+{{ 'affiliate.scss.css' | asset_url | stylesheet_tag }} 
+
+<style>
+
+  #affiliates .banner-area {
+    background: url('{{ 'influencers.jpg' | asset_url }}');
+    background-size: cover;
+    width: 100%;
+    max-height: 670px;
+    padding-top: 34.5%;
+    position: relative;
+  }
+
+  #affiliates .banner-area h1 {
+    text-indent: -9999px;
+  }
+  
+  #affiliates .apply-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 650px;  
+
+  }
+  
+  #affiliates .apply-banner .pink-frame {
+   background: #fcfbfa;
+    opacity: .8;
+    width: 60%;
+    max-width: 780px;
+    margin: auto;
+    padding: 95px 60px;
+    text-align: center;
+    position: relative;
+    z-index: 500;
+  }
+  
+  #affiliates .apply-banner .pink-frame h2 {
+    color: #222;
+  }
+
+  
+  
+  
+  #affiliates .apply-banner .pink-button {
+    margin-top: -30px;
+    position: relative;
+    z-index: 600;
+    padding: 9px 30px;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: "Work Sans",sans-serif;
+    font-size: 12px;
+  }
+
+  
+  @media screen and (max-width: 900px) {
+    #affiliates .apply-banner .pink-frame {
+   		width: 90%;
+      	padding: 20px;
+    }
+    
+    #affiliates .apply-banner .pink-frame h2 {
+      font-size: 12px;
+      line-height: 18px;
+    }
+    
+    #affiliates .apply-banner .pink-button {
+      margin-top: -20px;
+      position: relative;
+      z-index: 600;
+    }
+
+    #affiliates .apply-banner .pink-button a {
+      font-size: 12px !important;
+      background: #000 !important;
+      padding: 10px;
+    }
+  }
+
+  #affiliates h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+    line-height: 33px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em !important;
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+    #affiliates .apply-banner .pink-frame h2 {
+		margin-bottom: 0px;
+    }
+
+  @media screen and (max-width:1023px) {
+    #affiliates h2 {
+      font-size: 18px;
+      line-height: 29px;
+    }
+  }
+
+  #affiliates .content-area {
+    max-width: 1140px;
+    margin: auto;
+    padding: 0;
+  }
+
+
+
+
+</style>
+
+<script>
+
+
+    $(document).ready(function() {
+      
+      
+      if ($(window).width() < 1200) {
+        $(document).on('click', 'a[href^="#"]', function (event) {
+          event.preventDefault();
+
+          $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+          }, 500);
+        
+        }); 
+      }
+      
+      
+      if ($(window).width() > 1200) {
+        $(document).on('click', 'a[href^="#"]', function (event) {
+          event.preventDefault();
+
+          $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset(500).top
+          }, 500);
+        
+        }); 
+      }
+      
+      
+      var parentHeight = $('.banner-area').outerHeight();
+      var childHeight = $('.banner-area .pink-frame').outerHeight();
+      $('.banner-area .pink-frame').css('margin-top', (parentHeight - childHeight) / 2);
+      
+      
+
+        
+      $(".who1").click(function() {
+        $(".text1").show();
+        $(".text2").hide();
+        $(".text3").hide();
+      });
+
+      
+      $(".who2").click(function() {
+        $(".text1").hide();
+        $(".text2").show();
+        $(".text3").hide();
+      });
+
+      
+      $(".who3").click(function() {
+        $(".text1").hide();
+        $(".text2").hide();
+        $(".text3").show();
+      });
+      
+      
+      
+    });
+
+</script>
+
+
+<section id="affiliates">
+  <div class="banner-area">
+    <h1>Become a Primally Pure Affiliate</h1>
+    
+    <div class="apply-banner">
+      <div class="pink-frame">
+        <h2>THANK YOU FOR APPLYING TO JOIN OUR PP INFLUENCER FAMILY!</h2>
+        <p style="max-width: 400px; margin: 30px auto 0px auto;">WE WILL BE IN TOUCH WITH YOU UPON REVIEWING YOUR APPLICATION!
+			<br /><br />
+          XO, THE PP TEAM</p>
+      </div>
+      
+    </div>
+
+  </div>
+  
+  
+
+  <div class="content-area">
+	<br /><br />	
+  </div>
+  
+
+</section>

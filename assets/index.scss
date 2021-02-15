@@ -1,0 +1,606 @@
+#test-holder {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+
+#next,
+#prev {
+  text-align: center;
+  margin-top: 0px;
+  position: absolute;
+  width: 24px;
+  top: calc(50% - 24px);
+  z-index: 5000;
+  color: #999;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#prev {
+  left: 20px;
+}
+
+#next {
+ right: 20px; 
+}
+
+#next img,
+#prev img {
+	width: 24px;
+  height: 50px;
+}
+
+
+.testimonial-container {
+  width: 100%; 
+  padding: 0px 0px; 
+  background: #fcfaf7; 
+  background-size: cover;
+  border-bottom: 0;
+  vertical-align: middle;
+}
+
+.testimonial-container td {
+   height: 400px !important;
+}
+
+.about-testimonial-bar .testimonial-container td {
+  min-width: auto;
+  padding: 0px 50px;
+}
+.testimonial-container tr,
+.testimonial-container td {
+  vertical-align: middle;
+}
+
+.testimonial-container td.p {
+  width: 70%;
+  padding: 0px 0px;
+}
+
+.testimonial-container td.img {
+  width: 30%;
+  padding: 0px 0px;
+}
+
+
+.testimonial-container .testim {
+  max-width: 1000px;
+  width: 80%;
+  vertical-align: middle;
+  margin: auto;
+  line-height: 2em;
+}
+
+.testimonial-container .testim p {
+    margin: 0px;
+  padding: 0px;
+  height: auto;
+  vertical-align: middle;
+  display:inherit;
+  padding-left: 40px;
+}
+
+.testimonial-container .testim img {
+  max-width: 200px;	
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+ display:inherit;
+}
+
+
+@media screen and (max-width: 767px) {
+  
+  
+  
+  
+ .testimonial-container td {
+   width: 100% !important;
+   height: auto !important;
+   text-align: center;
+   display: block !important;
+ }
+  
+  .testimonial-container td.img {
+    padding: 20px 0px;
+    text-align: center;
+  }
+  
+  .testimonial-container td.p {
+    padding: 40px 0p;
+    padding-bottom: 0px;
+  }
+ 
+  .testimonial-container .testim p {
+    padding: 0px 0px;
+  }
+  
+}
+
+
+.attribution {font-family: "BellMT" !important; font-weight: bold; font-size: 18px;}
+
+.blog-feature {
+  padding: 50px 0px;
+  width: 100%;
+  display: table;
+}
+
+.blog-feature .article-title {
+  width: 45%;
+  width: 360px;
+  padding: 0px 30px;
+  text-align: right;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+
+
+.blog-feature .article-image {
+  width: 55%;
+  height: 100%;
+  display: table-cell;
+  background-size: cover;
+  position: relative;
+}
+
+.blog-feature .spotlight-border {
+   border-top: 15px solid #e7e4df; 
+   border-right: 15px solid #e7e4df; 
+   width: 95%;
+   height: 95%;
+   position: absolute;
+   top: -15px;
+   right: -15px;
+}
+
+.blog-feature .article-image img {
+  width: 100%;
+}
+
+.blog-feature .from-blog {
+  font-size: 14px !important;
+  letter-spacing: .1em !important;
+  color: #bbb !important;
+  display: block;
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+}
+
+.blog-feature a {
+  color: #000 !important;
+  display: block;
+}
+
+.blog-feature a:hover {
+  color: #000 !important;
+}
+
+.blog-feature .read-more-btn {
+  display: block !important;
+  border: 1px solid #bbb;
+  padding: 0px 10px;
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px !important;
+  letter-spacing: .1em !important;
+  margin-top: 20px;
+  clear: both;
+  float: right;
+  color: #bbb !important;
+}
+
+.blog-feature .read-more-btn:hover {
+  color: #333 !important;
+  border: 1px solid #333;
+}
+
+
+@media screen and (max-width: 600px) {
+  .blog-feature .article-title,
+  .blog-feature .article-image {
+    float: none;
+    width: 100%;
+    display: block;
+    clear: both;
+  }
+  
+  .blog-feature .article-title {
+    padding-bottom: 40px;
+    text-align: center;
+  }	
+  
+  .blog-feature .article-title .read-more-btn {
+    clear: both;
+    float: none;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .blog-feature .article-image {
+    clear: both;
+    margin-top: 40px !important;
+  }
+}
+
+.featured-spotlight {
+  height: 100%;
+}
+
+.featured-spotlight .spotlight-image {
+  float: left;
+  width: 55%;
+  height: 100% !important;
+  position: relative;
+}
+
+.featured-spotlight .about-spotlight-image {
+  float: left;
+  width: 100%;
+  height: 100% !important;
+  position: relative;
+}
+
+.about-featured-spotlight .spotlight-image {
+  float: left;
+  width: 55%;
+  height: 100% !important;
+  position: relative;
+}
+
+.featured-spotlight .spotlight-image a {
+  padding-top: 65%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  display: block;
+}
+
+.featured-spotlight .spotlight-border {
+   border-top: 15px solid #e7e4df; 
+    border-left: 15px solid #e7e4df; 
+    width: 95%;
+    height: 95%;
+  	position: absolute;
+    top: -15px;
+    left: -15px;
+  pointer-events: none
+}
+
+
+.featured-spotlight .spotlight-text {
+	float: right;
+	width: 40%;
+  	margin: 40px 0px;
+    padding: 40px;
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.featured-spotlight a {
+  color: #000;
+  cursor: pointer;
+  cursor: hand;
+  display: block;
+  width: 100%;
+}
+
+.featured-spotlight a:hover {
+  color: #a3a3a3;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.featured-spotlight .spotlight-text p,
+.featured-spotlight .spotlight-text h2 {
+  text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+	.featured-spotlight .spotlight-text,
+	.featured-spotlight .spotlight-image {
+      float: none;
+      clear: both;
+      width: 100%;
+    }
+  
+  	.featured-spotlight .spotlight-text {
+      margin-top: 40px;
+    }
+  
+  .featured-spotlight .spotlight-text p,
+  .featured-spotlight .spotlight-text h2 {
+    text-align: center;
+  }
+  
+  .featured-spotlight .section-title {
+    display: none;
+  }
+}
+
+.overview-review {
+  padding-top: 0px;
+  }
+
+.instagram-photos {
+  margin-top: 20px;
+}
+
+.instagram-photo {
+  width: 20% !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+  padding-top: 20% !important;
+  position: relative;
+
+}
+
+.instagram-photo img {
+  position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   object-fit: cover;
+   display: block;
+   width: 100%;
+   height: 100%;
+}
+
+.main-footer.content-area {
+  min-width: none !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin-top: 30px;
+}
+
+.about-page p,
+.tabs-content p,
+.about-page ul li,
+.tabs-content ul li {
+  font-family: "Novel", sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 15.2px;
+}
+
+.content.content-area.about-page{
+ margin-bottom: -60px; 
+}
+
+
+@media screen and (min-width: 680px) {
+  .instructions.mobile {
+    display: none !important;
+  }
+}
+
+
+/* home promise */
+
+#our-promise {
+  background: #fcfaf7;
+  width: 100%;
+  padding: 50px 0px 30px 0px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.promise-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.promise-container .promise {
+  width: 25%;
+  margin-top: 40px;
+}
+
+.promise-container .promise p {
+  padding: 0px 40px;
+}
+
+@media screen and (max-width: 970px) {
+  .promise-container .promise {
+    width: 50%;
+  }
+
+  .promise-container .promise p {
+    padding: 0px 20px;
+  }
+
+}
+
+.promise-container .promise img {
+  width: 90%;
+  max-width: 88px;
+}
+
+
+/* home page edits December 2018 */
+.home-promo {
+  background: #fcfaf7;
+  width: 100%;
+  padding: 35px 0px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.home-promo .promo-box {
+  float: left;
+  width: 30%;
+}
+
+
+.home-promo .promo-2 {
+  margin-left: 5%;
+}
+
+.home-promo .promo-3 {
+  float: right;
+}
+
+.home-promo h3 {
+  padding: 0px 0px 40px 0px;
+  font-family: 'BellMT';
+  font-weight: 100;
+  font-size: 18px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  display: block;
+  overflow: visible;
+  color: #000 !important;
+}
+
+.home-promo a {
+  color: #000 !important;
+}
+
+.home-promo .promo-box img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.home-promo .line {
+  width: 1px;
+  height: 50px;
+  background: #000;
+  text-align: center;
+  position: absolute;
+  z-index: 2;
+  bottom: -25px;
+  left: 50%;
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .home-promo h3 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+
+
+@media screen and (max-width: 1055px) {
+
+  .home-promo h3 {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+
+
+
+@media screen and (max-width: 720px) {
+
+  .home-promo .content-area {
+    max-width: 430px;
+    margin: auto;
+  }
+  .home-promo .promo-box  {
+    float: none;
+    width: 100%;
+    margin: 60px 0px 30px 0px;
+  }
+  
+  .home-promo h3 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  
+  .template-index .featured-products {
+    padding-bottom: 0px;
+  }
+  
+  .home-promo {
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
+  
+  .template-index .section-title {
+    margin-bottom: 0px;
+  }
+  
+  #our-promise {
+    margin: 0px auto 70px auto;
+  }
+  
+  #test-holder {
+    margin-bottom: 0px;
+  }
+  
+  .testimonial-container .testim {
+    padding: 20px 0px;
+  }
+}
+  
+
+.home-brands {
+  margin-top: 80px;
+}
+
+.home-brands .featured-in img {
+  width: 225px;
+  margin: auto;
+  margin-bottom: 60px;
+  display: block;
+}
+
+.home-brands .brand-desktop img,
+.home-brands .brand-mobile img {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 120px;
+  display: block;
+}
+
+.home-brands .brand-mobile {
+  display: none;
+}
+
+.about-product-box {
+  clear: both;
+  position: relative;
+}
+
+
+/* -- code to hide and show mobile and desktop slideshow -- */
+@media screen and (max-width: 967px) {
+   .desktop {display:none !important;}
+}
+@media screen and (min-width: 968px) {
+   .mobile {display:none !important;}
+}
+
+.first-time-slide {
+  display: none;
+}
+
+.first-time-slide img {
+  width: 100%;
+}
+
+.mobile.first-time-slide img {
+  margin-top: -47px;
+}
+
+/* - end - */

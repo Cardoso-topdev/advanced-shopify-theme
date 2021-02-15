@@ -1,0 +1,143 @@
+{% comment %}
+Smart e-commerce App (SEA Inc)
+http://www.secomapp.com
+-----------------------------
+This snippet provides the default templates for Freegifts app showing Gift Slider on Cart page/popup.
+It also have the script codes need for the app running, please do not reuse or edit those codes if doesn't
+have permission of us.
+{% endcomment %}
+
+<script id="sca_fg_cart_ShowGiftAsProductTemplate" type="text/template">
+  {%raw%}
+  <div class="item not-sca-qv" id="sca-freegift-{{productID}}">
+    <a class="close_box" style="display: none;position: absolute;top:5px;right: 10px;font-size: 22px;font-weight: bold;cursor: pointer;text-decoration:none;color: #aaa;">×</a>
+    <a href="/products/{{productHandle}}" target="_blank"><img class="lazyOwl" data-src="{{productImageURL}}"></a>
+    <div class="sca-product-shop">
+      <div class="f-fix"><span class="sca-product-title" style="white-space: nowrap;color:#000;{{showfgTitle}}">{{productTitle}}</span>
+          <div id="product-variants-{{productID}}">
+            <div class="sca-price" id="price-field-{{productID}}">
+              <span class="sca-old-price">{{variant_compare_at_price}}</span>
+              <span class="sca-special-price">{{variant_price}}</span>
+            </div>
+            <div id="stay-content-sca-freegift-{{productID}}" class="sca-fg-cart-item">
+              <a class="close_box" style="display: none;position: absolute;top:5px;right: 10px;font-size: 22px;font-weight: bold;cursor: pointer;text-decoration:none;color: #aaa;">×</a>
+              <select id="product-select-{{productID}}" name="id" style="display: none">
+                {{optionVariantData}}
+              </select>
+            </div>
+          </div>
+          <button type='button' id="sca-btn-select-{{productID}}" class="sca-button" onclick="onclickSelect_{{productID}}();"><span>{{SelectButton}}</span></button>
+          <button type='button' id="sca-btn-{{productID}}" class="sca-button" style="display: none"><span>{{AddToCartButton}}</span></button>
+      </div>
+    </div>
+  </div>
+  {%endraw%}
+</script>
+<script id = "sca_fg_cart_ShowGiftAsProductScriptTemplate" type="text/template">
+  {%raw%}
+    var selectCallback_{{productID}}=function(_,t){if(_?(_.available?(SECOMAPP.jQuery("#sca-btn-{{productID}}").removeClass("disabled").removeAttr("disabled").html("<span>{{AddToCartButton}}</span>").fadeTo(200,1),SECOMAPP.jQuery("#sca-btn-{{productID}}").unbind("click"),SECOMAPP.jQuery("#sca-btn-{{productID}}").click(SECOMAPP.jQuery.proxy(function(){SECOMAPP.addGiftToCart(_.id,1)},_))):SECOMAPP.jQuery("#sca-btn-{{productID}}").html("<span>{{UnavailableButton}}</span>").addClass("disabled").attr("disabled","disabled").fadeTo(200,.5),_.compare_at_price>_.price?SECOMAPP.jQuery("#price-field-{{productID}}").html("<span class='sca-old-price'>"+SECOMAPP.formatMoney(_.compare_at_price)+"</span>&nbsp;<s class='sca-special-price'>"+SECOMAPP.formatMoney(_.price)+"</s>"):SECOMAPP.jQuery("#price-field-{{productID}}").html("<span class='sca-special-price'>"+SECOMAPP.formatMoney(_.price)+"</span>")):SECOMAPP.jQuery("#sca-btn-{{productID}}").html("<span>{{UnavailableButton}}</span>").addClass("disabled").attr("disabled","disabled").fadeTo(200,.5),_&&_.featured_image){var a=SECOMAPP.jQuery("#sca-freegift-{{productID}} img"),e=_.featured_image,o=a[0];Shopify.Image.switchImage(e,o,function(_,t,a){SECOMAPP.jQuery(a).parents("a").attr("href",_),SECOMAPP.jQuery(a).attr("src",_)})}},onclickSelect_{{productID}}=function(){SECOMAPP.jQuery.getJSON("/products/{{productHandle}}.js",{_:(new Date).getTime()},function(_){1==_.options.length&&SECOMAPP.jQuery("<label><strong>"+_.options[0].name+"</strong></label>").insertBefore("#product-select-{{productID}}");var t=[];SECOMAPP.jQuery.each(_.options,function(_,a){t[_]=a.name}),_.options=t;for(var a={{variantsGiftList}},e={{mainVariantsList}},o=_.variants.length-1;o>-1;o--)a.indexOf(_.variants[o].id)<0&&e.indexOf(_.variants[o].id)<0&&_.variants.splice(o,1);for(var c=e.length-1;c>-1;c--){var n=a[c],r=e[c],i=0,s=0;for(o=_.variants.length-1;o>-1;o--)_.variants[o].id==n?i=o:_.variants[o].id==r&&(s=o);"undefined"!=typeof SECOMAPP&&void 0!==SECOMAPP.fgsettings&&!0===SECOMAPP.fgsettings.sca_sync_gift&&void 0!==SECOMAPP.fgsettings.sca_fg_gift_variant_quantity_format&&"equal_original_inventory"===SECOMAPP.fgsettings.sca_fg_gift_variant_quantity_format&&(_.variants[i].available=_.variants[s].available,_.variants[i].inventory_management=_.variants[s].inventory_management),_.variants[i].option1=_.variants[s].option1,_.variants[i].options[0].name=_.variants[s].options[0].name,_.variants[i].options[1]&&(_.variants[i].options[1].name=_.variants[s].options[1].name,_.variants[i].option2=_.variants[s].option2),_.variants[i].options[2]&&(_.variants[i].options[2].name=_.variants[s].options[2].name,_.variants[i].option3=_.variants[s].option3),_.variants[i].title=_.variants[s].title,_.variants[i].name=_.variants[s].name,_.variants[i].public_title=_.variants[s].public_title,_.variants.splice(s,1)}SECOMAPP.jQuery("#sca-btn-select-{{productID}}").hide(),SECOMAPP.jQuery("#product-select-{{productID}}").show(),SECOMAPP.jQuery("#sca-btn-{{productID}}").show(),SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}} .close_box").show(),SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}} .close_box").click(function(){SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}}").hide(),SECOMAPP.jQuery("#sca-btn-{{productID}}").hide(),SECOMAPP.jQuery("#sca-btn-select-{{productID}}").show()}),onclickSelect_{{productID}}=function(){SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}}").show(),SECOMAPP.jQuery("#sca-btn-{{productID}}").show(),SECOMAPP.jQuery("#sca-btn-select-{{productID}}").hide()},1==_.variants.length?(-1!==_.variants[0].title.indexOf("Default")&&SECOMAPP.jQuery("#sca-freegift-{{productID}} .selector-wrapper").hide(),1==_.variants[0].available&&(SECOMAPP.jQuery("#sca-btn-{{productID}}").show(),SECOMAPP.jQuery("#sca-btn-select-{{productID}}").hide(),SECOMAPP.jQuery("#sca-btn-{{productID}}").removeClass("disabled").removeAttr("disabled").html("<span>{{AddToCartButton}}</span>").fadeTo(200,1),SECOMAPP.jQuery("#sca-btn-{{productID}}").unbind("click"),SECOMAPP.jQuery("#sca-btn-{{productID}}").click(SECOMAPP.jQuery.proxy(function(){SECOMAPP.addGiftToCart(_.variants[0].id,1)},_)))):(new Shopify.OptionSelectors("product-select-{{productID}}",{product:_,onVariantSelected:selectCallback_{{productID}},enableHistoryState:!0}),SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}}").show(),SECOMAPP.jQuery("#stay-content-sca-freegift-{{productID}}").focus())})};1=={{variantsGiftList}}.length&&onclickSelect_{{productID}}();
+  {%endraw%}
+</script>
+
+<script id="sca_fg_cart_ShowGiftAsVariantTemplate" type="text/template">
+  {%raw%}
+  <div class="item not-sca-qv" id="sca-freegift-{{variantID}}">
+    <a href="/products/{{productHandle}}?variant={{originalVariantID}}" target="_blank"><img class="lazyOwl" data-src="{{variantImageURL}}"></a>
+    <div class="sca-product-shop">
+      <div class="f-fix">
+        <span class="sca-product-title" style="white-space: nowrap;color:#000;">{{variantTitle}}</span>
+        <div class="sca-price">
+          <span class="sca-old-price">{{variant_compare_at_price}}</span>
+          <span class="sca-special-price">{{variant_price}}</span>
+        </div>
+        <button type="button" id="sca-btn{{variantID}}" class="sca-button" onclick="SECOMAPP.addGiftToCart({{variantID}},1);">
+          <span>{{AddToCartButton}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  {%endraw%}
+</script>
+
+<script id="sca_fg_prod_GiftList" type="text/template">
+  {%raw%}
+  <a style="text-decoration: none !important" id ="{{giftShowID}}" class="product-image freegif-product-image freegift-info-{{giftShowID}}"
+     title="{{giftTitle}}" href="/products/{{productsHandle}}">
+    <img class="not-sca-qv" src="{{giftImgUrl}}" alt="{{giftTitle}}" />
+  </a>
+  {%endraw%}
+</script>
+
+<script id="sca_fg_prod_Gift_PopupDetail" type="text/template">
+  {%raw%}
+  <div class="sca-fg-item fg-info-{{giftShowID}}" style="display:none;z-index:2147483647;">
+    <div class="sca-fg-item-options">
+      <div class="sca-fg-item-option-title">
+        <em>{{freegiftRuleName}}</em>
+      </div>
+      <div class="sca-fg-item-option-ct">
+        <!--        <div class="sca-fg-image-item">
+                        <img src="{{giftImgUrl}}" /> -->
+        <div class="sca-fg-item-name">
+          <a href="#">{{giftTitle}}</a>
+        </div>
+        <!--        </div> -->
+      </div>
+    </div>
+  </div>
+  {%endraw%}
+</script>
+
+<script id="sca_fg_ajax_GiftListPopup" type="text/template">
+  {%raw%}
+  <div id="freegift_popup" class="mfp-hide">
+    <div id="sca-fg-owl-carousel">
+      <div id="freegift_cart_container" class="sca-fg-cart-container" style="display: none;">
+        <div id="freegift_message" class="owl-carousel"></div>
+      </div>
+      <div id="sca-fg-slider-cart" style="display: none;">
+        <div class="sca-fg-cart-title">
+          <strong>{{popupTitle}}</strong>
+        </div>
+        <div id="sca_freegift_list" class="owl-carousel"></div>
+      </div>
+    </div>
+  </div>
+  {%endraw%}
+</script>
+
+<script id="sca_fg_checkout_confirm_popup" type="text/template">
+    {%raw%}
+         <div class='sca-fg-checkout-confirm-popup' style='font-family: "Myriad","Cardo","Big Caslon","Bodoni MT",Georgia,serif; position: relative;background: #FFF;padding: 20px 20px 50px 20px;width: auto;max-width: 500px;margin: 20px auto;'>
+             <h1 style='font-family: "Oswald","Cardo","Big Caslon","Bodoni MT",Georgia,serif;'>YOU CAN STILL ADD MORE!</h1>
+             <p>You get 1 free item with every product purchased. It looks like you can still add more free item(s) to your cart. What would you like to do?</p>
+             <p class='sca-fg-checkout-confirm-buttons' style='float: right;'>
+                 <a class='btn popup-modal-dismiss action_button add_to_cart' href='#' style='width: 200px !important;margin-right: 20px;'>ADD MORE</a>
+                 <a class='btn checkout__button continue-checkout action_button add_to_cart' href='/checkout' style='width: 200px !important;'>CHECKOUT</a>
+             </p>
+         </div>
+    {%endraw%}
+</script>
+
+{% comment %}
+========================================
+||  DO NOT EDIT THE CODES BELLOW !!!  ||
+========================================
+{% endcomment %}
+
+<link rel="preload" href="{{ 'sca.freegift.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ 'sca.freegift.css' | asset_url }}"></noscript>
+<script src="{{ 'option_selection.js' | asset_url }}" defer></script>
+
+<script>
+    Shopify.money_format = {{ shop.money_format | json }};
+    //enable checking free gifts condition when checkout clicked
+    if ((typeof SECOMAPP) === 'undefined') { window.SECOMAPP = {}; };
+    SECOMAPP.enableOverrideCheckout = true;
+    //    SECOMAPP.preStopAppCallback = function(cart){
+    //        if(typeof yotpo!=='undefined' && typeof yotpo.initWidgets==='function'){
+    //            yotpo.initWidgets();
+    //        }
+    //    }
+</script>
+{% include 'sca.freegifts.status'%}

@@ -1,0 +1,264 @@
+<div class="aaa-wish-overlay-login">
+    <div class="aaa-wish-popup">
+        <h2></h2>
+        <a class="aaa-wish-close" href="javascript:;" onclick='closeloginpopup("aaa-wish-overlay-login");'>x</a>
+        <div class="aaa-wish-content">
+            <div class="grid login-template">
+                <div class="grid__item one-whole">
+                    <div class="note form-success" id="ResetSuccess" style="display:none;">
+                        {{ 'customer.recover_password.success' | t }}
+                    </div>
+                    {% assign producthandle = all_products["christmas-top-deal-bundle"] %}
+
+                    <div id="CustomerLoginForm">
+                        {% form 'customer_login' %}
+                        <div class="section-header section-header--large margin-bottom-0">
+                            <h1 class="section-header__title">{{ 'customer.login.title' | t }}</h1>
+                        </div>
+
+                        {{ form.errors | default_errors }}
+                        <input type="email" required name="customer[email]"  id="CustomerEmail" placeholder="{{ 'customer.login.email' | t }}"{% if form.errors contains "email" %} class="error"{% endif %} autocorrect="off" autocapitalize="off" autofocus>
+                               <br/><br/> 
+
+                        {% if form.password_needed %}
+
+                        <input type="password" required value="" name="customer[password]" id="CustomerPassword" placeholder="{{ 'customer.login.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %} >
+
+                               <p>
+                            <a  href="javascript:;"  id='forgot-pass'>{{ 'customer.login.forgot_password' | t }}</a>
+                        </p>
+
+                        {% endif %}
+
+                        <p>
+                            <input type="hidden" class="aaa_return_page" name="return_to"  />
+
+                            <input type="submit" class="btn" id="loginfrm" value="{{ 'customer.login.sign_in' | t }}">
+                        </p>
+                        <p>
+                            Are you a New User? <a href="javascript:;" class="registration-toggle"><span class="pink-text">REGISTER HERE</span></a>
+                        </p>
+                        {% endform %}
+                    </div>
+
+                    {% comment %}
+                    This page uses JavaScript to show/hide the recover password form
+                    {% endcomment %}
+                    <div id="RecoverPasswordForm" style="display: none;">
+
+                        <div class="section-header section-header--large">
+                            <h2 class="section-header__title">{{ 'customer.recover_password.title' | t }}</h2>
+                        </div>
+                        <p>{{ 'customer.recover_password.subtext' | t }}</p>
+
+                        {% comment %}
+                        This form must use 'recover_customer_password'
+                        {% endcomment %}
+                        {% form 'recover_customer_password' %}
+
+                        {{ form.errors | default_errors }}
+
+                        {% comment %}
+                        form.posted_successfully? is true only inside this form, but we want
+                        to show a success message outside of it. To do so, set the variable
+                        reset_success to true, then use JS to show our success message above.
+                        {% endcomment %}
+                        {% if form.posted_successfully? %}
+                        {% assign reset_success = true %}
+                        {% endif %}
+
+                        <label for="RecoverEmail" class="label--hidden">{{ 'customer.recover_password.email' | t }}</label>
+                        <input type="email" value="" required name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" autocorrect="off" autocapitalize="off">
+
+                        <p>
+                            <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+                        </p>
+                        <a href="javascript:;" id="cancel-forgot">{{ 'customer.recover_password.cancel' | t }}</a>
+                        {% endform %}
+
+                    </div>
+                    {% if shop.checkout.guest_login %}
+                    <hr>
+
+                    <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+                    {% form 'guest_login' %}
+                    <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+                    {% endform %}
+                    {% endif %}
+
+
+                </div>
+                <div class="grid__item one--whole" id="registration-form" style="display:none;">
+
+                    <div class="section-header section-header--large margin-bottom-0">
+                        <h1 class="section-header__title">{{ 'customer.register.title' | t }}</h1>
+                    </div>
+
+                    {% comment %}
+                    This form must use 'create_customer'
+                    {% endcomment %}
+                    {% form 'create_customer' %}
+
+                    {{ form.errors | default_errors }}
+
+                    <label for="FirstName" class="label--hidden">{{ 'customer.register.first_name' | t }}</label>
+                    <input type="text" required name="customer[first_name]" id="FirstName" placeholder="{{ 'customer.register.first_name' | t }}" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus>
+                           <br/><br/> 
+                    <label for="LastName" class="label--hidden">{{ 'customer.register.last_name' | t }}</label>
+                    <input type="text" required name="customer[last_name]" id="LastName" placeholder="{{ 'customer.register.last_name' | t }}" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words">
+                           <br/><br/> 
+                    <label for="Email" class="label--hidden" style="margin-left: 30px;">{{ 'customer.register.email' | t }}</label>
+                    <input type="email" required name="customer[email]" id="cusEmail" placeholder="{{ 'customer.register.email' | t }}" {% if form.errors contains "email" %} class="error"{% elsif form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+                           <br/><br/> 
+                    <label for="CreatePassword" class="label--hidden">{{ 'customer.register.password' | t }}</label>
+                    <input type="password" required name="customer[password]" id="CreatePassword" placeholder="{{ 'customer.register.password' | t }}" {% if form.errors contains "password" %} class="error"{% endif %}>
+                           <br/><br/> 
+                    <input type="hidden" class="aaa_return_page" name="return_to" value="{{ product.url }}" />
+
+                    <p>
+                        <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+                    </p>
+                    Are you an Existing User? <a href="javascript:;" class="registration-toggle"><span class="pink-text">LOGIN HERE</span></a>
+
+                    {% endform %}
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .aaa-wish-overlay-login {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 200ms;
+        visibility: hidden;
+        opacity: 0;
+        z-index: 99999
+    }
+    .aaa-wish-overlay-login:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .aaa-wish-popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        width: 50%;
+        position: relative;
+        transition: all 5s ease-in-out;
+    }
+
+    .aaa-wish-popup .aaa-wish-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #333;
+  
+    }
+
+    .aaa-wish-popup .aaa-wish-content {
+        max-height: 30%;
+        overflow: auto;
+        text-align: center
+
+    }
+</style>
+<script>
+  
+  $(document).ready(function(){
+            /*
+             Show/hide the recover password form when requested.
+             */
+      
+            jQuery(function() {
+                jQuery('.registration-toggle').click(function(e) {
+                    jQuery("#registration-form").toggle();
+                    jQuery("#CustomerLoginForm").toggle();
+                });
+            });
+			
+            var current_url = window.location.pathname;
+//             console.log(current_url);
+			
+            jQuery('.aaa_return_page').val(current_url);
+
+//            $("#customer_login").on("submit", function(e) {
+//
+//                var cus_mail = $("#CustomerEmail").val();
+//                var cus_pass = $("#CustomerPassword").val();
+//                if (cus_mail == "") {
+//
+//                    alert("Please Enter Email");
+//                    e.preventDefault();
+//                }
+//                if (cus_pass == "") {
+//                    alert("Please Enter Password");
+//
+//                    e.preventDefault();
+//
+//                }
+//
+//            });
+
+//            $("#create_customer").on("submit", function(e) {
+//
+//
+//                var fname = $("#FirstName").val();
+//                var lname = $("#LastName").val();
+//                var cus_email_r = $("#cusEmail").val();
+//                var cus_pass_r = $("#CreatePassword").val();
+//
+//                if (fname == "") {
+//
+//                    alert("Please Enter First Name");
+//                    e.preventDefault();
+//                }
+//                if (lname == "") {
+//                    alert("Please Enter Last Name");
+//
+//                    e.preventDefault();
+//
+//                }
+//                if (cus_email_r == "") {
+//
+//                    alert("Please Enter Email");
+//                    e.preventDefault();
+//                }
+//                if (cus_pass_r == "") {
+//                    alert("Please Enter Password");
+//
+//                    e.preventDefault();
+//
+//                }
+//
+//            });
+
+    $("#forgot-pass").on("click", function() {
+      $('#RecoverPasswordForm').show();
+      $('#CustomerLoginForm').hide();
+    
+    })
+    
+    $("#cancel-forgot").on("click", function() {
+      $('#RecoverPasswordForm').hide();
+      $('#CustomerLoginForm').show();
+    
+    })
+});
+
+</script>

@@ -1,0 +1,37 @@
+<ul class="pagination {% if settings.pagination-style == 'jump-to-page' %}jump-to-page{% endif %}">
+
+  <li class="previous">
+    {% if paginate.previous %}
+      <a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+    {% else %}
+      {{ 'general.pagination.previous' | t }}
+    {% endif %}
+  </li>
+
+  {% if settings.pagination-style == 'standard' %}
+    <li class="position">{{ 'general.pagination.summary' | t: current_page: paginate.current_page, pages: paginate.pages }}</li>
+  {% else %}
+
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <li class="jump-to-link">{{ part.title | link_to: part.url }}</li>
+      {% else %}
+        {% if part.title == '&hellip;' %}
+        <li class="jump-to-link ellipsis">{{ part.title }}</li>
+        {% else %}
+        <li class="jump-to-link active">{{ part.title }}</li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+  {% endif %}
+
+  <li class="next">
+    {% if paginate.next %}
+      <a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+    {% else %}
+      {{ 'general.pagination.next' | t }}
+    {% endif %}
+  </li>
+
+</ul><!-- .pagination -->

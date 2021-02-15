@@ -1,0 +1,26 @@
+<!-- spa specific css -->
+{{ 'spa.scss.css' | asset_url | stylesheet_tag }} 
+
+
+<section class="spa-header spa-desktop"><a href="/pages/spa"><img src="{{ 'spa-header.jpg' | asset_url }}"/></a></section>
+<section class="spa-header spa-mobile"><a href="/pages/spa"><img src="{{ 'spa-header-mobile.jpg' | asset_url }}"/></a></section>
+
+
+<section class="content content-area">
+  
+  <div class="text-content-wrap clearfix">
+    <div class="rte clearfix text-content" style="position: relative; z-index: 600;">
+      {{ page.content }}
+      {formbuilder:2915}
+    </div>
+
+    <div class="sidebar rte" style="margin-top: -60px; position: relative; z-index: 500;">
+      
+      
+    </div>
+
+
+  </div>
+
+</section>
+

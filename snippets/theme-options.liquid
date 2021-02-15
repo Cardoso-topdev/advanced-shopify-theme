@@ -1,0 +1,60 @@
+
+<script>
+  Theme = {}
+  Theme.version = "9.5.1";
+  Theme.logo = {{ settings.use-logo }};
+  Theme.products = new Array();
+  Theme.currency = '{{ shop.currency }}';
+  Theme.currencyFormat = "{{ shop.money_with_currency_format }}";
+  Theme.shippingCalculator = '{{ settings.shipping_calculator }}';
+  Theme.productImageBorders = {{ settings.product-image-borders }};
+  Theme.slideshowPagination = {{ settings.show-slideshow-pagination }};
+  Theme.autoplaySlideshow = {{ settings.autoplay-slideshow }};
+  Theme.autoplayDelay = '{{ settings.rotate-freq }}';
+  Theme.fullsizeProductViewer = {{ settings.display-fullsize-product-viewer }};
+  Theme.moneyFormat = {{ shop.money_format | strip_html | json }};
+  Theme.moneyFormatCurrency = {{ shop.money_with_currency_format | strip_html | json }};
+  Theme.shippingCalculator = {% if settings.shipping_calculator %}true{% else %}false{% endif %};
+  Theme.shippingCalcErrorMessage = "{{ 'cart.shipping_calculator.error' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcMultiRates = "{{ 'cart.shipping_calculator.rates_html' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcOneRate = "{{ 'cart.shipping_calculator.rate' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcNoRates = "{{ 'cart.shipping_calculator.no_rates' | t | replace: '"','\\"' }}";
+  Theme.shippingCalcRateValues = "{{ 'cart.shipping_calculator.rate_values_html' | t | replace: '"','\\"' }}";
+  Theme.addedToCart = "{{ 'products.product.added_to_cart' | t }}";
+  Theme.pleaseWait = "{{ 'products.product.please_wait' | t }}";
+  Theme.userLoggedIn = {% if shop.customer_accounts_enabled and customer %}true{% else %}false{% endif %};
+  Theme.userAddress = '{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address }}{% endif %}';
+  Theme.centerHeader = {% if settings.center-header %}true{% else %}false{% endif %};
+  Theme.showInstagramWidget = {% if settings.instagram-access-token != blank %}true{% else %}false{% endif %};
+  Theme.instagramAccessToken = '{{ settings.instagram-access-token }}';
+  Theme.instagramShowTag = {{ settings.show-instagram-tag | json }};
+  Theme.instagramTag = '{{ settings.instagram-tag | escape }}';
+  Theme.showTwitterWidget = {% if settings.twitter-id != blank %}true{% else %}false{% endif %};
+  Theme.twitterWidgetId = '{{ settings.twitter-id }}';
+  Theme.twitterRetweets = {{ settings.twitter-retweets | json }};
+
+  Theme.cartItemsOne = "{{ 'layout.header.item_count.one' | t | escape }}";
+  Theme.cartItemsOther = "{{ 'layout.header.item_count.other' | t | escape }}";
+  Theme.errorGeneral = "{{ 'products.product.error_message_general' | t | escape }}";
+  Theme.errorStock = "{{ 'products.product.error_message_stock' | t | escape }}";
+
+  {% if settings.show-currency-switcher %}
+    Theme.currencySwitcher = true
+    {% if settings.currency-switcher-format %}
+      Theme.currencySwitcherFormat = '{{ settings.currency-switcher-format }}';
+      Theme.moneyFormat = {{ shop.[settings.currency-switcher-format] | strip_html | json }};
+    {% endif %}
+
+    {% if settings.currency-switcher-default.size > 0 %}
+      Theme.defaultCurrency = '{{ settings.currency-switcher-default }}';
+    {% endif %}
+  {% endif %}
+
+  shopCurrency = Theme.currency;
+
+  {% if settings.product-image-zoom %}
+    Theme.imageZoom = true;
+  {% endif %}
+
+  Theme.ajax = {{ settings.ajax | json }};
+</script>

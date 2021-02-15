@@ -1,0 +1,20 @@
+
+<!-- Bold Recurring Orders -->
+  <script defer>
+    $(window).on('load', function() {
+     $('.single-option-selector').on('change', function(){
+      if (BOLD && BOLD.recurring_orders && BOLD.recurring_orders.app && BOLD.recurring_orders.app.ee &&
+         typeof BOLD.recurring_orders.app.ee.emit === 'function'){
+        BOLD.recurring_orders.app.ee.emit('variant_changed');
+      }
+    });
+    }) 
+</script>
+    <script defer>
+	var BOLD = BOLD || {};
+	BOLD.recurring_orders = BOLD.recurring_orders || {};
+	BOLD.recurring_orders.settings = BOLD.recurring_orders.settings || {}
+	
+	// here is where you assign a new value to the setting you'd like to change
+	BOLD.recurring_orders.settings.loadCustomButtonClasses = 'btn button action-button';
+</script>

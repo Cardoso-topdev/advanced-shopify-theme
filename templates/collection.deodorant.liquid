@@ -1,0 +1,146 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero deo-collection">
+        <h1>Organic Deodorant</h1>
+        <h2>All Natural, Non-Toxic Deodorant That Works</h2>
+        <div class="content content-area flex deo-content-area">
+          	<div class="collection-video">
+              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/zOp4d0umVYg' frameborder='0' allowfullscreen></iframe></div>
+            </div>
+            <div class="collection-text">
+              <h3>Thousands of Five-Star Reviews</h3>
+              <p>Trust your pits to the experts. Get long-lasting protection, without the toxins.</p>
+              <ul>
+                <li>Made with simple, organic ingredients that are 100% natural and safe</li>
+                <li>Formulated for sensitive skin, with a small amount of baking soda to keep you smelling great (even after a workout)</li>
+                <li>No aluminum, parabens, fragrance, triclosan, talc, propylene glycol, or anything artificial</li>
+              </ul>
+           </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection">
+    <div class="flex collection-best-seller">
+      <div class="best-seller-image">
+        <h2>Our Best Seller</h2>
+        <a href="{{ all_products['charcoal-deodorant'].url }}"><img src="{{ 'deodorant-natural.jpg' | asset_url }}" alt="Natural deodorant" /></a>
+      </div>
+      <div class="best-seller-text">
+        <h2>Our Best Seller</h2>
+        <div class="product-title">{{ all_products['charcoal-deodorant'].title }}</div>
+        <div class="start" style="padding-bottom: 5px">Starts at</div>
+        <div class="product-price">{{ all_products['charcoal-deodorant'].price | money }}</div>
+        <p class="product-description">Activated coconut charcoal contains added detoxifying benefits while also deodorizing and disinfecting. Goes on virtually clear and doesn't stain clothes.</p>
+        <div class="button"><a href="{{ all_products['charcoal-deodorant'].url }}">View Product</a></div>     
+      </div>
+    </div>
+    
+    <div class="special-fields">
+      <div class="blue-tansy special-field">Anti-inflammatory</div>
+      <div class="charcoal special-field">Best-Seller</div>
+      <div class="geranium special-field">Balancing</div>
+      <div class="lavender special-field">Healing</div>
+      <div class="lemongrass special-field">Rejuvenating</div>
+      <div class="tea-tree special-field">Cleansing</div>
+      <div class="unscented special-field">Soothing</div>
+    </div>
+
+  
+
+  {% if collection.products.size == 0 %}
+    <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+  {% else %}
+
+
+    <ul class="product-list {{ settings.products-per-row }}">
+    {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+    </ul>
+   
+  {% endif %}
+
+  {% if paginate.previous or paginate.next %}
+    {% include 'pagination' %}
+  {% endif %}
+    
+    
+</section>
+{% endpaginate %}
+
+    
+  <div style="margin-top: -60px">{% include 'home-pure-promise' %}</div>
+  <section class="content content-area collection-reviews">
+    {% include 'deodorant-love-stories' %}
+  </section>
+  <div style="margin: -75px auto 100px auto">{% include 'deodorant-reviews' %}</div>
+
+
+
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+

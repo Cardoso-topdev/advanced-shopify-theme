@@ -1,0 +1,156 @@
+<section class="content content-area customer addresses">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <a class="back-link" href="/account">{{ 'customer.general.back_to_account' | t }}</a>
+    <span class="label">{{ 'customer.addresses.header' | t }}</span>
+    <a class="header-link" href="/account/logout">{{ 'customer.general.logout' | t }}</a>
+  </div>
+
+  {% if customer.addresses.size > 0 %}
+    <section class="address-list">
+      <ul class="list">
+        {% for address in customer.addresses %}
+          <li class="{% include 'for-looper' %}">
+            <div id="view_address_{{address.id}}">
+              <p class="name">{{ address.first_name }} {{ address.last_name }} {% if address == customer.default_address %}<span class="default">({{ 'customer.addresses.default_address' | t }})</span>{% endif %}</p>
+              <p class="address-1">{{ address.street }}</p>
+              <p class="address-2">{{ address.city }}{% if address.province_code %}, {{ address.province_code }}{% endif %}</p>
+              <p class="address-3">{{ address.country }} {{ address.zip }}</p>
+              <span class="action">
+                {{ 'customer.addresses.edit' | t | edit_customer_address_link: address.id }}
+                {{ 'customer.addresses.delete' | t | delete_customer_address_link: address.id }}
+              </span>
+            </div>
+
+            <section id="edit_address_{{address.id}}" class="edit-address" style="display:none;">
+              <div class="edit-add-address">
+                {% form 'customer_address', address %}
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.first_name' | t }}</label>
+                    <input class="field" type="text" name="address[first_name]" value="{{form.first_name}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.last_name' | t }}</label>
+                    <input class="field" type="text" name="address[last_name]" value="{{form.last_name}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.company' | t }}</label>
+                    <input class="field" type="text" name="address[company]" value="{{form.company}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.address1' | t }}</label>
+                    <input class="field" type="text" name="address[address1]" value="{{form.address1}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.address2' | t }}</label>
+                    <input class="field" type="text" name="address[address2]" value="{{form.address2}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.city' | t }}</label>
+                    <input class="field" type="text" name="address[city]" value="{{form.city}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.country' | t }}</label>
+                    <select class="styled-select" id="address-country-{{form.id}}" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+                  </div>
+                  <div class="wrap" id="address-province-container-{{ address.id }}" style="display:none">
+                    <label>{{ 'customer.addresses.province' | t }}</label>
+                    <select class="styled-select" id="address-province-{{ address.id }}" name="address[province]" data-default="{{form.province}}"></select>
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.zip' | t }}</label>
+                    <input class="field" type="text" name="address[zip]" value="{{form.zip}}">
+                  </div>
+                  <div class="wrap">
+                    <label>{{ 'customer.addresses.phone' | t }}</label>
+                    <input class="field" type="text" name="address[phone]" value="{{form.phone}}">
+                  </div>
+                  <div class="default-wrap">
+                    {{ form.set_as_default_checkbox }} <span>{{ 'customer.addresses.set_as_default' | t }}</span>
+                  </div>
+                  <div class="submit-wrap">
+                    <input class="action-button" type="submit" id="submit-{{form.id}}" value="{{ 'general.submit' | t }}"><span>{{ 'customer.general.or' | t }} <a href="#" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;">{{ 'customer.general.cancel' | t }}</a></span>
+                  </div>
+                {% endform %}
+              </div>
+            </section>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <a class="add-new" href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.add_new' | t }}</a>
+
+  {% endif %}
+
+
+
+  <section id="add_address" class="add-address {% if customer.addresses.size == 0 %}new-user{% endif %}" style="display:none;">
+    <div class="edit-add-address">
+      {% form 'customer_address', customer.new_address %}
+        <div class="wrap">
+          <label>{{ 'customer.addresses.first_name' | t }}</label>
+          <input class="field" type="text" name="address[first_name]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.last_name' | t }}</label>
+          <input class="field" type="text" name="address[last_name]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.company' | t }}</label>
+          <input class="field" type="text" name="address[company]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.address1' | t }}</label>
+          <input class="field" type="text" name="address[address1]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.address2' | t }}</label>
+          <input class="field" type="text" name="address[address2]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.city' | t }}</label>
+          <input class="field" type="text" name="address[city]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.country' | t }}</label>
+          <select class="styled-select" id="address-country" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+        </div>
+        <div class="wrap" id="address-province-container" style="display:none">
+          <label>{{ 'customer.addresses.province' | t }}</label>
+          <select class="styled-select" id="address-province" name="address[province]" data-default="{{form.province}}"></select>
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.zip' | t }}</label>
+          <input class="field" type="text" name="address[zip]">
+        </div>
+        <div class="wrap">
+          <label>{{ 'customer.addresses.phone' | t }}</label>
+          <input class="field" type="text" name="address[phone]">
+        </div>
+        <div class="default-wrap">
+          {{ form.set_as_default_checkbox }} <span>{{ 'customer.addresses.set_as_default' | t }}</span>
+        </div>
+        <div class="submit-wrap">
+          <input class="action-button" type="submit" value="{{ 'general.submit' | t }}"><span>{% if customer.addresses.size > 0 %}{{ 'customer.general.or' | t }} <a href="#" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.general.cancel' | t }}</a>{% endif %}</span>
+        </div>
+      {% endform %}
+    </div>
+  </section>
+<a class="back-to-account" href="/account" >Back to account overview</a>
+</section>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+  // initialize observers on address selectors
+    new Shopify.CountryProvinceSelector('address-country', 'address-province', {hideElement: 'address-province-container'});
+  {% for address in customer.addresses %}
+    new Shopify.CountryProvinceSelector('address-country-{{address.id}}', 'address-province-{{address.id}}', {hideElement: 'address-province-container-{{address.id}}'});
+  {% endfor %}
+
+</script>

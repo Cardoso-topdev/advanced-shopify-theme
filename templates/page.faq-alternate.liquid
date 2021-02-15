@@ -1,0 +1,410 @@
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+  $( document ).ready(function() {
+    $('.nested-accordion').find('.comment').slideUp();
+    $('.nested-accordion').find('h3').click(function(){
+      $(this).next('.comment').slideToggle(100);
+      $(this).toggleClass('selected');
+    });
+  });
+
+
+</script>
+
+<section>
+
+  <div class="faq-page">
+    
+  	<h1>Hello! How can we help you?</h1>
+    
+    <div class="combined-search">
+      <form>
+        <input type="text" class="field" placeholder="Search" />
+        <input type="submit" class="faq-submit" value="Go" />
+      </form>      
+    </div>
+    
+	<h2>Browse our Resource Library</h2>
+    
+    <div class="faq-page-container">
+      <div class='nested-accordion'>
+        <h3>PRODUCT INFORMATION</h3>
+        <div class='comment'>
+          <div class='nested-accordion'>
+            <h3>I have questions about ingredients.</h3>
+            <div class='comment taupe'>
+              <div class='nested-accordion'>
+                <h3>Why do some of your products contain tallow from grass-fed cows?</h3>
+                <div class='comment'>
+                  <p>We’re so glad you asked! Tallow is super nourishing to skin and is a very important ingredient in a few of our products. To find out more, please  take a peek at <a href="https://blog.primallypure.com/beef-tallow-what-it-is-and-why-your-skin-needs-it/" target="_blank">this article</a>.</p>
+                </div>
+              </div>
+              <div class='nested-accordion'>
+                <h3>Where do you source your essential oils and other ingredients?</h3>
+                <div class='comment'>
+                  <p>It’s SO important that we source the finest natural and organic raw materials with which to create our products. All of our suppliers are carefully screened for quality, sustainability, organic certification and fair trade practices. We choose to source ingredients only from vendors that meet our rigorous standards. While we aren't able to disclose the specific companies that we use or their specific practices for confidentiality reasons, please know that we take sourcing very seriously and purchase our essential oils and other raw materials from many different companies throughout the world. We work tirelessly to ensure the quality of our skincare products, by starting with exceptional ingredients, then carefully hand-crafting the best skincare available .
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Are your products pregnancy/breastfeeding safe?</h3>
+            <div class='comment'>
+              <p>Taking extra precautions when it comes to nurturing little lives is of the utmost importance to us. We’ve done extensive research in regards essential oil use during pregnancy + while nursing, and feel confident that all of our products (aside from Fancy Face Serum for which we offer a pregnancy-safe version) do not pose a risk for pregnant/nursing women. However if you have concerns we always recommend that you check with your healthcare provider since he/she can advise you best.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Are your products safe for kids?</h3>
+            <div class='comment'>
+              <p>Extra caution should always be taken when using products that contain essential oils on children. Even though the essential oils in our products are 100% natural and organic, they are still extremely concentrated and potent. Spot testing is a must when using our products on children. For infants, we recommend sticking to our line of super gentle baby products formulated without essential oils.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Do you offer samples?</h3>
+            <div class='comment'>
+              <p>We do not currently offer samples. We work very hard to make the best natural skincare products on the market and are confident that you will be happy with your order. However, if you are unsatisfied with an item, please get in touch with us at <a href="mailto:hello@primallypure.com">hello@primallypure.com</a> so that we can work with you to find a resolution.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>What's the difference between Gua Sha and Jade Rolling and which one is right for me?</h3>
+            <div class='comment'>
+              <p>We’re a fan of both of these practices and you really can’t go wrong with either! We encourage you to read <a href="https://blog.primallypure.com/jade-rollers-vs-gua-sha-whats-the-difference/" target="_blank">this blog post</a> if you’d like to find out more.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>What is double cleansing and is it right for me?</h3>
+            <div class='comment'>
+              <p>We're so happy that you asked! Most likely double cleansing will be deeply beneficial to your skincare regimen. You can find out more in <a href="https://blog.primallypure.com/double-cleansing-do-or-dont/" target="_blank">blog post</a> written by our Holistic Esthetician, Courtney.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>What's the difference between your regular and charcoal deodorants?</h3>
+            <div class='comment'>
+              <p>All of our deodorants are formulated with the same good-for-you ingredients that work to combat odor while also pampering the skin. The main difference is that they are all scented using different essential oils (with the exception of our unscented formula) and our Charcoal version inclusion of activated coconut charcoal. This ingredient actually uses a process called adsorption to bind harmful chemicals – attracting and attaching toxins to its pores, making it a perfect choice if you’re looking to rid your body of toxic chemicals that build up over time using traditional deodorant formulas.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Do you make a baking soda free deodorant formula?</h3>
+            <div class='comment'>
+              <p>Our deodorant formula contains only a small amount of baking soda and is fortified with kaolin clay (powerful detoxifier) and non-nano zinc oxide (soothes irritation + combats odor).
+    </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>How do I recycle my deodorant tube?</h3>
+            <div class='comment'>
+              <p>Our deodorant tubes are considered a Level 5 plastic due to the high temperature threshold they carry and they are recyclable through most curbside programs.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’m having an issue with a product.</h3>
+            <div class="comment taupe">
+              <div class="nested-accordion">
+                <h3>I'm experiencing underarm irritation.</h3>
+                <div class="comment ">
+                  <p>Irritation can occur when you're switching to a natural deodorant or if you’re extra sensitive to baking soda. Please read <a href="https://docs.google.com/document/d/1Rqge77zZoLRbLY6-LxcXVk59BrWzHN6Hmh0SCAHuVRw/edit" target="_blank">Irritation From Natural Deodorant and What to Do About It</a>. It’s filled with the best tips and tricks to help you transition from conventional deodorant to our safe, non-toxic alternative.
+                  </p>
+                </div>
+              </div>
+              <div class="nested-accordion">
+                <h3>I am breaking out since beginning the Oil Cleansing Method.</h3>
+                <div class="comment">
+                  <p>We suspect that what you're experiencing is fairly normal, as this adjustment period can definitely be awkward and take some time. In the meantime, we have linked <a href="https://blog.primallypure.com/how-to-oil-cleanse-mistakes-you-might-be-making/" target="_blank">a blog post</a> that we hope can help troubleshoot. </p>
+                </div>
+              </div>
+            </div>
+            <div class='comment'>
+              <p>Extra caution should always be taken when using products that contain essential oils on children. Even though the essential oils in our products are 100% natural and organic, they are still extremely concentrated and potent. Spot testing is a must when using our products on children. For infants, we recommend sticking to our line of super gentle baby products formulated without essential oils.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Do you have any tips for reusing my glass containers?</h3>
+            <div class='comment'>
+              <p>We’re so appreciative of you being so conservation minded! While we don’t have a program in place for this as of yet, we do have some fun ideas on how to reuse your empties in <a href="https://blog.primallypure.com/5-ways-to-reuse-your-empties/" target="_blank">this blog post</a>.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Are you in any retail locations?</h3>
+            <div class='comment'>
+              <p>We are not currently in any retail locations, but we’re always evaluating opportunities that will allow us to offer fair prices with the freshest and highest quality products available.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='nested-accordion'>
+        <h3>SKINCARE REGIMEN</h3>
+        <div class="comment">
+          <p>While everyone's skin is unique and requires customized care, there are some guidelines we suggest following when it comes to applying our skincare products. This is our simple skincare routine for the evening:</p>
+          <ul>
+            <li>Cleansing Oil and/or Baby Bar: Begin with a clean, fresh canvas</li>
+            <li>Complexion Mist or Everything Spray: Replenish skin + prep skin for moisture</li>
+            <li>Skin-Specific Facial Serum (Plumping, Clarifying or Soothing): Target specific skin needs </li>
+            <li>Beauty Cream or Baby Balm (if needed): Moisturize and nourish</li>
+          </ul>
+          <p><a href="https://blog.primallypure.com/steps-for-a-simple-skincare-routine-video-tutorial-with-our-holistic-esthetician/" target="_blank">Watch a tutorial here</a></p>
+        
+          <div class="nested-accordion">
+            <h3>Which product of yours do you recommend as an eye cream?</h3>
+            <div class="comment">
+              <p>If you are looking for an eye cream, we would recommend giving our Baby Balm a try! It contains marshmallow root, which is known as nature’s hyaluronic acid as it helps to firm + plump the skin, protect skin’s moisture barrier and soften skin texture. This powerhouse plant also aids in repairing + rejuvenating the skin, which is exactly what we want for tired eyes, fine lines and dark circles!</p>
+            </div>
+          </div>
+          <div class="nested-accordion">
+            <h3>I have combination skin, which cleansing oil do I choose?</h3>
+            <div class="comment">
+              <p>We would recommend our Cleansing Oil (Normal Skin) if you don’t identify with your skin being either very dry or very oily. </p>
+            </div>
+          </div>
+          <div class="nested-accordion">
+            <h3>Can I layer your skin specific serums?</h3>
+            <div class="comment">
+              <p>Since everyone’s skin needs are different, we don’t ascribe to a one size fits all approach in using our products. That being said, if you’d like to apply our skin-specific serums by layering them to meet your individual skin care needs, you can definitely feel free to do so.</p>
+            </div>
+          </div>
+          <div class="nested-accordion">
+            <h3>Which Skin Specific Serum is right for my skin type?</h3>
+            <div class="comment">
+              <p>Each of our Serums have unique benefits for different skin types. We’ve gathered some insight into the unique properties of each serum based on their benefits and have listed them below:
+              </p>
+              <ul>
+                <li><strong>Clarifying:</strong> Minimizes inflammation + breakouts, brightens uneven skin tone, clarifies the complexion. Contains anti-bacterial and brightening ingredients including Turmeric Oil, Marula Oil + Green Tea, Balances oil production, purifies pores, diminishes discoloration from scarring + sun damage, and evens skin tone to create clear, glowing skin.
+                </li>
+                <li><strong>Soothing:</strong> Creates a calm complexion, soothes sensitive + stressed skin, restores balance. Contains powerful anti-inflammatory and restorative ingredients including CBD Oil, Squalane Oil + Hemp Seed Oil. Reduces redness and inflammation, repairs and strengthens damaged skin, and deeply soothes to support a calm, balanced complexion.  
+                </li>
+                <li><strong>Plumping:</strong> Promotes youthful appearance, softens signs of aging, plumps skin naturally.Contains ingredients rich in vitamins and antioxidants, including Astaxanthin, Green Coffee Oil + Prickly Pear Seed Oil. Increases collagen levels, minimizes fine lines + firms skin, stimulates cell turnover, and deeply nourishes to promote a vibrant, healthy appearance.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class='nested-accordion'>
+        <h3>SUBSCRIPTIONS</h3>
+        <div class='comment'>
+          <div class='nested-accordion'>
+            <h3>I am set up and receiving subscription orders from you, but it’s saying that there is no account associated with my name or email so I am unable to log in and make changes. What should I do?
+            </h3>
+            <div class="comment">
+              <p>We know it's a bit confusing, but you'll still need to create an account after you've placed a subscription order and we've made it simple for you! Simply click through to the <a href="https://primallypure.com/account/login" target="_blank">Deodorant Subscription Sign up and Login page</a> and click the "sign up for account" option at the bottom.</p>
+              <p>Then, enter your name, email (please use the same email you used on your first order) and choose a password. Once logged into your account, you'll be able to take full advantage of the convenience of being able to alter your account as you see fit, along with always receiving free shipping on our safe + natural deodorant.
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Can I make changes to an existing subscription?</h3>
+            <div class="comment">
+              <p>Yes, that’s part of the beauty of being a subscriber! You can log in and make changes anytime that you see fit, along with always receiving free shipping on all subscription orders. 
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I would like to add other products to my subscription, is this possible?</h3>
+            <div class="comment">
+              <p>At this time we are offering our subscription services for our deodorant only, however as we continue to receive feedback from customers we may add additional items to the program in the future. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class='nested-accordion'>
+        <h3>QUESTIONS ABOUT MY ORDER</h3>
+        <div class='comment'>
+          <div class='nested-accordion'>
+            <h3>I received an email that my order was delivered but it’s not anywhere to be found.</h3>
+            <div class="comment">
+              <p>Our local postmaster informed us that sometimes packages are scanned under the wrong setting as the mail carrier is loading his or her truck for the day's delivery. This triggers the "delivered" email you received.  In our experience the package shows up in the mailbox within 24-48 hours, when the mail carrier actually gets to the package's final destination. If your package doesn’t turn up in this time frame, please let us know and we’d be happy to provide a solution.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I need to update my billing or shipping information.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                {formbuilder:2089}
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I need help tracking my package.</h3>
+            <div class="comment">
+              <p>Once your order has left our facility, you will receive an email containing tracking information that you can reference to see any updates on its status.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>My package never arrived, or it arrived with incorrect or damaged products.</h3>
+            <div class="comment">
+              <p>Please contact us so we can help.</p>
+              <div class="inline-form">
+                {formbuilder:2089}
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>When will I receive my order if it's shipped outside the US?</h3>
+            <div class="comment">
+              <p>We strive to fulfill and ship orders within 3 days of receipt and use USPS as our carrier. You will receive tracking information as soon as your item has shipped. Depending on the country and its import regulations, there may be delays due to clearing customs or a duty imposed by the governing authorities for which the recipient is responsible. At this time, we’re unable to ship CBD products internationally due to current CBD regulations.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>Do you offer local pickup?</h3>
+            <div class="comment">
+              <p>Yes! We are located in Murrieta, CA and love connecting with local customers at our headquarters. Orders must be placed online 24 hours prior to pickup and the "local pickup" item must be added to your cart in order to enable this option. Simply search “local pickup” on our site and add the local pickup item to your cart.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I need to return, cancel, or exchange an item(s).</h3>
+            <div class="comment">
+              <p>To return or cancel an order, <a href="https://returns.primallypure.com">please start here</a>.</p>
+              <p>To make changes to an order, email us at <a href="mailto:hello@primallypure.com">hello@primallypure.com</a> or use the contact form below.</p>
+              <div class="inline-form">
+                {formbuilder:2089}
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’m having an issue with a product.</h3>
+            <div class="comment taupe">
+              <div class="nested-accordion">
+                <h3>I’m experiencing underarm irritation.</h3>
+                <div class="comment">
+                  <p>Irritation can occur when you’re switching to a natural deodorant or if you’re extra sensitive to baking soda. Please read Irritation From <a href="https://blog.primallypure.com/underarm-rash/" target="_blank">Natural Deodorant and What to Do About It</a>. It’s filled with the best tips and tricks to help you transition from conventional deodorant to our safe, non-toxic alternative.</p>
+                </div>
+              </div>
+              <div class="nested-accordion">
+                <h3>I am breaking out since beginning the Oil Cleansing Method.</h3>
+                <div class="comment">
+                  <p><a href="https://blog.primallypure.com/how-to-oil-cleanse-mistakes-you-might-be-making/" target="_blank">This post</a> may help.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="nested-accordion">
+            <h3>My discount code, gift card or store credit is not working.</h3>
+            <div class="comment">
+              <p>If you’re trying to place an order using a discount code and it isn’t working correctly, make sure that you aren’t trying to use multiple codes or placing a subscription order. The way our platform is set up, we are unable to honor two promotions in one transaction, and since our subscription orders ship free, this is included. </p>
+              <p>If you'd like to use a promotion code on your order, once all the items are added to your cart, you can go to check out where you'll see a place to enter your code on the right hand side of the screen it will read "gift card or discount code ". Only one code can be applied per transaction and if you’re using an affiliate code it can only be used once per customer. 
+              </p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>How can I utilize your refer a friend program and save?</h3>
+            <div class="comment">
+              <p>Our referral program requires the referrer to fill out a form through our website which then will send the referee an email containing a unique link to purchase through along with a promo code to be entered at checkout. The purchase must be a non subscription purchase that totals $50 or more to be eligible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class='nested-accordion'>
+        <h3>I WOULD LIKE TO WORK WITH YOU</h3>
+        <div class='comment'>
+          <div class='nested-accordion'>
+            <h3>I’m an influencer looking to promote your products.</h3>
+            <div class="comment">
+              <p>Learn more <a href="https://primallypure.com/pages/influencer-program " target="_blank">here</a>.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’m an influencer looking for a customized partnership.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                <p>Please complete the form below, and we'll be in touch.</p>
+                
+                {formbuilder:2082}
+                
+                
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’d like to be a guest author on your <a href="https://blog.primallypure.com" target="_blank">Pure Life Blog</a>.</h3>
+            <div class="comment">
+              <p>Review our <a href="https://cdn.shopify.com/s/files/1/0874/6120/files/Guest-Blog-Guidelines-PDF.pdf?4635397363925515179" target="_blank">guidelines here</a>. To be considered, please send some examples of your past work, along with your topic idea and a detailed outline to our editorial team at <a href="mailto:submissions@primallypure.com">submissions@primallypure.com</a>.</p>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’d like to discuss Media, Press or Advertising opportunities.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                <p>Please complete the form below, and we'll be in touch.</p>
+                
+                {formbuilder:2085}
+                
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’d like to discuss event sponsorships or speaking opportunities.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                <p>Please complete the form below, and we'll be in touch.</p>
+                
+                {formbuilder:2086}
+                
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’d like to discuss wholesale opportunities.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                <p>While we aren't accommodating any wholesale requests at this time, we welcome your message and can reach out if things change.</p>
+                
+                {formbuilder:2090}
+                
+                
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I’m looking for donations.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                
+                {formbuilder:2087}
+                
+              </div>
+            </div>
+          </div>
+          <div class='nested-accordion'>
+            <h3>I have a different question.</h3>
+            <div class="comment">
+              <div class="inline-form">
+                {formbuilder:2088}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div class='nested-accordion'>
+        <h3>I WOULD LIKE TO BOOK A SPA APPOINTMENT</h3>
+        <div class="comment">
+          <p>Great! You can learn more <a href="/pages/spa">here</a>.</p>
+        </div>
+      </div>
+      
+      <div class="message-contact">
+        <p>Still need help?</p>
+        <div class="button"><a href="/pages/contact">Send a Message</a></div>
+      </div>
+  
+	</div>
+
+	
+  <div style="clear: both"></div>
+</section>

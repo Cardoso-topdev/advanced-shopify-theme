@@ -1,0 +1,22 @@
+{% assign using-linklist = false %}
+{% if linklists[settings.collection-listing-linklist] and linklists[settings.collection-listing-linklist].links.size > 0 %}
+  {% assign using-linklist = true %}
+{% endif %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <h1 class="label">{{ 'collections.listing.header' | t }}</h1>
+  </div>
+
+  <section class="collections">
+    {% if using-linklist %}
+      {% for link in linklists[settings.collection-listing-linklist].links %}{% include 'collection-list-item' with 'linklist' %}{% endfor %}
+    {% else %}
+      {% for collection in collections %}{% include 'collection-list-item' with 'linklist' %}{% endfor %}
+    {% endif %}
+  </section>
+
+</section>

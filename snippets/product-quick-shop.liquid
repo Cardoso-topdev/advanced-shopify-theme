@@ -1,0 +1,189 @@
+<div id="quick-shop-{{ itemType.id }}" class="quick-shop-content clearfix" {% if itemType.options.size == 1 %}data-option="{{ itemType.options.first | escape }}"{% endif %}>
+
+  <div class="showcase {% if itemType.images.size == 1 %}wide{% endif %}">
+    <div class="container {% if product.images.size == 1 or settings.product-thumb-orientation == 'below' %}wide{% endif %}">
+      <div class="wrap">
+        <img alt="{{ itemType.featured_image.alt }}" src="{{ itemType.featured_image | product_img_url: 'large' }}">
+        {% if settings.product-image-borders %}<span class="overlay"></span>{% endif %}
+      </div>
+    </div>
+
+    {% if itemType.images.size > 1 %}
+      <div class="pager {% if settings.product-thumb-orientation == 'below' %}below-main-image{% endif %}">
+        <div class="inner">
+          {% for image in itemType.images %}
+            <div class="wrap thumb {% include 'for-looper' %} {% if forloop.first %}active{% endif %}">
+              <img alt="{{ image.alt }}" src="{{ image.src | product_img_url: 'small' }}" data-high-res-url="{{ image.src | product_img_url: 'large' }}">
+              <span class="overlay"></span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+  
+  {% include 'buyx-price-min' with itemType %} 
+
+
+  <div class="details {% if buyx_product_variants_size == 1 and settings.display-product-quantity-option == false %}no-options{% endif %}">
+
+    <div class="module header">
+      <span class="close-modal">v</span>
+      <p class="title"><a href="{{ itemType.url }}">{{ itemType.title }}</a></p>
+      {% if itemType.compare_at_price_min > buyx_price_min %}
+        <p class="price sale"><span class="original money">{{ itemType.compare_at_price_min | money }}</span>
+          <span class="money">{{ buyx_price_min | money }}</span></p>
+      {% else %}
+        <p class="price"><span class="money">{{ buyx_price_min | money }}</span></p>
+      {% endif %}
+      <div class="overview-review">
+          <a href="{{ itemType.url }}" style="color: #000"><span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.handle }}" style="display: inline-block;">{{ product.metafields.stamped.badge }}</span></a>
+      </div>
+    </div>
+
+    <form class="module options {% unless buyx_product_available %}unavailable{% endunless %}" action="/cart/add" data-productid="{{ product.id }}" method="post">
+
+      {% if buyx_product_available %} <!-- If the product is available then... -->
+
+        {% if buyx_product_variants_size > 1 or itemType.variants.first.title != "Default Title" %}
+
+          <select name="id" data-productid="{{ product.id }}" id="product-select-{{ itemType.id }}" class="product-select">
+            {% for variant in itemType.variants %}
+             {% unless variant.title contains '% Off' %}
+  
+              <option{% if variant == product.selected_or_first_available_variant %} selected{% endif %} value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+              {% endunless %}
+            {% endfor %}
+          </select>
+
+          <script>
+            
+            
+function buyx_product_json(product) {
+     if (product == null) {
+          return null
+     }
+     var variants = []
+     //does it have BuyXDiscount option?
+     var option_position = -1
+     for (var oi = 0, olen = product.options.length; oi < olen; oi++) {
+         if (product.options[oi] == "BuyXDiscount") {
+             option_position = oi+1
+             break
+         }
+     }
+     if (option_position == -1) {
+         return product
+     }
+     if (product.options.length > 1) {
+          product.options.splice(option_position-1, 1)
+     } else {
+          product.options[0] = "Title"
+     }
+     option_position = "option" + option_position
+     product.available = false
+     for (var vi = 0, vlen = product.variants.length; vi < vlen; vi++) {
+         if (product.variants[vi][option_position] == "Default") {
+             //product.variants[vi][option_position] = ""
+             variants.push(product.variants[vi])
+             product.available = product.available || product.variants[vi].available
+         }
+     }
+     product.variants = variants
+     return product
+  }
+
+    
+            Theme.products.push(buyx_product_json({{ itemType | json }}));
+      
+            $(function(){
+                                                   
+                                                   
+function buyx_product_json(product) {
+     if (product == null) {
+          return null
+     }
+     var variants = []
+     //does it have BuyXDiscount option?
+     var option_position = -1
+     for (var oi = 0, olen = product.options.length; oi < olen; oi++) {
+         if (product.options[oi] == "BuyXDiscount") {
+             option_position = oi+1
+             break
+         }
+     }
+     if (option_position == -1) {
+         return product
+     }
+     if (product.options.length > 1) {
+          product.options.splice(option_position-1, 1)
+     } else {
+          product.options[0] = "Title"
+     }
+     option_position = "option" + option_position
+     product.available = false
+     for (var vi = 0, vlen = product.variants.length; vi < vlen; vi++) {
+         if (product.variants[vi][option_position] == "Default") {
+             //product.variants[vi][option_position] = ""
+             variants.push(product.variants[vi])
+             product.available = product.available || product.variants[vi].available
+         }
+     }
+     product.variants = variants
+     return product
+  }
+
+    
+              new Shopify.OptionSelectors("product-select-{{ itemType.id }}", { product: buyx_product_json({{ itemType | json }}), onVariantSelected: selectCallbackQuickShop });
+            });
+          </script>
+
+        {% else %} <!-- If the product only has one variant, create a hidden input with the variant id. NOTE: Necessary for "add to cart" to work -->
+
+          <input type="hidden" name="id" data-productid="{{ product.id }}" class="product-select" value="{{ itemType.selected_or_first_available_variant.id }}" data-variant-title="{{ itemType.selected_or_first_available_variant.title }}" />
+
+        {% endif %}
+
+        {% if settings.display-product-quantity-option %}
+          <div class="selector-wrapper">
+            <label>{{ 'general.quantity' | t }}</label>
+            <input type="text" name="quantity" class="product-quantity field" value="1">
+          </div>
+        {% else %}
+          <input type="hidden" name="quantity" class="product-quantity field" value="1">
+        {% endif %}
+
+        <div class="selector-wrapper">
+          {% if itemType.options.size > 1 %}<label></label>{% endif %}
+          <!-- 11/4/19 removed class "submit" from the input button below -->
+          <input class="action-button addtocart" type="submit" value="{{ 'products.product.add_to_cart' | t }}" onClick="jQuery.getJSON('/cart.js', function(cart) {
+			var cartIncrement = cart.item_count + 1;
+			$('.cart-count').html(cartIncrement);
+                      } ); pintrk('track', 'addtocart', {value: {{ product.selected_variant.price | money_without_currency}}, order_quantity: 1});"   />
+		
+          <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
+		  <div class="bold_add_to_orders" style="display: inline-block;"></div>
+
+      </div>
+
+        <div class="error-wrap"></div>
+
+      {% else %}
+
+        <span class="action-button unavailable disabled">{{ 'products.product.sold_out' | t }}</span>
+
+      {% endif %}
+
+    </form>
+
+    <div class="module description">
+      {% if itemType.description.size > 0 %}
+        <div class="rte special">{{ itemType.description }}</div>
+      {% endif %}
+      <a class="go-to-product" href="{{ itemType.url }}">{{ 'products.product.visit_page' | t }} <span>→</span></a>
+    </div>
+
+  </div>
+
+</div>

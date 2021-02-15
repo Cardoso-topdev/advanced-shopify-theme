@@ -1,0 +1,45 @@
+<section class="content content-area customer login">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+   <!-- <span class="label">{{ 'general.sign_up' | t }}</span>-->
+  </div>
+
+  <div id="customer-create" class="account-form">
+    {% form 'create_customer' %}
+
+      {% if form.errors %}
+        <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+      {% endif %}
+
+      <div class="field-wrap first-name">
+        <!--<label for="customer[first_name]">{{ 'customer.addresses.first_name' | t }}</label>-->
+        <label for="customer[first_name]">FIRST NAME</label>
+        <input type="text" placeholder="" value="" name="customer[first_name]" class="field">
+      </div>
+
+      <div class="field-wrap last-name">
+        <!--<label for="customer[last_name]">{{ 'customer.addresses.last_name' | t }}</label>-->
+        <label for="customer[last_name]">LAST NAME</label>
+        <input type="text" placeholder="" value="" name="customer[last_name]" class="field">
+      </div>
+
+      <div class="field-wrap email">
+        <!--<label for="customer[email]">{{ 'general.email' | t }}</label>-->
+        <label for="customer[email]">EMAIL</label>
+        <input type="text" placeholder="your@email.com" value="" name="customer[email]" class="field">
+      </div>
+
+      <div class="field-wrap password">
+        <!--<label for="customer[password]">{{ 'general.password' | t }}</label>-->
+        <label for="customer[password]">PASSWORD</label>
+        <input type="password" placeholder="" value="" name="customer[password]" class="field">
+      </div>
+
+      <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+
+    {% endform %}
+  </div>
+
+</section>

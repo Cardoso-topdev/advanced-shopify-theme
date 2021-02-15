@@ -1,0 +1,301 @@
+<!-- affiliate specific css -->
+{{ 'affiliate.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+
+
+    $(document).ready(function() {
+      
+      
+      if ($(window).width() < 1200) {
+        $(document).on('click', 'a[href^="#"]', function (event) {
+          event.preventDefault();
+
+          $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+          }, 500);
+        
+        }); 
+      }
+      
+      
+      if ($(window).width() > 1200) {
+        $(document).on('click', 'a[href^="#"]', function (event) {
+          event.preventDefault();
+
+          $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset(500).top
+          }, 500);
+        
+        }); 
+      }
+      
+      
+      var parentHeight = $('.banner-area').outerHeight();
+      var childHeight = $('.banner-area .pink-frame').outerHeight();
+      $('.banner-area .pink-frame').css('margin-top', (parentHeight - childHeight) / 2);
+      
+      
+
+        
+      $(".who1").click(function() {
+        $(".text1").show();
+        $(".text2").hide();
+        $(".text3").hide();
+      });
+
+      
+      $(".who2").click(function() {
+        $(".text1").hide();
+        $(".text2").show();
+        $(".text3").hide();
+      });
+
+      
+      $(".who3").click(function() {
+        $(".text1").hide();
+        $(".text2").hide();
+        $(".text3").show();
+      });
+      
+      
+      
+    });
+
+</script>
+
+
+<section id="affiliates">
+  <div class="banner-area">
+    <h1>Become a Primally Pure Affiliate</h1>
+    
+    <div class="apply-banner">
+      <div class="pink-frame">
+        <h2>{{ settings.aff-intro-headline }}</h2>
+      </div>
+      <div class="apply-button pink-button">
+        <a href="/pages/affiliate-signup" target="_blank">Apply Now</a>
+      </div>
+    </div>
+
+  </div>
+  
+  
+
+  <div class="content-area">
+    
+
+    <!-- WELCOME TEXT -->
+    <div class="intro-area">
+        <!--<h2>{{ settings.aff-intro-headline }}</h2>-->
+      	<p>{{ settings.aff-intro-text }}</p>
+    </div>
+
+    <!-- PERKS -->
+    <div class="perks-area">
+        <h2>{{ settings.aff-perks-headline }}</h2> 
+        {{ settings.aff-perks-bullets }}
+
+        <div class="apply-button">
+          <a href="/pages/affiliate-signup" target="_blank">apply to join our influencer community</a>
+        </div>
+
+    </div>
+
+    <!-- IMAGES -->
+    <div class="images-area"></div>
+
+
+    <!-- TRIANGLE HR -->
+    <div class="featured-products"><h2 class="section-title section-border"></h2></div>
+
+    <!-- WHO ARE YOU -->
+    <div class="who">
+      <div class="who-box who1">
+        <a href="#text1">
+          <h3>{{ settings.aff-who-we-are }}</h3>
+          <div class="lm">Learn more</div>
+        </a>
+      </div>
+      <div class="who-sign">+</div>
+      <div class="who-box who2">
+        <a href="#text2">
+          <h3>{{ settings.aff-who-you-are }}</h3>
+          <div class="lm">Learn more</div>
+        </a>
+      </div>
+
+      <div class="who-sign">=</div>
+      <div class="who-box who3">
+        <a href="#text3">
+          <h3>{{ settings.aff-fit }}</h3>
+          <div class="lm">Learn more</div>
+        </a>
+      </div>
+      <div class="clearfix"></div>
+
+      <div class="pbox">
+        <div class="who-text text1" id="text1">
+          {{ settings.aff-who-we-are-text }}
+        </div>
+
+        <div class="who-text text2" id="text2">
+          {{ settings.aff-who-you-are-text }}
+        </div>
+
+        <div class="who-text text3" id="text3">
+          {{ settings.aff-fit-text }}
+        </div>
+      </div>
+    </div>
+
+    <div class="apply-button">
+      <a href="/pages/affiliate-signup" target="_blank">Apply today</a>
+    </div>
+
+    <div class="center tagline" style="padding-bottom: 20px">
+      Pure ingredients, real results.	
+    </div>
+    
+  </div>
+
+  <div class="product-area"></div>
+
+  <div class="content-area">
+    
+    <!-- TESTIMONIALS -->
+    <div class="affiliates-testimonials-">
+      
+      
+      {% if settings.aff-test-0 %}
+      <div class="aff-test aff-test-0 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-0-insta }}" target="_blank"><img src="{{ 'caroline.jpg' | asset_url }}" alt="Caroline" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-0 }}
+          <p class="attribution"><a href="{{ settings.aff-test-0-insta }}" target="_blank"><strong>{{ settings.aff-test-0-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      
+      {% if settings.aff-test-1 %}
+      <div class="aff-test aff-test-1 right-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-1-insta }}" target="_blank"><img src="{{ 'cassy.jpg' | asset_url }}" alt="Cassy" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-1 }}
+          <p class="attribution"><a href="{{ settings.aff-test-1-insta }}" target="_blank"><strong>{{ settings.aff-test-1-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+		
+      {% if settings.aff-test-2 %}
+      <div class="aff-test aff-test-2 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-2-insta }}" target="_blank"><img src="{{ 'vanessa.jpg' | asset_url }}" alt="Vanessa" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-2 }}
+          <p class="attribution"><a href="{{ settings.aff-test-2-insta }}" target="_blank"><strong>{{ settings.aff-test-2-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+		
+      {% if settings.aff-test-3 %}
+      <div class="aff-test aff-test-3 right-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-3-insta }}" target="_blank"><img src="{{ 'lexi.jpg' | asset_url }}" alt="Lexi" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-3 }}
+          <p class="attribution"><a href="{{ settings.aff-test-3-insta }}" target="_blank"><strong>{{ settings.aff-test-3-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-4 %}
+      <div class="aff-test aff-test-4 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-4-insta }}" target="blank"><img src="{{ 'taylor.jpg' | asset_url }}" alt="Taylor" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-4 }}
+          <p class="attribution"><a href="{{ settings.aff-test-4-insta }}" target="_blank"><strong>{{ settings.aff-test-4-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-5 %}
+      <div class="aff-test aff-test-5 right-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-5-insta }}" target="_blank"><img src="{{ 'justine.jpg' | asset_url }}" alt="Justine" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-5 }}
+          <p class="attribution"><a href="{{ settings.aff-test-5-insta }}" target="_blank"><strong>{{ settings.aff-test-5-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-6 != '' %}
+      <div class="aff-test aff-test-6 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-6-insta }}" target="blank"><img src="{{ 'affiliate6.jpg' | asset_url }}" alt="Primally Pure Affiliate" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-6 }}
+          <p class="attribution"><a href="{{ settings.aff-test-6-insta }}" target="_blank"><strong>{{ settings.aff-test-6-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-7 != '' %}
+      <div class="aff-test aff-test-7 right-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-7-insta }}" target="blank"><img src="{{ 'affiliate7.jpg' | asset_url }}" alt="Primally Pure Affiliate" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-7 }}
+          <p class="attribution"><a href="{{ settings.aff-test-7-insta }}" target="_blank"><strong>{{ settings.aff-test-7-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-8 != '' %}
+      <div class="aff-test aff-test-8 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-8-insta }}" target="blank"><img src="{{ 'affiliate8.jpg' | asset_url }}" alt="Primally Pure Affiliate" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-8 }}
+          <p class="attribution"><a href="{{ settings.aff-test-8-insta }}" target="_blank"><strong>{{ settings.aff-test-8-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-9 != '' %}
+      <div class="aff-test aff-test-9 right-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-9-insta }}" target="blank"><img src="{{ 'affiliate9.jpg' | asset_url }}" alt="Primally Pure Affiliate" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-9 }}
+          <p class="attribution"><a href="{{ settings.aff-test-9-insta }}" target="_blank"><strong>{{ settings.aff-test-9-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+      {% if settings.aff-test-10 != '' %}
+      <div class="aff-test aff-test-10 left-img">
+        <div class="aff-image"><a href="{{ settings.aff-test-10-insta }}" target="blank"><img src="{{ 'affiliate10.jpg' | asset_url }}" alt="Primally Pure Affiliate" /></a></div>
+        <div class="aff-text">
+          {{ settings.aff-test-9 }}
+          <p class="attribution"><a href="{{ settings.aff-test-10-insta }}" target="_blank"><strong>{{ settings.aff-test-10-attr }}</strong></a></p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      {% endif %}
+      
+    </div>
+
+    <div class="apply-button" style="margin-bottom: 135px">
+      <a href="/pages/affiliate-signup" target="_blank">Apply to join the PP Influencer Community</a>
+    </div>
+
+  </div>
+  
+
+</section>

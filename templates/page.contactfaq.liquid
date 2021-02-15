@@ -1,0 +1,174 @@
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }} 
+
+
+<section>
+
+  <div class="faq-page">
+    
+  	<h1>Contact Primally Pure</h1>
+    <p style="text-align: center;margin-bottom: 60px">Looking for a quick answer? <a href="/pages/faq" style="color: #363636; text-decoration: underline">Browse our resource library</a>.</p>
+    
+    <div class="combined-search" style="background: #fcfaf7; margin-top: 0px !important;">  
+      <div class="contact-form-wrapper inline-form">
+       <p>We're here to help. Select an answer below so we can best serve you.</p>
+        
+        <br />
+        <label>INQUIRY TYPE</label>
+
+       
+       <div class="custom-select" id="form-main">
+          <div class="select-selected">Select One</div>
+          <div class="select-items select-hide">
+            <div id="form-order-select">Order Assistance</div>
+            <div id="form-product-select">Product + Ingredient Questions</div>
+            <div id="form-media-select">Media + Collaboration</div>
+            <div id="form-spa-select">The Spa at Primally Pure</div>
+            <div id="form-other-select">Other</div>
+          </div>
+        </div>
+         
+        <!-- ORDER ASSISTANCE -->
+        <div id="form-order" class="subform">
+        	<div class="custom-select">
+              <div class="select-selected">Select One</div>
+              <div class="select-items select-hide">
+                <div id="form-return-select" onclick="location.href='https://returns.primallypure.com';"><a href="https://returns.primallypure.com" style="color: #333">Return an Item</a></div>
+                <div id="form-changes-select">Make Changes to an Order</div>
+                <div id="form-lost-select">Lost, damaged or incorrect shipment</div>
+                <div id="form-subscriptions-select">Subscriptions </div>
+                <div id="form-order-other-select">Other</div>
+              </div>
+            </div>
+        </div>
+        
+        
+        <!-- PRODUCT + INGREDIENT QUESTIONS -->
+        <div id="form-product" class="subform">
+        	<div class="custom-select">
+              <div class="select-selected">Select One</div>
+              <div class="select-items select-hide">
+                <div id="form-unsatisfied-select">Unsatisfied with a product</div>
+                <div id="form-skincare-select">Skincare regimens</div>
+                <div id="form-how-select">How to use</div>
+                <div id="form-product-other-select">Other</div>
+              </div>
+            </div>
+        </div>
+        
+        <!-- MEDIA + COLLABORATION -->
+        <div id="form-media" class="subform">
+        	<div class="custom-select">
+              <div class="select-selected">Select One</div>
+              <div class="select-items select-hide">
+                <div id="form-pr-select">Media/PR</div>
+                <div id="form-events-select">Events</div>
+                <div id="form-influencer-select">Influencer</div>
+                <div id="form-partnerships-select">Partnerships</div>
+                <div id="form-blog-select">Pure Life Blog</div>
+                <div id="form-donations-select">Donations</div>
+                <div id="form-wholesale-select">Wholesale</div>
+                <div id="form-media-other-select">Other</div>
+              </div>
+            </div>
+        </div>
+        
+        
+        <!-- ORDER ASSISTANCE > MAKE CHANGES -->
+        <div id="form-changes" class="sub-subform">
+          {formbuilder:2894}
+        </div>
+        
+        <!-- ORDER ASSISTANCE > LOST -->
+        <div id="form-lost" class="sub-subform">
+          {formbuilder:2897}
+        </div>
+        
+        <!-- ORDER ASSISTANCE > SUBSCRIPTIONS -->
+        <div id="form-subscriptions" class="sub-subform">
+          {formbuilder:2899}
+        </div>
+        
+        <!-- ORDER ASSISTANCE > OTHER -->
+        <div id="form-order-other" class="sub-subform">
+          {formbuilder:2900}
+        </div>
+        
+        <!-- PRODUCT + INGREDIENTS > UNSATISFIED -->
+        <div id="form-unsatisfied" class="sub-subform">
+          {formbuilder:2902}
+        </div>
+        
+        <!-- PRODUCT + INGREDIENTS > SKINCARE REGIMENS -->
+        <div id="form-skincare" class="sub-subform">
+          {formbuilder:2903}
+        </div>
+        
+        <!-- PRODUCT + INGREDIENTS > HOW TO USE -->
+        <div id="form-how" class="sub-subform">
+          {formbuilder:2904}
+        </div>
+        
+        <!-- PRODUCT + INGREDIENTS > OTHER -->
+        <div id="form-product-other" class="sub-subform">
+          {formbuilder:2906}
+        </div>
+        
+        
+        <!-- MEDIA > MEDIA/PR -->
+        <div id="form-pr" class="sub-subform">
+          {formbuilder:2907}
+        </div>
+        
+        <!-- MEDIA > EVENTS -->
+        <div id="form-events" class="sub-subform">
+          {formbuilder:2909}
+        </div>
+        
+        <!-- MEDIA > INFLUENCER -->
+        <div id="form-influencer" class="sub-subform">
+          {formbuilder:2911}
+        </div>
+        
+        <!-- MEDIA > PARTNERSHIPS -->
+        <div id="form-partnerships" class="sub-subform">
+          {formbuilder:2910}
+        </div>
+        
+        <!-- MEDIA > BLOG -->
+        <div id="form-blog" class="sub-subform">
+          {formbuilder:2912}
+        </div>
+        
+        <!-- MEDIA > DONATIONS -->
+        <div id="form-donations" class="sub-subform">
+          {formbuilder:2913}
+        </div>
+        
+        <!-- MEDIA > WHOLESALE -->
+        <div id="form-wholesale" class="sub-subform">
+          {formbuilder:2090}
+        </div>
+        
+        <!-- MEDIA > MEDIA OTHER -->
+        <div id="form-media-other" class="sub-subform">
+          {formbuilder:2914}
+        </div>
+        
+        <div id="form-spa" class="sub-subform">
+          {formbuilder:2915}
+        </div>
+        
+        <div id="form-other" class="sub-subform">
+          {formbuilder:2089}
+        </div>
+        
+        
+        
+        
+        
+        
+    </div>
+  </div>
+    <br /><br /><br />
+</section>

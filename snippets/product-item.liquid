@@ -1,0 +1,105 @@
+<li {% assign itemType = product %}{% if template contains 'search' %}{% assign itemType = item %}{% elsif template contains 'product' %}{% assign itemType = prod %}{% endif %} class="product product-{{ itemType.id }} {% include 'for-looper' %} {% cycle 'flush', '', '', '' %}">
+
+  {% if settings.products-per-row == 'two' and template == 'collection' %}
+    {% assign productImageSize = '1024x1024' %}
+  {% else %}
+    {% assign productImageSize = 'grande' %}
+  {% endif %}
+  
+  <div class="product-inner">
+    <figure>
+      <img alt="{{ itemType.images[0].alt }}" data-src="{{ itemType.images[0] | product_img_url: productImageSize }}" class="lazyload">
+
+      <a href="{{ itemType.url }}" class="{% if settings.product-image-borders %}with-border{% endif %}"></a>
+
+    </figure>
+    
+    {% include 'buyx-price-min' with itemType %} 
+
+   {% comment %} <h3 class="brand">{{ itemType.vendor | link_to_vendor }}</h3>{%endcomment%}
+    <h2 class="title" style="margin-top: 20px"><a href="{{ itemType.url }}">{{ itemType.title }}</a></h2>
+    
+    
+    
+    {% if buyx_product_available %}
+      {% if itemType.compare_at_price_min > buyx_price_min %}
+    	{% if product.price_varies %}<div class="start">Starts at</div>{% endif %}
+        <p class="price sale">
+          <span class="original money">{{ itemType.compare_at_price_min | money }}</span>
+          <span class="money" style="display: block">{{ buyx_price_min | money }}</span></p>
+      {% else %}
+    	{% if product.price_varies %}<div class="start">Starts at</div>{% endif %}
+    	<p class="price"><span class="money">{{ buyx_price_min | money }}</span></p>
+      {% endif %}
+    {% else %}
+    
+    {% if product.handle contains "holiday" or product.handle contains "palo" or product.handle contains "autumn" or product.handle contains "gua" or product.handle contains "roller" or product.handle contains "dry-brush" %}
+      <style>
+        .BIS_trigger { 
+          display: none !important;
+        }
+      </style>
+    {% endif %}
+    
+    <p class="price"><span class="label">{{ 'products.product.sold_out' | t }}</span><br /><a href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}">
+      Email me when available
+      </a>
+    </p>
+    
+    {% comment %}
+            {% if product.handle == "palo-santo-collection" %}
+                <p class="price"><span class="label">COMING SOON</span></p>
+            {% elsif product.handle == "palo-santo-aromatherapy-oil" %}
+                <p class="price"><span class="label">COMING SOON</span></p>
+            {% elsif product.handle == "autumn-home-collection" %}             
+                <p class="price"><span class="label">COMING SOON</span></p>
+            {% elsif product.handle == "autumn-hand-soap" %}             
+                <p class="price"><span class="label">COMING SOON</span></p>
+            {% elsif product.handle == "autumn-oil-diffuser-blend" %}             
+                <p class="price"><span class="label">COMING SOON</span></p>
+            {% elsif product.handle == "autumn-room-spray" %}             
+                <p class="price"><span class="label">COMING SOON</span></p> 
+    		{% elsif product.handle == "rose-mint-tinted-lip-balm" %}             
+                <p class="price"><span class="label">COMING SOON</span></p> 
+            {% else %}
+    			<p class="price"><span class="label">{{ 'products.product.sold_out' | t }}</span></p>
+    	{% endif %}
+    {% endcomment %}
+    {% endif %}
+	
+    <div style="margin-top: 5px">
+      <span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ itemType.id }}" data-product-sku="{{ itemType.handle }}" style="display: inline-block;">{{ product.metafields.stamped.badge }}</span>
+    </div>
+    
+    
+    <form method="post" action="/cart/add">
+      {% if buyx_product_variants_size > 1 %} <!-- Create a variants dropdown IF the product has more than one variant -->
+
+          	
+                <select name="id" data-productid="{{ product.id }}" id="product-select" class="product-select single-option-selector">
+                  {% for variant in product.variants %}
+                   {% unless variant.title contains '% Off' %}
+                    <option
+{% comment %} START Global-e VAT tag {% endcomment %}
+{% if variant.taxable == false %}data-product-vat="0" {% endif %}
+{% if variant.metafields.GlobalE.product_meta != blank %} data-product-meta='{{variant.metafields.GlobalE.product_meta | json | escape}}' {% endif %}
+{% comment %}END Global-e VAT tag {% endcomment %} 
+ {% if variant == product.selected_or_first_available_variant %} selected="selected" class="selected" {% endif %} value="{{ variant.id }}" price="{{variant.price | money }}">{{ variant.title }}</option>
+                    {% endunless %}
+                  {% endfor %}
+                </select> 
+              
+          
+          
+          {% else %} <!-- If the product only has one variant, create a hidden input with the variant id. NOTE: Necessary for "add to cart" to work -->
+
+            <input type="hidden" name="id" data-productid="{{ product.id }}" class="product-select" value="{{ product.selected_or_first_available_variant.id }}" data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
+
+          {% endif %}
+      <input min="1" type="hidden" id="quantity" name="quantity" value="1"/>
+      <input type="submit" value="Add to cart" class="btn collection-btn">
+    </form> 
+  
+  
+  </div>
+</li>

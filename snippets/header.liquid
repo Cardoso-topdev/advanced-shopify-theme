@@ -1,0 +1,97 @@
+<script src="{{ 'nav.js' | asset_url }}" defer></script>
+
+
+
+
+<!-- BEGIN Header -->
+	<div class="search-bar">
+      <form action="/search" method="get">
+        <input class="search-input" name="q" type="text" placeholder="{{ 'general.search_placeholder' | t }}" value="" autofocus>
+        <input type="submit" class="search-go" value="Go" />
+      </form>
+      <div class="search-close">Close</div>
+    </div>
+
+    <header id="main-header">
+        {% if settings.banner != "" %}
+        <div class="top">
+            <div id="banner-area" class="pagewrap banner-promo">
+            {{ settings.banner }}
+            </div>
+        </div>
+        {% endif %}
+        <div class="bottom mobile-wrapper">
+            <div class="pagewrap">
+                <a class="logo-wrap" href="/" title="Primally Pure">
+                  <img class="diamond-logo lazyload" data-src="{{ 'logo-diamond.png' | asset_url }}">
+                  <img class="mobile-logo lazyload" data-src="{{ 'logo-mobile.png' | asset_url }}">
+                  <img class="desktop-logo lazyload" data-src="{{ 'logo-desktop.png' | asset_url }}">
+                </a>
+                <a class="cart-wrap cart-icon" href="/cart">
+                  <img class="lazyload" data-src="{{ 'bag.gif' | asset_url }}" alt="Shopping Bag" />
+                  <div class="cart-count">
+                    <script>
+                      jQuery.getJSON('/cart.js', function(cart) {
+                        $('.cart-count').html(cart.item_count);
+                      } );
+                    </script>
+                  </div>
+				  <span class="mobile-text">BAG</span>
+                </a>
+              
+              
+              	<!-- BEGIN Hamburger Menu -->
+                <div class="mobile-wrap">
+                    <div class="padding-position">
+                        <span class="hamburger-icon"></span>
+                        <span class="mobile-text" style="margin-left: -3px">MENU</span>
+                    </div>
+                </div>
+                <!-- END Hamburger Menu -->
+              
+                <!-- BEGIN Main Navigation -->
+                <nav id="main-nav" role="navigation">
+                    <ul>
+                        <li><a href="/collections/best-sellers">Best-Sellers</a></li>
+                        <li class="sub-menu display-on-sticky"><a>Shop</a>
+                            <ul class="shop-nav-ul">
+                              {% for link in linklists.shop.links %}
+                              <li>{{ link.title | link_to: link.url }}</li>
+                              {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="sub-menu"><a>About</a>
+                      		<ul class="about-nav-ul">
+                              {% for link in linklists.ABOUT.links %}
+                              <li>{{ link.title | link_to: link.url }}</li>
+                              {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="/pages/faq">FAQ</a></li>
+                        <li><a href="https://blog.primallypure.com">Blog</a></li>
+                        <li class="sub-menu"><a>Spa</a>
+                          <ul class="spa-nav-ul">
+          					{% for link in linklists.spa.links %}
+          					<li>{{ link.title | link_to: link.url }}</li>
+          					{% endfor %}
+        				  </ul>
+                        </li> 
+                      <li><a href="/pages/find-your-skin-state">Skin Quiz</a></li>
+                      <li class="friendbuy-link"><a href="#" class="friendbuy-d2I-s05">Get $15 Off</a></li>
+                     
+                    </ul>
+                    <div class="icon-wrap">
+                        <a><img class="lazyload search-image" data-src="{{ 'search.png' | asset_url }}" /></a>
+                        <!-- include 'wishlist-link' -->
+                        <a href="/account"><img class="lazyload" data-src="{{ 'account.png' | asset_url }}"></a>
+
+                  </div>
+                </nav>
+                <!-- END Main Navigation -->
+            </div>
+        </div>
+    </header>
+    <!-- END Header -->
+
+
+<div id="main-container">

@@ -1,0 +1,239 @@
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+{{ 'holiday.css' | asset_url | stylesheet_tag }} 
+<script src="https://www.seanmccambridge.com/tubular/js/jquery.tubular.1.0.js"></script>
+<script>
+  
+  $(document).ready(function(){
+	var player = null;
+	var tag = document.createElement("script");
+    tag.id = "iframe-api";
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("existing-iframe-example");
+    }
+
+    var elPopupClose = $(".popup__close");
+    var elPopupOverlay = $(".popup__overlay");
+    var elPopupToggle = $("#popup__toggle");
+
+    // @see https://developers.google.com/youtube/iframe_api_reference#Playback_controls
+    // @see http://stackoverflow.com/questions/8667882/how-to-pause-a-youtube-player-when-hiding-the-iframe
+    function popupDidClose() {
+      if (player !== null) {
+        player.pauseVideo();
+      }
+    }
+
+    elPopupClose.click(function () {
+      elPopupOverlay.css({ display: "none", visibility: "hidden", opacity: 0 });
+      player.pauseVideo();
+      popupDidClose();
+    });
+
+    elPopupOverlay.click(function (event) {
+      event = event || window.event;
+      if (event.target === this) {
+        elPopupOverlay.css({ display: "none", visibility: "hidden", opacity: 0 });
+        player.pauseVideo();
+        popupDidClose();
+      }
+    });
+
+    elPopupToggle.click(function () {
+      elPopupOverlay.css({ display: "block", visibility: "visible", opacity: 1 });
+    });
+
+
+  });
+  
+  if ($(window).width() > 768) {
+    $(function(){
+      $(".balm img").on({
+       mouseenter: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Lip-Balm.gif' | asset_url }}');
+      },
+      mouseleave: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Lip-Balm.jpg' | asset_url }}');
+      }
+      });
+    });
+
+    $(function(){
+      $(".candle img").on({
+       mouseenter: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Candle.gif' | asset_url }}');
+      },
+      mouseleave: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Candle.jpg' | asset_url }}');
+      }
+      });
+    });
+
+    $(function(){
+      $(".wash img").on({
+       mouseenter: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Body-Wash.gif' | asset_url }}');
+      },
+      mouseleave: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Body-Wash.jpg' | asset_url }}');
+      }
+      });
+    });
+
+    $(function(){
+      $(".butter img").on({
+       mouseenter: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Body-Butter.gif' | asset_url }}');
+      },
+      mouseleave: function(){
+        $(this).attr('src','{{ 'Primally-Pure-Holiday-Body-Butter.jpg' | asset_url }}');
+      }
+      });
+    });
+  }
+</script>
+
+<section id="holiday">
+  
+  
+  <div id="video-container">
+    <div class="video-overlay"></div>
+    <div class="video-content">
+      <div class="promo-overlay">
+        <h1>Limited Edition Holiday Collection</h1>
+        <h2>For Everyone On Your List</h2>
+        <p><a id="popup__toggle">Watch Full Video</a></p>
+      </div>
+    </div>
+    <video autoplay muted loop src="{{ 'HolidayFinal.mp4' | asset_url }}"></video>
+  </div>
+
+  
+  <!--<section class="sale-area">
+      <div class="sale">
+        <p>
+          <strong>SAVE SITEWIDE NOW THROUGH CYBER MONDAY</strong></p>
+        
+          <p>SPEND $75 GET $10 OFF<br />
+          SPEND $100  GET $20 OFF<br />
+            SPEND $150  GET $35 OFF</p>
+            
+        </div>
+    	<div class="button"><a href="/">Shop Now</a></div>
+  </section>-->
+  
+  <section class="holiday-products content content-area">
+    <h3>Envelop your senses with the spirit of the season</h3>
+    <p class="intro">This year, we’ve handcrafted a limited run of exclusive holiday products that will make your pout brighter, create skin that shimmers, wash away holiday stress and help you get lit all season long (in a completely healthy and non-toxic way, of course!)</p>
+  
+    <div class="holiday-product-grid">
+      	<div class="holiday-product">
+          <a href="{{ all_products['holiday-tinted-lip-balm'].url }}">
+            <div class="product-image balm"><img src="{{ 'Primally-Pure-Holiday-Lip-Balm.jpg' | asset_url }}" alt="Primally Pure Holiday Lip Balm" /></div>
+            <div class="product-title">{{ all_products['holiday-tinted-lip-balm'].title }}</div>
+            <div class="product-teaser">Icy sweet mint + warm toasty vanilla</div>
+            <p class="product-desc">A deep cranberry lip balm with a bit of holiday shimmer offers sheer, buildable color for any occasion  while soothing + naturally plumping dry, chapped lips. </p>
+            <div class="product-buy">
+              <div class="product-btn">{% if all_products['holiday-tinted-lip-balm'].available %}Buy Now {% else %} Sold Out {% endif %}</div>
+              <div class="product-price">{{ all_products['holiday-tinted-lip-balm'].price | money }}</div>
+            </div>
+          </a>
+        </div>
+        <div class="holiday-product">
+          <a href="{{ all_products['holiday-body-butter'].url }}">
+            <div class="product-image butter"><img src="{{ 'Primally-Pure-Holiday-Body-Butter.jpg' | asset_url }}" alt="Primally Pure Holiday Whipped Body Butter" /></div>
+            <div class="product-title">{{ all_products['holiday-body-butter'].title }}</div>
+            <div class="product-teaser">Icy sweet mint + warm toasty vanilla</div>
+            <p class="product-desc">This fluffy, decadent body butter (frosting for your skin!) deeply hydrates winter skin with a hint of shimmer from natural earth minerals for a light glow.</p>
+            <div class="product-buy">
+              <div class="product-btn">{% if all_products['holiday-body-butter'].available %}Buy Now {% else %} Sold Out {% endif %}</div>
+              <div class="product-price">from&nbsp; {{ all_products['holiday-body-butter'].price | money }}</div>
+            </div>
+          </a>
+        </div>
+        <div class="holiday-product">
+          <a href="{{ all_products['holiday-candle'].url }}">
+            <div class="product-image candle"><img src="{{ 'Primally-Pure-Holiday-Candle.jpg' | asset_url }}" alt="Primally Pure Holiday Candle" /></div>
+            <div class="product-title">{{ all_products['holiday-candle'].title }}</div>
+            <div class="product-teaser">Black spruce, sweet cinnamon and vanilla</div>
+            <p class="product-desc">Reminiscent of Christmas trees and holiday traditions past, simply strike a match whenever you need the magic of the season most.</p>
+            <div class="product-buy">
+              <div class="product-btn">{% if all_products['holiday-candle'].available %}Buy Now {% else %} Sold Out {% endif %}</div>
+              <div class="product-price">from&nbsp; {{ all_products['holiday-candle'].price | money }}</div>
+            </div>
+          </a>
+        </div>
+        <div class="holiday-product">
+          <a href="{{ all_products['holiday-body-wash'].url }}">
+            <div class="product-image wash"><img src="{{ 'Primally-Pure-Holiday-Body-Wash.jpg' | asset_url }}" alt="Primally Pure Holiday Body Wash" /></div>
+            <div class="product-title">{{ all_products['holiday-body-wash'].title }}</div>
+            <div class="product-teaser">Icy sweet mint + warm toasty vanilla</div>
+            <p class="product-desc">A fresh, clean tingle invigorates the senses while this creamy, low-suds body wash leaves skin feeling soft and seriously moisturized.</p>
+            <div class="product-buy">
+              <div class="product-btn">{% if all_products['holiday-body-wash'].available %}Buy Now {% else %} Sold Out {% endif %}</div>
+              <div class="product-price">from&nbsp; {{ all_products['holiday-body-wash'].price | money }}</div>
+            </div>
+          </a>
+        </div>
+    </div>
+  </section>
+  
+ 
+  <section id="sbs-video">
+    <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/HusFur2Apzs?modestbranding=1&rel=0&wmode=transparent' frameborder='0' allowfullscreen></iframe></div>
+  </section>
+  
+  <!--
+  <section class="holiday-banner">
+    <img src="{{ 'Holiday-Banner.jpg' | asset_url }}" alt="Primally Pure Holiday Line" style="width: 100%" />
+  </section>
+-->
+  
+  <section class="content content-area holiday-content">
+    <div class="holiday-text">
+      <h3>'Tis the Season for Non-Toxic Skincare</h3>
+      <p>The PP HQ has slightly resembled Santa’s workshop as our Skincare Chefs have been busy behind-the-scenes blending organic ingredients and handcrafting our brand new Holiday Products.</p>
+      <p>Whether you’re stocking up on gifts to put under the tree or treating yourself to new non-toxic goodies, our Skincare Chefs have only made a limited amount of holiday products this season, so be sure to add to your cart before they sell out!</p>
+    </div>
+    <div class="holiday-photo">
+      <img src="{{ 'Holiday-Group-Photo.png' | asset_url }}" alt="The Primally Pure Team" />
+    </div>
+  </section>
+  
+  <section class="bethany-message">
+    <h3>From our Family To Yours</h3>
+    <p>As you unwrap your Primally Pure products, we hope you experience even more peace, health + happiness this season.</p>
+    <p>From filling your home with our holiday-inspired aromas that will brighten your mood + boost immunity to creating skincare rituals that support luminous skin + a sense of calm, we’re grateful our non-toxic products can play a small part in making your holidays healthier and even more meaningful.</p>
+    <p>Thank you for supporting our small business this holiday season and for sharing the gift of clean beauty. Our team is sending you + your family the warmest wishes from our Southern California workshop.</p>
+    <p>xo,</p>
+    <p><img src="{{ 'bethany-signoff.png' | asset_url }}" alt="Bethany + The Primally Pure Team" /></p>
+  </section>
+  
+  <section class="behind-scenes content content-area">
+    <h3>Behind the Scenes</h3>
+    <div class="images">
+      <div class="img"><img src="{{ 'Holiday-1.jpg' | asset_url }}" alt="Holiday" /></div>
+      <div class="img"><img src="{{ 'Holiday-2.jpg' | asset_url }}" alt="Holiday" /></div>
+      <div class="img"><img src="{{ 'Holiday-3.jpg' | asset_url }}" alt="Holiday" /></div>
+      <div class="img"><img src="{{ 'Holiday-4.jpg' | asset_url }}" alt="Holiday" /></div>
+      <div class="img"><img src="{{ 'Holiday-5.jpg' | asset_url }}" alt="Holiday" /></div>
+      <div class="img"><img src="{{ 'Holiday-6.jpg' | asset_url }}" alt="Holiday" /></div>
+    </div>
+  </section>
+  
+</section>
+
+
+
+
+
+<!-- popup -->
+<div class="popup__overlay" onclick="window.location.reload();">
+  <div class="popup">
+    <a href="#" class="popup__close" onclick="window.location.reload();">X</a>
+    <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/CG5d7IEfsBk' frameborder='0' allowfullscreen></iframe></div>
+  </div>
+</div>

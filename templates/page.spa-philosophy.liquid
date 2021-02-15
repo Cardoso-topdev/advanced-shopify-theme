@@ -1,0 +1,47 @@
+<!-- spa specific css -->
+{{ 'spa.scss.css' | asset_url | stylesheet_tag }} 
+
+<section class="spa-header spa-desktop"><a href="/pages/spa"><img src="{{ 'spa-header.jpg' | asset_url }}"/></a></section>
+<section class="spa-header spa-mobile"><a href="/pages/spa"><img src="{{ 'spa-header-mobile.jpg' | asset_url }}"/></a></section>
+
+
+<section class="content content-area">
+  
+  <div class="text-content-wrap clearfix spa-content">
+    <div class="rte clearfix">
+      <div class="headline-1"><img src="{{ 'pure-skincare.png' | asset_url }}" alt="Pure Skincare combined with the power of touch" /></div>
+      <h3>{{settings.spa-subheadline-1}}</h3>
+      {{settings.spa-welcome}}
+      
+      <a class="action-button submit" href="{{settings.spa-welcome-link}}">{{settings.spa-welcome-button}}</a>
+
+      <div class="line-break break-2"><img src="{{ 'line.jpg' | asset_url }}"/></div>
+      
+      
+      <div class="headline-2"><img src="{{ 'global-advocate.png' | asset_url }}" alt="Book a spa appointment, become a global beauty advocate" /></div>
+      {{settings.advocacy-text}}
+      <p>
+      <a href="#onlinebookings" class="action-button submit">{{settings.book-now-text}}</a>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+<script src="https://booking-widget.phorestcdn.com/obwidget.bundle.js"></script> 
+
+<script>
+  window.widget = new OBWidget('thespaatprimallypure')
+  
+  // hide the phorest button
+  
+  function injectStyles(rule) {
+    var div = $("<div />", {
+      html: '&shy;<style>' + rule + '</style>'
+    }).appendTo("body");    
+  }
+  injectStyles('.ob-widget-btn { display: none; }');
+ 
+</script>

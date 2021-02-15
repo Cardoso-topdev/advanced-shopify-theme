@@ -1,0 +1,48 @@
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area about-page">
+
+  {% include 'breadcrumbs' %}
+  {% comment %}
+  <div class="page-title">
+    <h1 class="label">{{ page.title }}</h1>
+  </div>
+  {% endcomment %}
+
+  <div class="text-content-wrap clearfix">
+    <div class="rte clearfix text-content">
+     
+      <div class="photo-heros">
+        <div class="about-left">
+        	<div class="about-one"><img src="{{ 'Primally-Pure-Bethany.jpg' | asset_url }}" alt="Bethany at Primally Pure" /></div>
+        </div>
+        <div class="about-right">
+          	<div class="about-two"><img src="{{ 'Primally-Pure-Product-Shot.jpg' | asset_url }}" alt="Bethany at Primally Pure" /></div>
+        	<div class="about-three"><img src="{{ 'Primally-Pure-About-Shot.jpg' | asset_url }}" alt="Bethany at Primally Pure" /></div>
+        </div>
+        <div class="clearfix clear"></div>
+      </div>
+      <div class="main-about">
+      	{{ page.content }}
+      </div>
+      <div class="sidebar-about">
+        <div class="sidebar sidebar-one">
+          <img src="{{ 'diamond-trans.png' | asset_url }}" style="width: 29px" />
+          <div class="headline">Made With</div>
+          <ul>
+            {{ settings.made-with }}
+          </ul>
+        </div>
+        <div class="sidebar sidebar-two">
+          <img src="{{ 'diamond-trans.png' | asset_url }}" style="width: 29px" />
+          <div class="headline">Made Without</div>
+          <ul>
+            {{ settings.made-without }}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,83 @@
+/*Bold Css*/
+.bold_recurring_desc {
+font-size: 12px;
+}
+[class*="bold-ro__custombutton"] {
+    outline: none;
+    border: none;
+}
+input.bold-product__quantity-val{
+    padding: 10px 15px;
+}
+.bold-ro__choice-header{
+  margin-right: 2em;
+}
+
+
+.bold-ro__products-list{
+    width:100% !important;
+      margin:0 auto% !important;
+      text-align:center !important;
+}
+
+@media only screen and (min-width: 499px){
+  .bold-grid__column.bold-grid__column--quarter{
+    display:inline-block !important;
+    float:none;
+  }
+}
+.bold-product__quantity-wrapper .bold-product__quantity .bold-product__quantity-val
+{
+  width: 55px !important;
+}
+
+
+.bold-grid.bold-ro__products-list {
+	padding-bottom: 5%;
+}
+
+
+  
+select.bold-ro__frequency-type.bold-ro__order-interval, select.bold-ro__frequency-num {
+    
+    line-height: 1;
+    border-radius: 1px;
+    border-style: solid;
+    border-color: grey;
+    padding-right: 19px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    
+    background: url(https://cdn.shopify.com/s/files/1/0874/6120/files/bold_weekSelect_19_1.png?16589914314852947560) no-repeat right ;
+    -webkit-appearance: none;
+  }
+
+.bold-ro__frequency-label:after {
+	/*content: '<>';*/
+}
+
+
+/* Style the indicator (dot/circle) */
+.bold-ro__mixed-radio-btn .bold-ro__subscribe-radio-btn .checkmark:after {
+ 	
+	background: #363636;
+}
+
+.bold-ro__one-time-radio-btn input:checked
+{
+  background: #363636;
+}
+
+.bold-ro__radio-div:checked {
+  background: #363636;
+}
+
+input[type="radio"]:checked{
+  background: #363636;
+}
+
+/*.ro_widget input[type=radio]{
+  background: #363636;
+}*/
+

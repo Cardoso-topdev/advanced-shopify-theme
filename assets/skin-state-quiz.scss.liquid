@@ -1,0 +1,686 @@
+/*- QUIZ LANDING PAGE */
+
+
+#skin-state-quiz .skin-state-intro {
+  width: 100%;
+  height: 570px;
+  display: flex;
+  justify-content: middle;
+}
+
+@media screen and (min-width: 1041px) {
+  #skin-state-quiz .skin-state-intro {
+  	background: #f8f8f8 url({{ 'Regimen-Hero-Main.jpg' | asset_url }});
+    background-size: cover;
+    background-position: right bottom;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  #skin-state-quiz .skin-state-intro {
+  	background: #FCFAF7;
+  	display: block;
+    display: flex;
+    height: auto;
+    padding: 60px 0px;
+    justify-content: middle;
+  }
+}
+
+#skin-state-quiz .skin-state-intro .intro-text {
+  width: 100%;
+  max-width: 980px;
+  margin: auto;
+}
+
+#skin-state-quiz .skin-state-mobile-image {
+  display: none;
+}
+
+@media screen and (max-width: 1040px) {
+  
+  #skin-state-quiz .skin-state-mobile-image {
+    display: block;
+    background: #FCFAF7;
+  }
+  
+  #skin-state-quiz .skin-state-mobile-image img {
+    width: 100%;
+  }
+  
+  #skin-state-quiz .skin-state-intro .intro-text {
+	padding: 0px;
+    width: 80%;
+    max-width: 440px;
+    margin: auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #skin-state-quiz .skin-state-intro {
+    margin-top: -60px;
+  }
+}
+#skin-state-quiz .skin-state-intro .intro-text h1 {
+  font-family: "Novel", sans-serif !important;
+  font-size: 32px;
+  line-height: 48px;
+  max-width: 440px;
+  letter-spacing: .05em !important;
+  font-weight: 300;
+}
+
+#skin-state-quiz .skin-state-intro .intro-text p {
+  max-width: 440px;
+}
+
+#skin-state-quiz .button,
+#purescription .button {
+  margin-top: 30px;
+}
+
+#skin-state-quiz .button a,
+#purescription .button a,
+#purescription input.button{
+  background: #222;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #FFF;
+  font-size: 12px;
+  padding: 10px 20px;
+}
+
+
+#skin-state-quiz h3 {
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: .05em !important;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+#skin-state-quiz .find-your-skin-state {
+  text-align: center;
+}
+
+#skin-state-quiz .content {
+  margin: 60px auto;
+}
+
+#skin-state-quiz .content p {
+  max-width: 600px;
+  margin: auto;
+}
+
+#skin-state-quiz .skin-state-choices {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+  
+#skin-state-quiz .skin-state-choices .choice {
+  flex: 23.5% 0 0;
+  margin-left: 2%;
+  background: #FBF9F6;
+  padding: 30px;
+  height: 190px;
+  text-align: center;
+}
+
+#skin-state-quiz .skin-state-choices .choice:first-child {
+  margin-left: 0;
+}
+
+
+@media screen and (max-width: 767px) {
+  
+  #skin-state-quiz .skin-state-choices { 
+    max-width: 94%;
+  }
+  
+  #skin-state-quiz .skin-state-choices .choice {
+    flex: 46% 0 0;
+    flex-wrap: wrap;
+    margin: 2%;
+    background: #FBF9F6;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  #skin-state-quiz .skin-state-choices .choice:first-child {
+    margin-left: inherit;
+  }
+}
+
+#skin-state-quiz .skin-state-choices .choice img {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+#skin-state-quiz .skin-state-choices .choice span {
+  display: block;
+  text-align: center;
+  margin: auto;
+  margin-top: 15px;
+  font-family: "Bell MT";
+  font-size: 16px;
+  color: #222;
+  letter-spacing: .05em;
+}
+
+#skin-state-quiz .skin-state-choices .choice:hover {
+  background: #E3E0DB;
+}
+
+#skin-state-quiz .content .button {
+  margin: 60px auto;
+  text-align: center;
+}
+
+#skin-state-quiz .collection h3 {
+  text-transform: uppercase;
+  padding-top: 30px;
+}
+
+
+#skin-state-quiz .collection .button {
+  margin-top: 30px;
+}
+
+
+/*- PURESCRIPTION PAGES */
+
+#purescription .collection-hero .flex {
+  padding: 60px 0px 10px 0px;
+}
+
+#purescription .collection-hero .intro {
+  margin: 0px 0px 10px 0px;
+  text-transform: uppercase;
+}
+
+
+#purescription .collection-hero  h1 {
+  margin: 0px 0px 30px 0px;
+  padding: 0;
+  border: 0;
+  font-size: 42px !important;
+  letter-spacing: .05em !important;
+  
+}
+
+#purescription .purescription-bundles {
+  background: #fff;
+  padding: 60px 0px;
+}
+
+#purescription .purescription-bundles h3 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+#purescription .regimen-nav {
+  display: flex;
+  max-width: 500px;
+  margin: auto;
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 767px) {
+  #purescription .regimen-nav span {
+	display: block;
+  }
+}
+
+#purescription .regimen-nav li {
+  flex: 33.3% 0 0;
+  padding: 0px 10px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+#purescription .regimen-nav li.selected {
+  font-weight: bold;
+  margin-bottom: 5px;
+  border-bottom: 3px solid #222;
+}
+
+#purescription .regimen-nav li:hover {
+  font-weight: bold;
+}
+
+#purescription .bundle-collection {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0px auto 30px auto;
+}
+
+#purescription .product-list {
+  font-size: inherit !important;
+}
+
+#purescription .product {
+  width: 24%;
+}
+
+#purescription .product-list h2 {
+  min-height: 50px;
+}
+
+@media screen and (max-width: 719px) {
+  #purescription .product {
+    width: 49%;
+    min-width: 49% !important;
+  }
+  
+  #purescription .product-list h2 {
+    min-height: 30px;
+  }
+}
+
+#purescription .product-inner form {
+  display: block;
+  width: 100%;
+}
+
+#purescription figure img {
+  width: 100%;
+}
+
+#purescription .product-details {
+  padding: 0px 0px 0px 0px;
+}
+
+#purescription .product-details .selector-wrapper {
+  text-align: left;
+}
+
+#purescription .product-details select { 
+  	font-size: 14px;
+    text-align: left;
+    border-radius: 0px;
+    height: 40px;
+    padding: 5px;
+    margin: 10px 10px 20px 0px;
+    background-color: #f9f9f9;
+    border-color: lightgray;
+    display: inline-block;
+    background: url(https://cdn.shopify.com/s/files/1/0874/6120/files/selector_arrow.png?1372375…) no-repeat right #f9f9f9;
+    -webkit-appearance: none;
+    background-size: 39px 39px;
+    width: 100%;
+}
+
+
+#purescription .product-details .quantity-wrapper,
+#purescription .product-details label {
+  display: none;
+}
+
+#purescription .buying-choices {
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+  width: 100%;
+}
+
+#purescription .buying-choices .button {
+  background: #FFF;
+  border: 1px solid #222;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 12px;
+  padding: 10px 20px
+}
+
+#purescription .buying-choices .button:hover {
+  background: #222;
+  color: #fff;
+}
+
+#purescription .buying-choices input {
+  flex: 40% 0 0;
+  margin-top: -7px !important;
+}
+
+#purescription .buying-choices .subscribe-button {
+  flex: 40% 0 0;
+  padding-left: 3% !important;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 1080px) {
+  #purescription .buying-choices {
+  	display: block;
+    margin-top: 0px;
+  }
+  
+  #purescription .buying-choices input {
+    width: 100%;
+    margin-top: 0px !important;
+  }
+
+  #purescription .buying-choices .subscribe-button {
+    width: 100% !important;
+    padding-left: 0 !important;
+    margin-top: -20px !important;
+    display: block;
+  }
+  
+  #purescription .buying-choices .subscribe-button a {
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #222;
+  }
+  
+  #purescription .buying-choices .button {
+    background: #FFF;
+    border: 1px solid #222;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: 12px;
+    padding: 5px 10px
+  }
+}
+
+#purescription .product-details input.button {
+  width: 100%;
+  margin-top: -20px;
+  border: 1px solid #222;
+  color: #222;
+  background: #fff;
+  border-radius: 0;
+}
+
+#purescription .final-button {
+  display: block;
+  width: 100%;
+  background: #FBF9F6;
+  padding: 30px 30px 15px 30px;
+}
+
+#purescription .final-button a {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  margin-top: 0px;
+}
+
+#purescription .final-button .bundle-sale {
+  text-align: center;
+}
+
+#purescription .final-button .bundle-sale span {
+  text-decoration: line-through;
+  color: #a3a3a3;
+  padding-left: 15px;
+  display: inline-block;
+}
+/*
+#purescription .get-bundle {
+  width: 100%;
+  margin: auto;
+  margin-top: -30px !important;
+  margin-bottom: 60px;
+  text-align: center;
+  background: #FCFAF7;
+  padding: 30px 30px;
+}
+
+#purescription .get-bundle h4 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: "Novel" !important;
+}
+
+#purescription .get-bundle .button-choices {
+  display: flex;
+  justify-content: center;
+}
+
+#purescription .get-bundle .one-time-bundle {
+  margin: 0px 2%;
+}
+
+#purescription .get-bundle .subscription-bundle {
+  flex: 50% 0 0;
+  margin: 0px 2%;
+}
+
+
+#purescription .get-bundle .bundle-sale {
+  margin-top: 15px;
+}
+
+#purescription .get-bundle .bundle-sale p {
+  margin: 0;
+  padding: 0;
+}
+
+#purescription .get-bundle a {
+  display: inline !important;
+  width: auto !important;
+}
+
+#purescription .get-bundle span {
+  text-decoration: line-through;
+  color: #a3a3a3;
+  padding-left: 15px;
+}
+
+#purescription .get-bundle {
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+#purescription .get-bundle a {
+  width: 100%;
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  
+  #purescription .get-bundle {
+    margin-top: 0 !important;
+  }
+  
+  #purescription .get-bundle .button-choices {
+  	display: block;
+    margin-top: 30px;
+  }
+  #purescription .get-bundle .one-time-bundle {
+    width: 100%;
+    margin: 0px;
+  }
+
+  #purescription .get-bundle .subscription-bundle {
+    width: 100%;
+    margin: 0px;
+    margin-top: 20px;
+  }
+
+}
+*/
+
+  
+
+#purescription .full-routine .reg-step {
+  text-align: center;
+}
+
+#purescription .full-routine h4,
+#purescription .regimen-ingredients h4{
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 30px auto 30px auto !important;
+  background: url({{ 'highlight.png' | asset_url }});
+  background-position: center 12px;
+  background-repeat: repeat-x;
+  display: inline-block;
+  width: auto;
+}
+
+#purescription .full-routine .reg-step p,
+#purescription .full-routine .reg-step ul li {
+  margin: 0px auto 30px auto;
+  text-align: left !important; 
+  max-width: 600px;
+  width:90%;
+}
+
+#purescription .full-routine .reg-step p {
+  padding: 15px 30px;
+  border: 1px solid #ccc;
+  font-style: italic;
+}
+
+#purescription .full-routine .reg-step ul li {
+  background-image: url({{ 'checkbox.png' | asset_url }});   
+  background-repeat: no-repeat;
+  background-position: left 5px;
+  padding-left: 30px;
+  
+}
+
+
+#purescription .regimen-routine {
+  background: #EDEEF1 url({{ 'Ingredients-BG.jpg' | asset_url }});
+  background-size: 1000px auto;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  padding: 60px 0px 120px 0px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+#purescription .regimen-routine .time {
+  flex: 33.33% 0 0;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+#purescription .regimen-routine .time .head-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+#purescription .regimen-routine h4 {
+  text-transform: uppercase;
+  text-align: center;
+  font-family: "Novel" !important;
+  line-height: 50px;
+}
+
+#purescription .regimen-routine .icon {
+  content: "";
+  width: 50px;
+  height: 50px;
+  margin-right: 30px;
+}
+
+#purescription .regimen-routine ol {
+  margin-top: 30px;
+  list-style: decimal;
+}
+
+#purescription .regimen-routine ol li {
+  margin: 10px 0px;
+}
+
+#purescription .featured-posts {
+  width: 90%;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  #purescription .regimen-routine ol {
+    max-width: 80%;
+    margin: auto;
+    margin: 30px auto auto auto;
+    text-align: center;
+    list-style: none;
+  }
+}
+
+#purescription .regimen-ingredients {
+  margin-top: 60px;
+}
+
+#purescription .regimen-ingredients .ingredient {
+  flex: 33.33% 0 0;
+  padding: 0px 30px 0px 30px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+#purescription .regimen-ingredients .ingredient .ingredient-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin: auto;
+}
+
+#purescription .regimen-ingredients .ingredient .ingredient-image img {
+  width: 100%;
+}
+  
+  
+#purescription .regimen-faq {
+  padding: 60px 0px;
+  margin: 0px 0 60px 0px;
+}
+
+#purescription .regimen-faq .nested-accordion {
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+}
+
+
+/* text links */
+
+#purescription p a,
+#purescription ul a,
+#purescription ol a{
+  color: #222;
+  text-decoration: underline;
+}
+
+#purescription p a:hover,
+#purescription ol li a:hover,
+#purescription ul li a:hover {
+  color: #666;
+}
+
+#purescription h2 a {
+  text-decoration: none !important;
+}
+
+.post-title {
+  text-transform: uppercase;
+}

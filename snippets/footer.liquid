@@ -1,0 +1,82 @@
+<!-- Footer
+============================================= -->
+{% assign footerModules = 1 %}
+
+{% unless settings.twitter-url.size == 0 and facebook.twitter-url.size == 0 and settings.pinterest-url.size == 0 and settings.instagram-url.size == 0 %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endunless %}
+
+{% if settings.show-mailing-list %}
+  {% assign footerModules = footerModules | plus: 1 %}
+{% endif %}
+
+<footer class="main-footer content-area" id="main-footer">  
+
+  <!-- Connect with us
+  ++++++++++++++++++++++++++++ -->
+  <ul class="connect clearfix module-count-{{ footerModules }}">
+    <li class="contact first">
+      <h2 class="title">{{ settings.email-label }}</h2>
+      <div style="margin-top: -10px"><a href="https://blog.primallypure.com">The Pure Life Blog</a></div>
+      <div><a href="/pages/faq">FAQs</a></div>
+      <div><a href="/pages/contact">Contact</a></div>
+    </li>{% unless settings.twitter-url.size == 0 and settings.facebook-url.size == 0 and settings.pinterest-url.size == 0 and settings.instagram-url.size == 0 %}<li class="social">
+      <h2 class="title">{{ settings.social-label }}</h2>
+      <ul>
+        {% if settings.twitter-url.size > 0 %}<li class="social-link twitter"><a href="{{ settings.twitter-url }}" target="_blank">t</a></li>{% endif %}
+        {% if settings.facebook-url.size > 0 %}<li class="social-link facebook"><a href="{{ settings.facebook-url }}" target="_blank">f</a></li>{% endif %}
+        {% if settings.pinterest-url.size > 0 %}<li class="social-link pinterest"><a href="{{ settings.pinterest-url }}" target="_blank">p</a></li>{% endif %}
+        {% if settings.google-plus-url.size > 0 %}<li class="social-link google-plus"><a href="{{ settings.google-plus-url }}" target="_blank">g</a></li>{% endif %}
+        {% if settings.instagram-url.size > 0 %}<li class="social-link instagram"><a href="{{ settings.instagram-url }}" target="_blank">i</a></li>{% endif %}
+        {% if settings.tumblr-url.size > 0 %}<li class="social-link tumblr"><a href="{{ settings.tumblr-url }}" target="_blank">T</a></li>{% endif %}
+        {% if settings.youtube-url.size > 0 %}<li class="social-link youtube"><a href="{{ settings.youtube-url }}" target="_blank">y</a></li>{% endif %}
+        {% if settings.vimeo-url.size > 0 %}<li class="social-link vimeo"><a href="{{ settings.vimeo-url }}" target="_blank">V</a></li>{% endif %}
+      </ul>
+    </li>{% endunless %}{% if settings.show-mailing-list %}<li class="newsletter">
+      <h2 class="title">{{ settings.signup-label }}</h2>
+      <!--<form action="{{ settings.mailchimp-action-url }}" method="post" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+        <div class="wrap">
+          <input class="email" name="EMAIL" type="email" placeholder="{{ 'layout.footer.email' | t }}" value="">
+          <input class="submit" name="subscribe" type="submit" value="{{ 'general.submit' | t }}">
+        </div>
+      </form>-->
+    
+    
+      <form id="email_signup" class=" klaviyo_bare_embed_HNg6wg" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+        <div class="wrap">
+          <input type="hidden" name="g" value="HNg6wg">
+          <div class="klaviyo_field_group">
+            <input type="email" value="" name="email" id="k_id_email" class="email" placeholder="Email address" />
+          </div>
+          <div class="klaviyo_messages">
+            <div class="success_message" style="display:none;"></div>
+            <div class="error_message" style="display:none;"></div>
+            </div>
+          <div class="klaviyo_form_actions">
+            <input type="submit" class="klaviyo_submit_button submit" value="Join" >
+          </div>
+        </div>
+      </form>
+
+      <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js" defer></script>
+
+    
+    
+    </li>{% endif %}
+  </ul>
+
+  <!-- Sub-footer
+  ++++++++++++++++++++++++++++ -->
+  <div class="sub-footer">
+    {% if linklists.footer.links.size > 0 %}
+    <nav class="footer-nav">
+      <ul>
+        {% for link in linklists.footer.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+
+</footer>

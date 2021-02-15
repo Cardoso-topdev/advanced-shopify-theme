@@ -1,0 +1,227 @@
+{% if template contains 'article' and blog.metafields.blogfeeder.use_canonical == 'yes' %}{% assign canonical_url = article.metafields.blogfeeder.canonical %}{% endif %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10 ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <link rel="shortcut icon" href="{{ 'p.png' | asset_url }}" type="image/png" />
+  <link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="google-site-verification" content="4BTWYKlcwnfT7SlQmkIyXIujcrX2So7EU8TusLxoThQ" />
+
+  <title>
+    {{ page_title }}
+
+    {% if current_tags %}
+      &ndash; "{{ current_tags | join: ', ' }}"
+    {% endif %}
+
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.pagination.seo_title' | t }} {{ current_page }}
+    {% endif %}
+
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description }}">
+  {% elsif template == 'index' and shop.description != '' %}
+    <meta name="description" content="{{ shop.description }}" />
+  {% endif %}
+
+  <meta name="viewport" content="width=device-width" />
+  
+
+  <!-- Fonts
+  ///////////////////////////////////////// -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script>
+
+    var googleFonts = [];
+
+    {% assign font = "'PT Serif', 'Times New Roman', Times, serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('PT+Serif:400,700,400italic,700italic');
+    {% endif %}
+
+    {% assign font = "'Raleway', sans-serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Raleway:400,700,600');
+    {% endif %}
+
+    {% assign font = "'Open Sans', sans-serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Open+Sans:400italic,600italic,700italic,400,700,600');
+    {% endif %}
+
+    {% assign font = "'Source Sans Pro', sans-serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Source+Sans+Pro:400,600,700,400italic,600italic,700italic');
+    {% endif %}
+
+    {% assign font = "'Arvo', serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Arvo:400,700,400italic,700italic');
+    {% endif %}
+    
+    {% assign font = "'Work Sans', sans-serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Work+Sans:300,400,500,700');
+    {% endif %}
+    
+    {% assign font = "'Capriola', sans-serif" %}
+    {% if settings.body-font == font or settings.main-title-font == font or settings.secondary-header-font == font or settings.meta-font == font %}
+      googleFonts.push('Capriola:400');
+    {% endif %}
+
+    if (googleFonts.length) {
+      WebFont.load({
+        google: {
+          families: googleFonts
+        }
+      });
+    }
+
+  </script>
+
+  <!-- Theme CSS
+  ///////////////////////////////////////// -->
+  {{ 'style.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Third party JS Assets
+  ///////////////////////////////////////// -->
+  {{ 'modernizr-2.6.2.min.js' | asset_url | script_tag }}
+  {{ 'jquery-1.9.min.js' | asset_url | script_tag }}
+
+  {{ "option_selection.js"  | shopify_asset_url | script_tag }}
+
+  {% if template contains 'customers' %}
+    {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% include 'social-meta' %}
+  {% include 'theme-options' %}
+
+  {{ content_for_header }}
+
+
+  
+
+  {% render 'shogun-head' %}
+</head>
+
+{% assign showSectionHeaders = false %}
+{% if settings.show-section-headers %} {% assign showSectionHeaders = true %} {% endif %}
+
+<body class="{% if settings.center-header %}header-centered{% endif %} {% if template contains 'contact' %}template-contact{% else %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% endif %} {% unless showSectionHeaders %}disable-headers{% endunless %} {% if settings.meta-font == "'Open Sans' sans-serif" %}font-open-sans{% endif %} {% if settings.main-title-uppercase %}uppercase{% endif %} {% unless settings.ajax %}no-ajax{% endunless %}">
+
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=187795038002910";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  {% include 'header' %}
+
+  {% if template contains 'product' %}
+    {% include 'breadcrumbs' %}
+  {% endif %}
+
+  {% unless template contains 'collections' %}
+    {{ content_for_layout }}
+  {% else %}
+    {% include 'collections' %}
+  {% endunless %}
+
+  {% include 'footer' %}
+
+  {% if template contains 'index' or template contains 'collection' or template contains 'product' or template contains '404' or template contains 'search' %}
+  <section class="quick-shop">
+
+    <div class="quick-shop-modal">
+      <!-- Content dynamically added -->
+    </div>
+
+  </section>
+  {% endif %}
+
+  {% if template contains 'cart' or template contains 'product' %}
+    {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+  {% endif %}
+
+  {% if settings.show-currency-switcher %}
+    {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
+    {{ "jquery.currencies.js" | asset_url | script_tag }}
+  {% endif %}
+
+  {{ 'plugins.js' | asset_url | script_tag }}
+  {{ 'site.js' | asset_url | script_tag }}
+
+  <script>
+  var selectCallbackQuickShop = function(variant, selector) {
+
+    {% if template contains "pre-order" %}
+      var submitText = "{{ 'products.product.pre_order' | t }}";
+    {% else %}
+      var submitText = "{{ 'products.product.add_to_cart' | t }}";
+    {% endif %}
+
+    var id = selector.domIdPrefix.split("-")[2];
+
+    if (id) {
+      context = $("#quick-shop-" + id)
+    } else {
+      context = $("#product-area, .mobile-product-title")
+    }
+
+    if (variant && variant.available == true) {
+
+      context.find(".submit").val(submitText).removeAttr("disabled")
+
+      if ( variant.compare_at_price > 0 && variant.compare_at_price > variant.price ) {
+        context.find('.price').html('<span class="original money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.compare_at_price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.compare_at_price, Theme.moneyFormat) + '</span> <span class="money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '</span>');  // update price field
+      } else {
+        context.find('.price').html('<span class="money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '</span>');  // update price field
+      }
+
+      context.find(".submit").removeClass("disabled").val(submitText); // remove unavailable class from add-to-cart button, and re-enable button
+
+    } else {
+      var message = variant ? "{{ 'products.product.sold_out' | t }}" : "{{ 'products.product.unavailable' | t }}";
+
+      context
+        .find(".submit").addClass("disabled").attr("disabled", "disabled").val(message)
+        .find(".price").text(message);
+    }
+
+    if (variant && variant.featured_image) {
+      var newImage = variant.featured_image;
+      var smallImage = Shopify.Image.getSizedImageUrl(newImage.src, 'small');
+
+      {% if template contains "product" %}
+        $("#product-area .thumb img[src*='" + smallImage + "']").click();
+      {% else %}
+        $(".quick-shop-content .thumb img[src*='" + smallImage + "']").click();
+      {% endif %}
+    }
+
+    if (Theme.currencySwitcher) {
+      $(document.body).trigger('switch-currency');
+    }
+  };
+  </script>
+
+</body>
+<script src="//my.hellobar.com/86f413e6e5c40c32443f5949d2cff0c287a7620b.js" type="text/javascript" charset="utf-8" async="async"></script>
+</html>

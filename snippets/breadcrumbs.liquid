@@ -1,0 +1,44 @@
+<div class="breadcrumb-navigation">
+   <span><a href="/">Home</a></span>
+   {% if template contains "product" %}
+      {% if collection %}
+      <span class="sep">/</span> <span><a href="/collections">{{ 'general.breadcrumbs.collections' | t }}</a></span> <span class="sep">/</span> <span><a href="{{ collection.url }}">{{ collection.title }}</a></span>
+      {% else %}
+      <span class="sep">/</span> <span><a href="/collections/all">{{ 'general.breadcrumbs.products' | t }}</a></span>
+      {% endif %}
+      <span class="sep">/</span> <span>{{ product.title }}</span>
+   {% elsif template contains "list-collections" %}
+      <span class="sep">/</span> <span>{{ 'collections.listing.header' | t }}</span>
+   {% elsif template contains "collection" %}
+      <span class="sep">/</span> <span><a href="/collections">{{ 'general.breadcrumbs.collections' | t }}</a></span> <span class="sep">/</span> <span>{{ collection.title }}</span>
+   {% elsif template contains "blog" %}
+      <span class="sep">/</span> <span>{{ blog.title }}</span>
+      {% if current_tags.size > 0 %}
+      <span class="sep">/</span> <span>{{ 'general.breadcrumbs.tagged' | t }}: {% for tag in current_tags %}{{ tag }}{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
+      {% endif %}
+   {% elsif template contains "page" %}
+      <span class="sep">/</span> <span>{{ page.title }}</span>
+   {% elsif template contains "article" %}
+      <span class="sep">/</span> <span>{{ blog.title | link_to: blog.url }}</span>
+      <span class="sep">/</span> <span>{{ article.title }}</span>
+   {% elsif template contains "cart" %}
+      <span class="sep">/</span> <span>{{ 'general.breadcrumbs.cart' | t }}</span>
+   {% elsif template contains "404" %}
+      <span class="sep">/</span> <span>{{ 'general.breadcrumbs.404' | t }}</span>
+   {% elsif template contains "search" %}
+      <span class="sep">/</span> <span>{{ 'general.search.header' | t }}</span>
+   {% elsif template contains "customers/login" %}
+      <span class="sep">/</span> <span>{{ 'customer.login.header' | t }}</span>
+   {% elsif template contains "customers/reset_password" %}
+      <span class="sep">/</span> <span>{{ 'customer.reset_password.header' | t }}</span>
+   {% elsif template contains "customers/activate_account" %}
+      <span class="sep">/</span> <span>{{ 'customer.activate_account.header' | t }}</span>
+   {% elsif template contains "customers/account" %}
+      <span class="sep">/</span> <span>{{ 'general.account' | t }}</span>
+   {% elsif template contains "customers/addresses" %}
+      <span class="sep">/</span> <span><a href="/account">{{ 'general.account' | t }}</a></span> <span class="sep">/</span> <span>{{ 'customer.addresses.header' | t }}</span>
+   {% elsif template contains "customers/order" %}
+      <span class="sep">/</span> <span><a href="/account">{{ 'general.account' | t }}</a></span> <span class="sep">/</span> <span>{{ 'customer.orders.order' | t }}</span>
+   {% endif %}
+
+</div>

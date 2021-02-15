@@ -1,0 +1,127 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <h1 class="label">{{ collection.title }}</h1>
+	{% comment %}
+    {% if collection.all_tags.size > 0 %}
+    <div class="tags-wrap preload">
+      <select class="coll-filter styled-select tags-dropdown">
+        <option value="">{{ 'collections.collection.all_items' | t }}</option>
+        {% for tag in collection.all_tags %}
+          {% if current_tags contains tag %}
+            <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+          {% else %}
+            <option value="{{ tag | handle }}">{{ tag }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+
+      <ul class="tags">
+        {% for tag in collection.all_tags %}
+         <li class="tag show">{{ tag | link_to_tag: tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  	{% endcomment %}
+  </div>
+  
+  
+
+  {% if collection.products.size == 0 %}
+    <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+  {% else %}
+
+      {% if collection.description.size > 0 or settings.collection-top-pagination %}
+        {% if collection.description.size > 0 or paginate.previous or paginate.next%}
+        <div class="collection-header clearfix">
+
+          <div class="description rte">{{ collection.description }}</div>
+
+          {% if settings.collection-top-pagination %}
+            {% if paginate.previous or paginate.next %}
+              {% include 'pagination' %}
+            {% endif %}
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endif %}
+  
+
+    <ul class="product-list {{ settings.products-per-row }}">
+    {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+    </ul>
+   
+  {% endif %}
+
+  {% if paginate.previous or paginate.next %}
+    {% include 'pagination' %}
+  {% endif %}
+    
+    
+</section>
+{% endpaginate %}
+
+    
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+

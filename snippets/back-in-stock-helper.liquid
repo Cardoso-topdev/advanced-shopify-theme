@@ -1,0 +1,20 @@
+{% comment %}
+Don't edit this file.
+This snippet is auto generated and will be overwritten.
+{% endcomment %}
+
+<script id="back-in-stock-helper" defer>
+  var _BISConfig = _BISConfig || {};
+
+{% if product %}
+  _BISConfig.product = {{ product | json }};
+
+  {% for variant in product.variants %}
+    _BISConfig.product.variants[{{forloop.index | minus: 1 }}]['inventory_quantity'] = {{ variant.inventory_quantity }};
+  {% endfor %}
+{% endif %}
+
+{% if customer %}
+  _BISConfig.customer = { email: {{ customer.email | json }} };
+{% endif %}
+</script>

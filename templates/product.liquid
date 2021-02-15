@@ -1,0 +1,594 @@
+{% include 'buyx-product' with product %}
+{% include 'buyx-price-min' with product %} 
+
+{% if product.handle contains 'skin-regimen' %}
+<style>
+  #infiniteoptions-container {
+    display: none;
+  }
+</style>
+{% endif %}
+
+{% if product.handle == 'holiday-candle-2-oz' %}
+<style>
+  .submit {display: none}
+</style>
+<script>
+  window.location.href = "http://www.primallypure.com";
+</script>
+{% endif %}
+
+{% if product.handle == 'holiday-tinted-lip-balm-1' %}
+<style>
+  .submit {display: none}
+</style>
+<script>
+  window.location.href = "http://www.primallypure.com";
+</script>
+{% endif %}
+
+
+<!-- Dynamic Remarketing Tag -->
+<script>
+  gtag('event', 'page_view', {
+    'send_to': 'AW-814108220',
+    'ecomm_prodid': '{{ product.id }}'
+  });
+</script>
+
+<!-- Schema -->
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "{{ product.title }}",
+      "image": [
+        "https:{{ product.featured_image.src|img_url:'grande' }}"
+       ],
+      "description": "{{ product.description | strip_html | truncate: 156 }}",
+      "sku": "{%- assign current_variant = product.selected_or_first_available_variant -%}{{ current_variant.sku }}",
+      "brand": {
+        "@type": "Brand",
+        "name": "{{ product.vendor }}"
+      },
+      {% if product.metafields.stamped.reviews_count and product.metafields.stamped.reviews_count != "0" %} 
+      
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.stamped.reviews_average | round:2 }}",
+        "reviewCount": "{{ product.metafields.stamped.reviews_count }}"
+      },
+	  {% endif %}      
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ shop.url }}{{ product.url }}",
+        "priceCurrency": "USD",
+        "price": "{{ product.selected_or_first_available_variant.price | money_without_currency | remove: ',' }}",
+        {% if product.selected_or_first_available_variant.available %}
+        "availability": "http://schema.org/InStock",
+        {% else %}
+        "availability": "http://schema.org/OutOfStock",
+        {% endif %}
+        "seller": {
+          "@type": "Organization",
+          "name": "{{ product.vendor }}"
+        }
+      }
+    }
+</script>
+
+<!-- Klaviyo tracking -->
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+
+<style>
+  
+  .product-select:focus,
+  .single-option-selector:focus  { 
+  	border-radius:0;
+  }
+  
+  .product-select,
+  .single-option-selector {
+    font-size: 12px;
+    text-align: left;
+    border-radius: 0px;
+    width: 50%;
+    height: 40px;
+    padding: 5px;
+    margin: 10px 10px 10px 0px;
+    background-color: #f9f9f9;
+    border-color: lightgray;
+    background-color: $theme-assets-color;
+    box-shadow: 0px 0px 0px 1px $primary-border-color;
+    display: inline-block;
+    background:url(https://cdn.shopify.com/s/files/1/0874/6120/files/selector_arrow.png?13723750374684010988) no-repeat right #f9f9f9;
+    -webkit-appearance: none;
+    background-size: 39px 39px;
+   }
+
+  
+  select.classic {
+    background-image:
+      linear-gradient(45deg, transparent 50%, white 50%),
+      linear-gradient(135deg, white 50%, transparent 50%),
+      linear-gradient(to right, red, red);
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      100% 0;
+    background-size:
+      9px 5px,
+      5px 5px,
+      2.5em 2.5em;
+    background-repeat: no-repeat;
+  }
+  
+  @media screen and (max-width: 1240px) {     
+      #variant-label{ margin-left: 0px;}
+
+  }
+</style>
+
+{% comment %}
+04/16/2020 - Ashli Nixon
+Hide the variant dropdown selector for bundles/products that are tagged "hide-options"
+We set this up so that PP team could use the variant field to list the included products in a bundle
+This helps the back-end team see what products go into a bundle on the packing slip, but customer doesn't actually need to pick products
+{% endcomment %}
+{% for tag in product.tags %}
+  {% if tag contains 'hide-options' %}
+    <style>
+      .selector-wrapper:first-child {display: none;}  
+    </style>
+  {% endif %}
+{% endfor %}
+
+
+<section class="content content-area">
+  
+  <div class="mobile-product-title">
+    {% comment %}<h3 class="brand">{{ product.vendor }}</h3>{% endcomment %}
+    <h2 class="title">{{ product.title }}</h2>
+
+      <div class="overview-review">
+          <a href="#reviews" style="color: #000"><span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.handle }}" style="display: inline-block;">{{ product.metafields.stamped.badge }}</span></a>
+        </div>
+
+  </div>
+  
+   
+
+  <section id="product-area" class="clearfix">
+
+    
+    <div class="showcase">
+      <div class="container {% if product.images.size == 1 or settings.product-thumb-orientation == 'below' %}wide{% endif %}">
+        <div class="product-main-image wrap">
+          {% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+          <img alt="{{ featured_image.alt }}" src="{{ featured_image | img_url: 'original' }}" class="thumb-switch">
+          {% if settings.product-image-borders %}<span class="overlay"></span>{% endif %}
+
+          {% if settings.product-image-zoom %}
+            <div class="product-zoom"></div>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if product.images.size > 1 %}
+      <div class="pager {% if settings.product-thumb-orientation == 'below' %}below-main-image{% endif %}">
+        <div class="inner">
+          {% for image in product.images %}
+            <div class="wrap thumb {% include 'for-looper' %} {% if forloop.first %}active{% endif %}">
+              <img alt="{{ image.alt }}" src="{{ image.src | product_img_url: 'original' }}" data-high-res-url="{{ image.src | product_img_url: 'original' }}" class="thumb-switch">
+              <span class="overlay"></span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      
+      {% if settings.enable-fitting-guide %}
+      <div class="notes">
+        <a href="/pages/{{ settings.fitting-guide-link }}" class="fitting-guide"><span class="icon">{{ settings.fitting-guide-icon }}</span>{{ 'products.product.fitting_guide' | t }}</a>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="details {% if product.images.size > 1 %}border{% endif %} {% if buyx_product_variants_size == 1 and settings.display-product-quantity-option == false %}no-options{% endif %}">
+
+      <div class="module header">
+        {% comment %}<h3 class="brand">{{ product.vendor }}</h3>{% endcomment %}
+        <h1 class="title">{{ product.title }}</h1>
+        
+        
+        <div class="overview-review">
+          <a href="#reviews" style="color: #000"><span class="stamped-product-reviews-badge stamped-main-badge" data-id="{{ product.id }}" data-product-sku="{{ product.handle }}" style="display: inline-block;">{{ product.metafields.stamped.badge }}</span></a>
+        </div>
+
+        
+
+      </div>
+
+      
+
+      <div class="module options {% unless buyx_product_available %}unavailable{% endunless %}">
+
+        
+        
+        {% if product.compare_at_price > buyx_price_min %}
+          <p class="price sale"><span class="original money">{{ product.compare_at_price | money }}</span>
+            <span class="money" id="money">{{ buyx_price_min | money }}</span>
+          </p>
+		
+        {% elsif product.tags contains 'recharge' %}  
+          <!-- this is needed to allow recharge discounts to work to dynamically change price - only turn off when discounts active for recharge -->
+		  <!--<p class="productPrice"><span class="priceMoney">{{ buyx_price_min | money }}</span></p>-->
+          <p class="price"><span class="money" id="money">{{ buyx_price_min | money }}</span></p>
+		{% else %}
+          <p class="price"><span class="money" id="money">{{ buyx_price_min | money }}</span></p>
+        {% endif %}
+        
+        
+        
+        {% if buyx_product_available %} <!-- If the product is available then... -->
+        <form class="product-form" action="/cart/add" data-productid="{{ product.id }}" method="post">
+
+          
+          <!-- Begin ReCharge code -->
+          {% if product.available %}{% include 'subscription-product' %}{% endif %}
+          <!-- End ReCharge code -->
+
+          
+          {% if buyx_product_variants_size > 1 %} <!-- Create a variants dropdown IF the product has more than one variant -->
+
+          	<div class="selector-wrapper">
+          		{% comment %} having an issue where products with one dropdown aren't showing the label, but products with multiple are. this is a quick fix {% endcomment %} 	
+
+                {% if buyx_product_variants_size == 2 %}<label class="variant-label">{{ product.options.first }}</label> {% endif %}
+              
+                <select name="id" data-productid="{{ product.id }}" id="product-select" class="product-select single-option-selector">
+                  {% for variant in product.variants %}
+                   {% unless variant.title contains '% Off' %}
+                    <option {% if variant == product.selected_or_first_available_variant %} selected="selected" class="selected" {% endif %} value="{{ variant.id }}">{{ variant.title }}</option>
+                    {% endunless %}
+                  {% endfor %}
+                </select> 
+              
+              
+              
+            </div>
+          
+            <script>
+              $(function(){
+                function buyx_product_json(product) {
+                     if (product == null) {
+                          return null
+                     }
+                     var variants = []
+                     //does it have BuyXDiscount option?
+                     var option_position = -1
+                     for (var oi = 0, olen = product.options.length; oi < olen; oi++) {
+                         if (product.options[oi] == "BuyXDiscount") {
+                             option_position = oi+1
+                             break
+                         }
+                     }
+                     if (option_position == -1) {
+                         return product
+                     }
+                     if (product.options.length > 1) {
+                          product.options.splice(option_position-1, 1)
+                     } else {
+                          product.options[0] = "Title"
+                     }
+                     option_position = "option" + option_position
+                     product.available = false
+                     for (var vi = 0, vlen = product.variants.length; vi < vlen; vi++) {
+                         if (product.variants[vi][option_position] == "Default") {
+                             //product.variants[vi][option_position] = ""
+                             variants.push(product.variants[vi])
+                             product.available = product.available || product.variants[vi].available
+                         }
+                     }
+                     product.variants = variants
+                     return product
+                  }
+
+
+                  new Shopify.OptionSelectors("product-select", { product: buyx_product_json({{ product | json }}), onVariantSelected: selectCallbackQuickShop, enableHistoryState: true });
+                });
+            </script>
+          
+          
+          {% else %} <!-- If the product only has one variant, create a hidden input with the variant id. NOTE: Necessary for "add to cart" to work -->
+			
+            <input type="hidden" name="id" data-productid="{{ product.id }}" class="product-select" value="{{ product.selected_or_first_available_variant.id }}" data-variant-title="{{ product.selected_or_first_available_variant.title }}" />
+
+          {% endif %}
+          
+          <!-- limit hand sanitizer -->
+          {% if product.handle == "hand-sanitizer" %}
+          <div class="selector-wrapper quantity">
+            <label>{{ 'general.quantity' | t }}</label>
+            <select class="product-quantity field" name="quantity">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          
+          {% else %}
+          
+            {% if settings.display-product-quantity-option %}
+              <div class="selector-wrapper quantity">
+                <label>{{ 'general.quantity' | t }}</label>
+                <input type="text" class="product-quantity field" name="quantity" value="1">
+              </div>
+            {% else %}
+              <input type="hidden" name="quantity" value="1">
+            {% endif %}
+          
+          {% endif %}
+          
+		  <div id="infiniteoptions-container"></div>
+          
+         
+          
+          <div class="selector-wrapper submit-wrapper">
+
+            <input type="submit" class="action-button submit" value="{{ 'products.product.add_to_cart' | t }}"  onclick="fbq('track', 'AddToCart');" />
+
+            <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
+            
+          </div>
+
+        </form>
+        {% else %}
+
+			{% if product.handle == "rose-mint-tinted-lip-balm" %}
+            	<span class="action-button unavailable disabled" style="margin-top: 20px">COMING SOON</span>
+        	{% else %}
+        		<span class="action-button unavailable disabled" style="margin-top: 20px">{{ 'products.product.sold_out' | t }}</span>
+        	{% endif %}
+        {% endif %}
+      
+
+      </div>
+      
+      {% if product.description.size > 0 %}
+      <div class="module description">
+        <div class="rte">{{ product.description }}</div>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </section>
+  <div id="reviews">&nbsp;</div>
+  {% comment %}
+  	<div id="shopify-product-reviews" style="padding-top: 20px" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  {% endcomment %}
+  
+  
+
+    <div id="stamped-main-widget" 
+  data-widget-style="standard"
+  data-product-id="{{ product.id }}" 
+  data-name="{{ product.title | escape }}" 
+  data-url="{{ shop.url }}{{ product.url }}" 
+  data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+  data-description="{{ product.description | escape }}" 
+  data-product-sku="{{product.handle}}"> 
+  {{ product.metafields.stamped.reviews }} 
+  </div>
+  
+  
+  {% if settings.display-related-products %}
+
+      {% assign number_of_related_products_to_show = 4 %}
+      {% assign image_size = 'medium' %}
+
+      {% capture number_of_related_products_to_fetch %}{{ number_of_related_products_to_show | plus: 1 }}{% endcapture %}
+
+      {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+          {% assign found_a_collection = false %}
+          {% for c in product.collections %}
+              {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' %}
+                  {% assign found_a_collection = true %}
+                  {% assign collection = c %}
+              {% endif %}
+          {% endfor %}
+      {% endif %}
+
+      {% if collection.products.size > 1 %}
+
+      <section class="related-products">
+          <h2 class="section-title section-border">{{ 'products.related_products.header' | t }}</h2>
+          <ul class="product-list">
+
+              {% assign current_product_found = false %}
+              {% for prod in collection.products limit: number_of_related_products_to_fetch %}{% if prod.title == product.title %}{% assign current_product_found = true %}{% else %}{% unless current_product_found == false and forloop.last %}{% include 'product-item' %}{% endunless %}{% endif %}{% endfor %}
+
+          </ul>
+      </section>
+
+      {% endif %}
+
+  {% endif %}
+
+</section>
+
+{% if settings.display-fullsize-product-viewer %}
+<section class="fullscreen-product-viewer">
+  <div class="modal">
+    <div class="modal-wrap">
+      <span class="close">v</span>
+      <div class="showcase {% if product.images.size == 1 %}wide{% endif %}">
+        <div class="container">
+          <div class="wrap">
+            <img alt="{{ product.featured_image.alt }}" src="{{ product.featured_image | product_img_url: 'original' }}">
+            <span class="overlay"></span>
+          </div>
+        </div>
+      </div>
+
+      {% if product.images.size > 1 %}
+      <div class="pager antiscroll-wrap">
+        <div class="antiscroll-inner">
+          {% for image in product.images %}
+            <div class="wrap thumb {% include 'for-looper' %} {% if forloop.first %}active{% endif %}">
+              <img alt="{{ image.alt }}" src="{{ image.src | product_img_url: 'small' }}" data-high-res-url="{{ image.src | product_img_url: 'original' }}">
+              <span class="overlay"></span>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+<script>
+  function addEventListenerStamped(el, eventName, handler) { 
+   if (el.addEventListener) { el.addEventListener(eventName, handler); }
+   else { el.attachEvent('on' + eventName, function () { handler.call(el); }); } 
+}
+
+// Example
+// Listening for reviews widget loaded event
+addEventListenerStamped(document, 'stamped:reviews:loaded', function(e) {
+ jQuery("#stamped-sort-select option[value='most-votes']").text("Most Helpful");
+});
+   jQuery("#stamped-sort-select option[value='most-votes']").text("Most Helpful");
+
+  function updateAltText(){
+    $('.stamped-ugc-modal-image img').attr('alt','Primally Pure customer review of {{product.title}}');
+  }
+addEventListenerStamped(document, 'stamped:ugcmodal:paged', function(e) {
+  updateAltText();
+});
+  
+addEventListenerStamped(document, 'stamped:ugcmodal:open', function(e) {
+  updateAltText();
+});
+  
+</script>
+
+
+
+
+
+<!-- For Deodorant Video Test - Fall 2020 -->
+
+{% if product.handle == "tea-tree-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/jPM_y7EbGM8?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/ZZeaJJimln0?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}
+
+{% if product.handle == "charcoal-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/kifkTKlbJ-Q?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/sKfY_r_gceo?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}
+
+{% if product.handle == "lemongrass-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/O4GGkdHh6MY?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/uIthASoYYwo?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}	
+
+{% if product.handle == "lavender-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/M_mN63GxCwk?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/JVxWkhcBeeQ?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}	
+
+{% if product.handle == "blue-tansy-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/aerwHBsomq0?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/fjt5zgMkPUk?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}	
+
+{% if product.handle == "unscented-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/HX_le2xoFuQ?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/zCAm84bKxLY?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}		
+
+{% if product.handle == "geranium-deodorant" %}
+<style>.embed-container {display: none;}</style>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/qx7xNBO3VEc?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+<div class='embed-container'><iframe src='https://www.youtube.com/embed/EsnhpzuE1RY?rel=0&modestbranding=1&autohide=1' frameborder='0' allowfullscreen></iframe></div>
+{% endif %}		
+
+{% if product.handle contains "holiday" or product.handle contains "palo" or product.handle contains "autumn" or product.handle contains "gua" or product.handle contains "roller" or product.handle contains "dry-brush" %}
+<style>
+  #BIS_trigger { 
+    display: none !important;
+  }
+</style>
+{% endif %}

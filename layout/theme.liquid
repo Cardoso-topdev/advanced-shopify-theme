@@ -1,0 +1,267 @@
+{% if template contains 'article' and blog.metafields.blogfeeder.use_canonical == 'yes' %}{% assign canonical_url = article.metafields.blogfeeder.canonical %}{% endif %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10 ie9"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  
+  
+  
+  {% include 'google-tags' %}
+  {% include 'fb-pixel' %}
+  {% include 'splitbase-convert-experiments' %}
+  <!-- Start WKND tag. Deploy at the beginning of document head. -->
+  <script>
+    (function(d) {
+      var e = d.createElement('script');
+      e.src = d.location.protocol + '//tag.wknd.ai/4318/i.js';
+      e.async = true;
+      d.getElementsByTagName("head")[0].appendChild(e);
+    }(document));
+  </script>
+  <!-- End WKND tag -->
+
+
+  <meta name="google-site-verification" content="wbYtRLwy10138yYenw9659-n1Nr8x-zPYuszgRereB8" />
+  <meta name="google-site-verification" content="4BTWYKlcwnfT7SlQmkIyXIujcrX2So7EU8TusLxoThQ" />
+  <meta name="google-site-verification" content="t3JgjCz8ON1h-FVgaqIPCRXxPxUxpXmTrBdG8Q08F60" />
+  <meta name="facebook-domain-verification" content="jg0euwcrd6xywp5qj8r7nzyei1b53m" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width" />
+  {% if page_description %}
+    <meta name="description" content="{{ page_description }}">
+  {% elsif template == 'index' and shop.description != '' %}
+    <meta name="description" content="{{ shop.description }}" />
+  {% endif %}
+  {% include 'social-meta' %}
+
+  <title>{{ page_title }}{% if current_tags %} &ndash; "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %}&ndash; {{ 'general.pagination.seo_title' | t }} {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+  
+  <link rel="icon" type="image/png" href="{{ 'Favicon.png' | asset_url }}" />
+  {{ 'style.scss.css' | asset_url | stylesheet_tag }}  
+  <link rel="preload" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"></noscript>
+  
+  {% comment %}
+  this version of jquery breaks splitbase deo size selector test, so hiding it on that page 
+  {% endcomment %}
+  {% unless template contains 'deodorant' %}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+  {% endunless %}
+  <script src="{{ 'lazysizes.min.js' | asset_url }}" defer></script>
+  <!--<script src="{{ 'modernizr-2.6.2.min.js' | asset_url }}" defer></script>-->
+  <script src="{{ 'option_selection.js' | shopify_asset_url }}" defer></script>
+  {% if template contains 'customers' %}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+    <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
+  {% endif %}
+  {% include 'theme-options' %}
+  <script src="{{ 'plugins.js' | asset_url }}" defer></script>
+  <script src="{{ 'site.js' | asset_url }}" defer></script>
+  <script src="{{ 'customizations.js' | asset_url }}" defer></script>
+  
+  
+  {{ content_for_header }}
+
+
+
+                
+                
+                <!-- Global-e CSS Start-->
+                <link id="GEPIStyles" rel="stylesheet" href="//gex.global-e.com/gempro/css/10000627" />
+                <!-- Global-e CSS End-->
+                </head>
+
+
+{% assign showSectionHeaders = false %}
+{% if settings.show-section-headers %} {% assign showSectionHeaders = true %} {% endif %}
+
+
+<body id="{{ page_title | handle }}" class="{{ page_title | handle }} {%if customer %}logged-in {%endif%} {%- if product.id -%}product-{{ product.id }}{%- endif -%} {% if settings.center-header %}header-centered{% endif %} {% if template contains 'contact' %}template-contact{% else %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% endif %} {% unless showSectionHeaders %}disable-headers{% endunless %} {% if settings.meta-font == "'Open Sans' sans-serif" %}font-open-sans{% endif %} {% if settings.main-title-uppercase %}uppercase{% endif %} {% unless settings.ajax %}no-ajax{% endunless %}">
+  
+  {% include 'google-tag-manager-no-script' %}
+
+  <!-- template customizations -->
+  {% unless page.handle == 'deodorant-quiz' %}
+      {% include 'header' %}  
+  {% endunless %}
+  {% if template contains 'product' %}
+  	{% include 'breadcrumbs' %}
+  {% endif %}
+  {% unless template contains 'collections' %}
+  	{{ content_for_layout }}
+  {% else %}
+  	{% include 'collections' %}
+  {% endunless %}
+  {% unless page.handle == 'deodorant-quiz' %}
+      {% include 'footer' %}  
+  {% endunless %}
+  {% if template contains 'cart' or template contains 'product' %}
+  	 <script src="{{ 'api.jquery.js' | shopify_asset_url }}"></script>
+  {% endif %}
+  <!-- end template customizations -->
+  
+  
+  
+
+
+
+  <!-- DONT REMOVE — breaks theme! must be inline  -->
+  <script defer>
+     var selectCallbackQuickShop = function(variant, selector) {
+
+      {% if template contains "pre-order" %}
+      var submitText = "{{ 'products.product.pre_order' | t }}";
+      {% else %}
+      var submitText = "{{ 'products.product.add_to_cart' | t }}";
+      {% endif %}
+
+      var id = selector.domIdPrefix.split("-")[2];
+
+      if (id) {
+        context = $("#quick-shop-" + id)
+      } else {
+        context = $("#product-area, .mobile-product-title")
+      }
+
+      if (variant && variant.available == true) {
+
+        context.find(".submit").val(submitText).removeAttr("disabled")
+
+        if ( variant.compare_at_price > 0 && variant.compare_at_price > variant.price ) {
+          context.find('.price').html('<span class="original money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.compare_at_price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.compare_at_price, Theme.moneyFormat) + '</span> <span class="money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '</span>');  // update price field
+        } else {
+          context.find('.price').html('<span class="money" data-currency-' + Theme.currency + '="' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '">' + Shopify.formatMoney(variant.price, Theme.moneyFormat) + '</span>');  // update price field
+        }
+
+        context.find(".submit").removeClass("disabled").val(submitText); // remove unavailable class from add-to-cart button, and re-enable button
+
+      } else {
+        var message = variant ? "{{ 'products.product.sold_out' | t }}" : "{{ 'products.product.unavailable' | t }}";
+
+        context
+        .find(".submit").addClass("disabled").attr("disabled", "disabled").val(message)
+        .find(".price").text(message);
+        }
+
+        if (variant && variant.featured_image) {
+        var newImage = variant.featured_image;
+        var smallImage = Shopify.Image.getSizedImageUrl(newImage.src, 'small');
+
+        {% if template contains "product" %}
+        $("#product-area .thumb img[src*='" + smallImage + "']").click();
+        {% else %}
+        $(".quick-shop-content .thumb img[src*='" + smallImage + "']").click();
+        {% endif %}
+        }
+
+        if (Theme.currencySwitcher) {
+        $(document.body).trigger('switch-currency');
+        }
+      };
+  </script>
+
+  {% if template contains 'cart' %}
+    {% render 'alt-ajaxify-cart__cart-upsells' %}
+  {% else %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {% render 'ajaxify-cart' %}
+  {% endif %}
+  
+  {% if template contains 'product' %}
+    {% render 'back-in-stock-helper' %}
+    {% include 'afterpay' %}
+	  {% include 'easyvideo' %}
+  {% endif %}
+  {% include 'special-offers' %} 
+  {% include 'stamped' %}
+  {% include 'gorgias' %}
+  {{ 'booster-page-speed-optimizer.js' | asset_url | script_tag }}
+  {% include "loyaltylion" %}
+  {% include 'pinterest-conversion-tag' %}
+  {% include 'friendbuy' %}
+  {% include 'hotjar' %}
+  {% if settings.app_wk_enabled %}
+  	{% include 'appmate-wishlist-king' %}
+    <link rel="preload" href="{{ 'wishlist.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ 'wishlist.css' | asset_url }}"></noscript>
+  {% endif %}
+  {% if template contains 'contact' or template contains 'faq' %}
+  	{% include 'globo.formbuilder.scripts' %}
+  {% endif %}  
+
+  <div id="gorgias-chat">{% if customer %}<script>window.gorgiasChatParameters = {"smooch": {"givenName": "{{ customer.name }}","email": "{{ customer.email }}","properties": {"shopify__cart__total_price": "{{ cart.total_price | money | strip_html | default: null }}","shopify__cart__nb_of_items": {{ cart.items | size | default: 0 }},{% for item in cart.items %}"shopify__cart__items-{{ forloop.index }}-[]":"{\"line_price\":\"{{item.line_price|money|strip_html|default:null}}\",\"price\":\"{{item.price|money|strip_html|default:null}}\",\"product_id\":\"{{item.product_id|default:null}}\",\"quantity\":{{item.quantity|default:null}},\"sku\":\"{{item.sku|default:null}}\",\"title\":\"{{item.title}}\",\"variant_id\":{{item.variant_id|default:null}},\"vendor\":\"{{item.vendor|default:null}}\",\"id\":{{item.id|default:null}}}"{% if forloop.last != true %},{% endif %}{% endfor %}}}}</script>{% else %}<script>window.gorgiasChatParameters = {"smooch": {"properties": {"shopify__cart__total_price": "{{ cart.total_price | money | strip_html | default: null }}","shopify__cart__nb_of_items": {{ cart.items | size | default: 0 }},{% for item in cart.items %}"shopify__cart__items-{{ forloop.index }}-[]":"{\"line_price\":\"{{item.line_price|money|strip_html|default:null}}\",\"price\":\"{{item.price|money|strip_html|default:null}}\",\"product_id\":\"{{item.product_id|default:null}}\",\"quantity\":{{item.quantity|default:null}},\"sku\":\"{{item.sku|default:null}}\",\"title\":\"{{item.title}}\",\"variant_id\":{{item.variant_id|default:null}},\"vendor\":\"{{item.vendor|default:null}}\",\"id\":{{item.id|default:null}}}"{% if forloop.last != true %},{% endif %}{% endfor %}}}}</script>{% endif %}<script src="https://config.gorgias.io/production/zKB3oxwqGa2rkVOL/chat/QBGoD2eE9Wo2djql.js" defer></script></div>
+
+                
+<!-- **BEGIN** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_fsb_main', product: product, customer: customer %}
+    <!-- **END** Hextom FSB Integration // Main Include - DO NOT MODIFY -->
+
+                <!-- Global-e Script Start-->
+                <script id="globaleScript">
+                  (function () {
+                    var reg = /showpro=(true|false)/i;
+                    var showpro = ((reg.exec(document.location.search) || reg.exec(document.cookie) || [])[1] || '').toLowerCase();
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = '//gex.global-e.com/gempro/get/10000627' + (showpro ? '?showpro=' + showpro : '');
+                    document.getElementsByTagName('head')[0].appendChild(s);
+
+                    if (showpro) {
+                        var cssElement = document.createElement('link');
+                        cssElement.rel = 'stylesheet';
+                        cssElement.id = 'GEPIStyles';
+                        cssElement.href = '//gex.global-e.com/gempro/css/10000627?showpro=' + showpro;
+                        document.cookie = 'showpro=' + showpro;
+                        document.getElementsByTagName('head')[0].appendChild(cssElement);  
+                    }
+
+                    //GlobalE_Gem_Data cookie
+                    var name = 'GlobalE_Gem_Data';
+                    var value = JSON.stringify({ StoreCode : 'primallypure' });
+                    var days = 10;
+
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    var expires = '; expires=' + date.toUTCString();
+                    document.cookie = name + ' = ' + (value || '')  + expires + '; path =/ ';
+                })()
+                </script>
+                {% if customer.id  %}
+                    <input type="hidden" name="customer_id" id="customer_id" value="{{ customer.id }}_{{ customer.id | append: "!#Gl0b@lE-$3cr3t!)%1#" | sha1 }}">
+                {% endif %}
+                <script>
+                    (function () {
+                      setTimeout(function() {
+                        if (typeof GEP == 'undefined') {
+                          var toDisplay = document.querySelectorAll('[globale-product-price],[globale-order-details-price],[globale-order-list-price]');
+                          toDisplay.forEach(function(i) {  i.style.visibility = 'visible'; });
+} else {
+                        }
+                      }, 2000);
+                    })()
+                  </script>
+                <!-- Global-e Script End-->
+                <!--Gorgias Chat Widget Start--><script id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="1401",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/1401",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/1401");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/1401")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script><!--Gorgias Chat Widget End--></body>{% if template contains 'product' %}{% include 'SpViewCount' %}{% endif %}
+</html>
+
+
+
+{% if template contains 'product' %}
+
+{% endif %}
+
+
+
+
+<!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.1) -->
+<script type="text/javascript">
+  // Liquid variables:
+  var afterpay_product = {{ product | json }};
+  var afterpay_cart_total_price = {{ cart.total_price | json }};
+</script>
+<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.1) -->

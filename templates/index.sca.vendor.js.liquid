@@ -1,0 +1,7 @@
+{% layout none %}
+{% capture results %}{% for vendor in shop.vendors %}{{ vendor | json }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}{% capture script %}SECOMAPP.vendorsCallback({"vendor":[{{ results }}]});
+{% endcapture %}{{script}}
+{% comment %}
+Do not remove or edit this file, this file need for Freegifts Application searching products
+http://www.secomapp.com
+{%endcomment %}

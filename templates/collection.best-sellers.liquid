@@ -1,0 +1,160 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero">
+        <div class="content content-area flex">
+          	<div class="collection-video">
+              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/e8LmLk9UG14?modestbranding=1&rel=0' frameborder='0' allowfullscreen></iframe></div>
+            </div>
+            <div class="collection-text">
+              <h3>Our skincare philosophy: Pure Ingredients, Real Results</h3>
+              <p>We've got you covered from head to toe with our best-selling skin and body products. These are our top product picks to elevate your wellness ritual - and results. Ready to swap your daily staples with safe, effective options? <br /><strong>Start here! ↓</strong></p>
+              <!--<p>These customer favorites have 5-star reviews for a reason. Real, recognizable ingredients that give you the skin you've always wanted.</p>
+              <p>Create a complexion (and skincare routine) you can’t wait to wake up to. Wake up to healthier skin and a happier self.</p>-->
+           </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection best-sellers-listing palo-santo-intro">
+    <h3>BEST-SELLERS</h3>
+	
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+{% endpaginate %}
+
+<section class="content collection-text large-headline-centered" style="margin-top: -60px">
+  <h3>Proof:<br />Hear from Our Customers</h3>
+  <div class="testimonial-side-by-side flex">
+    <div class="testimonial-side-by-side-box side-by-side-image">
+      <img src="{{ 'cleansing-oil.jpg' | asset_url }}" alt="Cleansing Oil Primally Pure" />
+    </div>
+    <div class="testimonial-side-by-side-box side-by-side-text">
+      <p>"I went as far as trying Accutane to get rid of my breakouts. I also have rosacea and extremely sensitive skin. I will never go back to anything else."</p>
+      <p class="attribution">Renee on <a href="/products/cleansing-oil-normal-skin">Cleansing Oil</a></p>
+    </div>
+  </div>
+  <div class="testimonial-side-by-side flex">
+    <div class="testimonial-side-by-side-box side-by-side-text">
+      <p>"This deodorant keeps me covered through the longest shifts and hardest workouts. If you’re considering natural deodorant, you MUST try this one."</p>
+      <p class="attribution">Gabrielle on <a href="/products/charcoal-deodorant">Charcoal Deodorant</a></p>
+    </div>
+    <div class="testimonial-side-by-side-box side-by-side-image">
+      <img src="{{ 'Charcoal-Deodorant-Primally-Pure.jpg' | asset_url }}" alt="Cleansing Oil Primally Pure" />
+    </div>
+  </div>
+  <div class="testimonial-side-by-side flex">
+    <div class="testimonial-side-by-side-box side-by-side-image">
+      <img src="{{ 'clarifying-serum.jpg' | asset_url }}" alt="Clarifying Serum Primally Pure" />
+    </div>
+    <div class="testimonial-side-by-side-box side-by-side-text">
+      <p>"I have tried everything for my acne. You name a brand, and I have tried it. But if you have cystic acne, whiteheads, and scarring like me, give this product a try. In two weeks, the change has already been so significant. <strong>Every day I wake up excited to see the results.</strong>"</p>
+      <p class="attribution">Natalie on <a href="/products/clarifying-serum">Clarifying Serum</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="content content-area love-stories">
+	{% include 'deodorant-love-stories' %}
+</section>
+
+<section class="content tan-bg helpful-resources collection-text">
+  <h3>Information:<br />Knowledge is Power</h3>
+  <p>Primally Pure exists to help equip + empower you with the resources you need to not only improve your skin but to lead a healthier, more fulfilled life.</p>
+  <p>Binge our blog, Pure Life, for weekly holistic tips, clean living inspo + practical how-to posts from experts in the industry on everything from natural beauty, to wellness, business, biohacking and more.</p>
+  <p><strong>Bookmark these must-read (and our most popular) blog posts:</strong></p>
+  <div class="featured-posts flex" style="padding-bottom: 60px">
+    <div class="featured-post">
+      <div class="post-image"><a href="https://blog.primallypure.com/oil-free-think-again-which-oils-are-good-for-your-skin-and-why/"><img src="{{'oils-post.jpg' | asset_url }}" alt="Which oils are good for skin?" /></a></div>
+      <div class="post-title"><a href="https://blog.primallypure.com/oil-free-think-again-which-oils-are-good-for-your-skin-and-why/">OIL-FREE? THINK AGAIN. WHICH OILS ARE GOOD FOR YOUR SKIN AND WHY</a></div>
+    </div>
+    <div class="featured-post">
+      <div class="post-image"><a href="https://blog.primallypure.com/how-to-detox-your-pits-when-using-organic-deodorant-tips-for-fresh-rash-free-skin/"><img src="{{'deodorant-post.jpg' | asset_url }}" alt="HOW TO DETOX YOUR PITS (TIPS FOR FRESH, RASH-FREE SKIN)" /></a></div>
+      <div class="post-title"><a href="https://blog.primallypure.com/how-to-detox-your-pits-when-using-organic-deodorant-tips-for-fresh-rash-free-skin/">HOW TO DETOX YOUR PITS (TIPS FOR FRESH, RASH-FREE SKIN)</a></div>
+    </div>
+    <div class="featured-post">
+      <div class="post-image"><a href="https://blog.primallypure.com/multi-masking-the-beauty-trend-you-need-try/"><img src="{{'masking-post.jpg' | asset_url }}" alt="MULTI-MASKING: THE BEAUTY TREND YOU NEED TRY" /></a></div>
+      <div class="post-title"><a href="https://blog.primallypure.com/multi-masking-the-beauty-trend-you-need-try/">MULTI-MASKING: THE BEAUTY TREND YOU NEED TRY</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="content content-area" style="margin: 60px auto">
+  <h3 style="text-transform: uppercase; text-align: center; max-width: 500px; margin: auto">Get a free lip balm with your first purchase</h3>
+  <div class="klaviyo-form-LRzv8W" style="max-width: 500px; margin: auto;"></div>
+</section>
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+

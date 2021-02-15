@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+a{
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Work Sans",sans-serif;
+  font-size: .75em;
+  letter-spacing: .08em;
+}
+body{
+  font-family: "Work Sans",sans-serif;
+}
+label{
+  font-family: "Work Sans",sans-serif;
+}
+
+.btn{
+  font-family: "Work Sans",sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background-color: #363636 !important;
+  padding: 9px 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  border-radius:0px;
+}
+.btn:hover{
+  background-color:#a3a3a3 !important;
+}
+.payment-due__price{
+  color:black !important;
+}
+.chrome input[type="radio"]:checked, .safari input[type="radio"]:checked{
+  background-color: #ffdde2;
+  border-color: #ffdde2;
+  -webkit-box-shadow: 0 0#ffdde2 inset;
+}
+.chrome input[type="radio"]:checked:hover, .safari input[type="radio"]:checked:hover{
+  border-color:#ffdde2;
+}
+.section--thank-you .btn{
+  border: 1px solid #bbb !important;
+  padding: 0px 10px;
+  font-family: "Work Sans",sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 14px !important;
+  letter-spacing: .1em !important;
+  color: #bbb !important;
+  background-color: #fff !important;
+  line-height: 28.5px;
+}
+.section--thank-you .btn:hover{
+  color: #333 !important;
+  border: 1px solid #333 !important;
+  background-color: #fff !important;
+}
+.icon--order-success img{
+  content: url(https://cdn.shopify.com/s/files/1/0874/6120/files/check-b5fb41365d63a3a75fe5e2cc094bf768.png?7887991758851298968);
+}

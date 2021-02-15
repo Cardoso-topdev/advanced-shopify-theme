@@ -1,0 +1,133 @@
+<!-- index specific css -->
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+$(document).ready(function() {
+  
+  var desktopSlides = '';
+      
+  if ($(window).width() <= 767){	
+    $(".slideshow.desktop").html("");
+  }
+  
+  if ($(window).width() >= 768){	
+    $(".slideshow.mobile").html("");
+  }
+  
+  
+  
+  $(window).resize(function(){
+    	
+      if ($(window).width() <= 767){	
+        $(".slideshow.desktop").html("");
+      }
+
+      if ($(window).width() >= 768){	
+        $(".slideshow.mobile").html("");
+      }
+  });
+  
+});
+</script>
+
+
+<!-- desktop slideshow -->
+{% if settings.show-slideshow %}
+<section class="slideshow desktop {% if settings.slideshow-match-width %}content-area{% endif %} clearfix">
+  {% for i in (1..5) %}
+
+  
+  	{% capture enabled %}show-slide-{{i}}{% endcapture %}
+    {% capture invert %}invert-controls-slide-{{i}}{% endcapture %}
+    {% capture content %}show-slide-content-{{i}}{% endcapture %}
+    {% capture position %}slide-position-{{i}}{% endcapture %}
+    {% capture title %}slide-title-{{i}}{% endcapture %}
+    {% capture tagline %}slide-tagline-{{i}}{% endcapture %}
+    {% capture button %}slide-button-{{i}}{% endcapture %}
+    {% capture link %}slide-link-{{i}}{% endcapture %}
+
+  	{% if settings[enabled] %}
+      <div class="slide desktop {% if settings[invert] %}invert{% endif %}">
+        <div class="image-wrap">
+          <span class="prev"><span class="icon">[</span></span>
+          <span class="next"><span class="icon">]</span></span>
+          <ul class="jump-to-slide"></ul>
+
+            {% if settings[link] != blank %}
+              <a href="{{ settings[link] }}">
+                <img alt="{{ settings[title] }}" src="{{ 'slide-image-' | append: i | append: '.jpg' | asset_url }}" data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]">
+              </a>
+            {% else %}
+              <img alt="{{ settings[title] }}" src="{{ 'slide-image-' | append: i | append: '.jpg' | asset_url }}" data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]">
+            {% endif %}
+        </div>
+      </div>
+  	{% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+
+
+
+
+<!-- mobile slideshow -->
+{% if settings.show-slideshow-mobile %}
+<section class="slideshow mobile {% if settings.slideshow-match-width %}content-area{% endif %} clearfix">
+  {% for x in (1..5) %}
+
+	{% capture enabled-mobile %}show-slide-{{x}}-mobile{% endcapture %}
+    {% capture invert-mobile %}invert-controls-slide-{{x}}-mobile{% endcapture %}
+    {% capture content-mobile %}show-slide-content-{{x}}-mobile{% endcapture %}
+    {% capture position-mobile %}slide-position-{{x}}-mobile{% endcapture %}
+    {% capture title-mobile %}slide-title-{{x}}-mobile{% endcapture %}
+    {% capture tagline-mobile %}slide-tagline-{{x}}-mobile{% endcapture %}
+    {% capture button-mobile %}slide-button-{{x}}-mobile{% endcapture %}
+    {% capture link-mobile %}slide-link-{{x}}-mobile{% endcapture %}
+
+
+	{% if settings[enabled-mobile] %}
+      <div class="slide mobile {% if settings[invert-mobile] %}invert{% endif %}">
+        <div class="image-wrap">
+          <span class="prev"><span class="icon">[</span></span>
+          <span class="next"><span class="icon">]</span></span>
+          <ul class="jump-to-slide"></ul>
+
+            {% if settings[link-mobile] != blank %}
+              <a href="{{ settings[link-mobile] }}">
+                <img alt="{{ settings[title] }}" src="{{ 'slide-image-' | append: x | append: '-mobile.jpg' | asset_url }}" data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]">
+              </a>
+            {% else %}
+              <img alt="{{ settings[title] }}" src="{{ 'slide-image-' | append: x | append: '-mobile.jpg' | asset_url }}" data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]">
+            {% endif %}
+        </div>
+      </div>
+	{% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+
+
+
+
+<div class="content-area">
+  {% include 'home-welcome-message' %}
+  {% include 'home-featured-products' %}
+  <!-- close content-area in order to make home-promo full width --> 
+</div>
+
+{% include 'home-pure-promise' %}
+
+<!-- reopen content-area to bring back container -->
+<div class="content-area">
+  {% include 'home-product-spotlight' %}
+  <!-- close content-area in order to make home-promo full width --> 
+</div>
+
+{% include 'home-promo' %}
+
+<!-- reopen content-area to bring back container -->
+<div class="content-area">
+  {% include 'home-featured-blog' %}   
+  {% include 'home-testimonials' %}
+  {% include 'home-brands' %}
+</div>

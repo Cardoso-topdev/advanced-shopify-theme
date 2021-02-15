@@ -1,0 +1,72 @@
+.wk-label,
+.wk-count {
+  display: none;
+}
+
+
+a.wk-link .wk-icon {
+  width: 24px !important;
+  height: 18px !important;
+  margin: 0 !important;
+}
+
+.wk-icon path {
+  stroke-width: 7 !important;
+}
+
+.wk-remove-item path {
+  stroke-width: 1 !important;
+}
+
+button.wk-button-product .wk-label {
+  font-family: "Novel";
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+#nav-2017 .main-nav .shop-nav li:nth-child(2) {
+  padding-left: 10px;
+}
+
+#nav-2017 .main-nav .shop-nav li:nth-child(3) {
+  padding-left: 10px;
+}
+
+.wishlist-page {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.wk-product-title {
+  font-family: "Novel", sans-serif !important;
+  font-size: 16px;
+  font-weight: 700;
+  color: #a3a3a3;
+  letter-spacing: 0.1em;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.wk-purchase {
+  font-family: "Novel", sans-serif !important;
+  letter-spacing: .08em !important;
+  font-size: 14px;
+  color: #000;
+  margin: 13px 0 0;
+  text-align: left;
+}
+
+.wk-add-item-form input.wk-add-to-cart {
+  font-family: "Novel", sans-serif !important;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.wk-wishlist-empty-note {
+  text-transform: uppercase;
+  font-family: "Novel", sans-serif !important;
+  margin-bottom: 200px;
+}

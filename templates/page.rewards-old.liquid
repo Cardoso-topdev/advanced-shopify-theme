@@ -1,0 +1,621 @@
+<style>
+  
+/* LION RULES LIST */
+  
+.lion-rules-list {
+  padding: 0;
+  margin-top: -15px;
+  margin-bottom: 35px;
+}
+
+.lion-rule-item--style-1 .lion-rule-item__content {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+  color: #fff;
+}
+  
+
+.lion-modal__title {
+  font-size: 1rem !important;
+  font-weight: bold !important;
+  font-family: "Novel" !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+}
+  
+.lion-rule-item--style-1 .lion-rule-item__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "BellMT";
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  text-align: center;
+}
+
+.lion-modal__title .lion-currency {
+  text-transform: uppercase !important;
+}
+  
+.lion-rule-item--style-1 .lion-rule-item__points .text,
+#loyaltylion .lion-modal__content {
+  font-size: 1rem;
+  font-family: "Novel";
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+  
+#loyaltylion .lion-modal__content {
+  color: #222;
+}
+  
+.lion-rule-item--style-1 .lion-rule-item__points .value {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  font-family: "Novel" !important;
+  color: #fff;
+  text-align: center;
+}
+
+.lion-rule-item__icon {
+  display: none !important;
+}
+  
+.lion-rule-item--style-1.lion-rule-item--actionable:hover .lion-rule-item__content {
+  border: 0;
+}
+  
+.lion-rule-item__button,
+.lion-action-button,
+.lion-action-button:hover {
+  background: #222 !important;
+  color: #FFF !important;
+  font-size: 12px !important;
+  font-family: "Work Sans" !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 5px 10px !important;
+  font-weight: normal !important;
+  border-radius: 0 !important;
+}
+  
+.lion-modal .lion-action-button,
+.lion-modal .lion-action-button:hover, 
+#loyaltylion .lion-action-button:hover,
+.lion-redeem-reward-modal__button,
+ .lion-redeem-reward-modal__button:hover {
+  padding: 10px 10px !important;
+}
+  
+.lion-rule-item--purchase .lion-rule-item__content {
+  background: url("{{'LL_purchase.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+
+.lion-rule-item--signup .lion-rule-item__content {
+  background: url("{{'LL_account.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--newsletter-signup .lion-rule-item__content {
+  background: url("{{'LL_email.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--birthday .lion-rule-item__content {
+  background: url("{{'LL_birthday.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--instagram-follow .lion-rule-item__content {
+  background: url("{{'LL_instagram_2x.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--stampedio-review .lion-rule-item__content {
+  background: url("{{'LL_review.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--collection-purchase .lion-rule-item__content {
+  background: url("{{'LL_deodorant.jpg' | asset_url }}");
+  background-size: cover;
+}
+
+.lion-rule-item--110138 .lion-rule-item__content {
+  background: url("{{'LL_skin_state.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--110239 .lion-rule-item__content {
+  background: url("{{'LL_regimen.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+.lion-rule-item--110143 .lion-rule-item__content {
+  background: url("{{'LL_deodorant.jpg' | asset_url }}");
+  background-size: cover;
+}
+  
+  
+
+  
+.lion-rule-item__content {
+  padding: 80px 20px !important;
+}
+  
+@media screen and (max-width: 768px) {
+  .lion-rule-item__content {
+      padding: 70px 20px !important;
+    }
+}
+
+  
+ 
+.lion-rule-item--style-1 .lion-rule-item__completed-forever {
+	color: #FFF;
+	font-size: 12px;
+    font-family: "Work Sans";
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  	margin-top: -10px;
+}
+  
+.lion-rule-item--style-1 .lion-rule-item__completed-forever::after {
+	content: "\2713  Completed";
+    color: #FFF;
+    font-size: 12px;
+    font-family: "Work Sans" !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 670px) {
+ .lion-rule-item--style-1.lion-rule-item {
+   width: 100%;
+  }
+}
+
+  
+/* HISTORY TABLE */
+  
+
+.lion-history-table {
+  font-family: "Novel" !important;
+  font-size: 14px;
+}
+.lion-history-table__row-cell {
+    padding: 7px 10px 7px 10px;
+}
+  
+.lion-history-table th,
+.lion-history-table td:nth-child(2),
+.lion-history-table td:nth-child(5) {
+  display: none !important;
+}
+  
+.lion-history-table td {
+  display: block;
+}
+  
+ .lion-history-table tr {
+    background: none !important;
+    border-bottom: 1px solid #CCC;
+  }
+
+  .lion-history-table tr, td {
+    background: none !Important;
+  }
+
+  .lion-history-table td:nth-child(3) {
+    float: left;
+    width: 75%;
+  }
+
+
+
+  .lion-history-table td:nth-child(4) {
+    float: right;
+    width: 20%;
+    text-align: right;
+  }
+  
+  .lion-rewards-list .lion-reward-item__content {
+    border: 0;
+    background-color: #fff;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.07);
+    padding: 30px;
+  }
+  
+  
+  .lion-rewards-list .lion-reward-item__title {
+    font-family: "Novel", serif;
+    font-weight: 300;
+    font-size: 3rem;
+    visibility: collapse;
+    text-align: center;
+    width: 85px;
+    margin: auto;
+    padding-top: 20px;
+  }
+  
+  .lion-rewards-list .lion-reward-item__title span {
+    font-family: "Novel", serif;
+    font-weight: 300;
+    font-size: 3rem;
+    visibility: visible;
+  }
+  
+  .lion-rewards-list .lion-reward-item__meta {
+    font-family: "Novel", serif;
+    font-weight: 300;
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+  }
+  
+  .lion-reward-code__code {
+    background-color: #e7e4df !important;
+    border: 3px dashed #b6b3af !important;
+    margin-right: 10px;
+  }
+  
+  .logged-in .lion-rule-item--signup .lion-rule-item__points:after {
+  	content: "\2713  Completed";
+    color: #FFF;
+    font-size: 12px;
+    font-family: "Work Sans";
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 20px;
+  }
+  
+  .logged-in .lion-rule-item--110138 .lion-rule-item__points:after {
+    content: "Take the Quiz";
+    background: #222 !important;
+    color: #FFF !important;
+    font-size: 12px !important;
+    font-family: "Work Sans" !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 10px 10px !important;
+    font-weight: normal !important;
+    border-radius: 0 !important;
+    display: block;
+    margin-top: 30px;
+    cursor: pointer;
+    cursor: hand;
+  }
+  
+  .logged-in .lion-rule-item--110239 .lion-rule-item__points:after {
+    content: "Shop Now";
+    background: #222 !important;
+    color: #FFF !important;
+    font-size: 12px !important;
+    font-family: "Work Sans" !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 10px 10px !important;
+    font-weight: normal !important;
+    border-radius: 0 !important;
+    display: block;
+    margin-top: 30px;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+  }
+  
+  .logged-in .lion-rule-item--110143 .lion-rule-item__points:after {
+    content: "Shop Now";
+    background: #222 !important;
+    color: #FFF !important;
+    font-size: 12px !important;
+    font-family: "Work Sans" !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    padding: 10px 10px !important;
+    font-weight: normal !important;
+    border-radius: 0 !important;
+    display: block;
+    margin-top: 30px;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+  }
+  
+  .logged-in .lion-rule-item--110239 .lion-rule-item__title:after {
+   	content: 'First, take our Skin State Quiz using the link above. Then, purchase your personalized regimen to earn points!'; 
+    display: block;
+    font-family: "Novel" !important;
+  	font-size: 14px;
+    color: #fffff;
+    text-align: center;
+    max-width: 500px;
+    margin: 20px auto;
+    text-transform: none !important;
+  }
+  
+  .logged-in .lion-rule-item--110138 .lion-rule-item__button {
+    display: none;
+  }
+  
+  .lion-tier-box {
+    background: #FCFAF7;
+    width: 314px;
+    height: auto !important;
+    min-height: auto !important;
+    border: 1px solid #E2E2E2;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.07);
+    position: relative;
+    padding-bottom: 30px;
+}
+  
+  .lion-tier-overview  { 
+    margin-top: 20px;
+  }
+  
+  .lion-tier-box__header {
+    padding-bottom: 0;
+  }
+  
+  .lion-tier-box__title {
+    font-size: 1.2rem;
+    padding-top: 18px;
+    font-family: "BellMT", sans-serif !important;
+    letter-spacing: .2em !important;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .lion-tier-box__title:after {
+    content: '';
+    background-image: url(//cdn.shopify.com/s/files/1/0874/6120/t/80/assets/LL_diamond_2x.png?v=948365166493590565);
+    background-position: left;
+    background-size: contain;
+    background-repeat: repeat-x;
+    width: 33px;
+    height: 35px;
+    margin-top: 10px;
+    text-transform: uppercase !important;
+  }
+  
+  .lion-tier-box__sub-title,
+  .lion-tier-box__purchase-rule {
+    font-size: .7rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    padding: 0;
+    text-align: center;
+    font-family: "Novel", sans-serif !important;
+    letter-spacing: .08em !important;
+  }
+  
+  .lion-tier-box__title:before {
+   	content: "";
+    background: url('{{ 'LL_diamond_2x.png' | asset_url }}' );
+    background-size: cover;
+    width: 32px;
+    height: 38px;
+    display: block;
+      margin: auto;
+      text-align: center;
+      margin-bottom: 10px;
+  }
+  
+  .lion-tier-box__sub-title {
+    margin-bottom: 5px;
+  }
+  
+  .lion-tier-box__footer {
+    position: absolute;
+	bottom: -70px;
+    width: 100%;
+    background: transparent;
+    color: #222;
+  }
+  
+  .lion-tier-box__you-are-here {
+	position: relative;
+    font-size: 1rem;
+    font-family: "BellMT", sans-serif !important;
+    letter-spacing: .2em !important;
+    margin: auto;
+    position: absolute;
+    width: 100%;
+	bottom: 0px;
+    left: 0;
+    padding-top: 10px;
+  }
+  
+  .lion-tier-box__you-are-here:before {
+  	content: "";
+    width: 100%;
+    height: 70px;
+    border-right: 2px solid #222;
+    display: block;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+	top: -60px;
+    left: -50%;
+  }
+  
+  .lion-progress-bar__container,
+  .lion-tier-benefits-list {
+    display: none;
+  }
+  
+  .lion-tier-box__value-to-next {
+    position: absolute;
+	top: 40px;
+    left: 0;
+    width: 100%;
+    font-size: 12px;
+    letter-spacing: .1em !important;
+  }
+
+
+
+.lion-claimed-reward-item {
+  display: block;
+}
+
+.lion-claimed-reward-item__title {
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  display: block;
+  margin: 10px auto 0px auto;
+}
+
+.lion-claimed-reward-item__date {
+  font-size: 12px;
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-align: center;
+  margin: 0px auto 10px auto;
+}
+
+.lion-claimed-reward-item__right {
+  margin-bottom: 10px;
+}
+
+.lion-claimed-rewards-list {
+  padding: 0px;
+  margin: 15px 0px 30px 0px;
+}
+
+.lion-history-info-modal-content__info {
+  font-size: 14px;
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-align: center;
+}
+
+.lion-history-state-bubble--approved {
+  background: #222 !important;
+}
+
+  
+  
+  
+    
+</style>
+
+
+{{ 'rewards.scss.css' | asset_url | stylesheet_tag }} 
+<script src="{{ 'rewards.js' | asset_url }}" defer></script>
+<div class="c-container" id="rewards">
+        <div class="hero">
+            <div class="content">
+                <div class="welcome-box">
+                    {% if customer %}
+                  		<h1 class="text-center">WELCOME BACK, {{customer.first_name}}</h1>
+                  	{% else %}
+                  		<h1 class="text-center">WELCOME TO PURE REWARDS</h1>
+                  	{% endif %}
+                </div>
+              	{% if customer %}
+                  <div class="second-half  w-100 mt-5">
+                      <p class="text-center pt-1">YOU HAVE <span class="text-bold"><span data-lion-points="approved"></span></span> PURE POINTS</p>
+                      <a href="#spend" class="btn btn-primary">REDEEM PURE POINTS</a>
+                      <a href="#" id="btn-view-tracker" class="btn btn-primary ml-1 btn-view-tracker slider-viewer-link">MY POINTS HISTORY</a>
+                  </div>
+                {% else %}
+					<div class="second-half  w-100 mt-5">
+                      <p class="text-center pt-1">Earn points for being a loyal Primally Pure fan.</p>
+                      <a href="/account/register" class="btn btn-primary">Create a PP Account</a>
+                      <a href="/account/login" class="btn btn-primary">Sign in to your PP account</a>
+              		</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+	 
+
+    <section class="grid-section">
+        <div class="c-container">
+            <h2 class="subheading text-center pt-1 pb-2">EARN PURE POINTS</h2>
+          	
+          	<div data-lion-rules-list>
+          	</div>
+      </div>
+    </section>
+
+
+    <section class="section points-section bg-cream" id="spend">
+        <div class="c-container bg-cream">
+            <div class="points-content mx-auto">
+                <h2 class="subheading text-center">SPEND PURE POINTS</h2>
+                <p class="text-center px-1">Earn Pure Points when you purchase your favorite products and for sharing
+                    our
+                    mission. Your earned rewards can be used on any of our products and they never expire. Thanks for being a fan of
+                    Primally Pure!</p>
+            </div>
+          
+          	<div data-lion-rewards-list></div>
+          
+          	
+              <h3><span class="text-bold">You have <span data-lion-points="approved"></span></span> PURE POINTS</h3>
+          
+        </div>
+    </section>
+    <section class="section pp-love-section mb-5">
+        <div class="c-container">
+            <div class="points-content mx-auto">
+                <h2 class="subheading text-center pp">MORE PP LOVE = MORE PP REWARDS</h2>
+            </div>
+          	<div data-lion-tier-overview></div>
+        </div>
+    </section>
+
+    <sidebar class="slider visible" id="slider">
+        <a href="#" id="btn-close-slider" class="btn-close"><img src="{{"LL_close_2x.png" | asset_url}}" alt=""></a>
+        <div class="slider-card">
+            <div class="slider-points-card">
+              {% if customer %}
+                <div class="promo mx-auto">
+                    <p><span data-lion-points="approved"></span></p>
+                </div>
+              {% endif %}
+                <h3 class="text-center">MY POINTS HISTORY</h3>
+              
+              	<h4>My Claimed Rewards</h4>
+              	<div data-lion-claimed-rewards-list></div>
+              
+              	<h4>My Earned Pure Points</h4>
+              	<div data-lion-history-table></div>
+              	
+            </div>
+        </div>        
+    </sidebar>
+    <div class="d-modal" id="modal-box">
+        <div class="d-modal-content">
+            <a href="#" id="btn-close-modal"><img class="btn-close" src="{{"LL_close_2x.png" | asset_url}}" alt=""></a>
+            <p class="text-center pb-1">Give a friend 5% off their first purchase and earn 200 Pure Points if they spend
+                over $25.
+            </p>
+            <p class="text-center pb-1">Just copy your link and share anywhere:</p>
+            <div class="input-group">
+                <input type="text" value="<span data-lion-referral-url></span>">
+                <a href="#" class="btn-copy"><img src="{{"copy-icon.png" | asset_url}}" alt=""></a>
+            </div>
+        </div>
+    </div>
+      
+      
+     

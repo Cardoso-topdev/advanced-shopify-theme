@@ -1,0 +1,427 @@
+<!-- deodorant LP specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+  $( document ).ready(function() {
+    
+  	var currentPath = window.location.pathname
+
+    
+    if(currentPath == "/pages/deodorant-quiz-charcoal")
+    {
+      document.getElementById('quiz-result-h2').innerHTML = "CHARCOAL EUCALYPTUS + MINT";
+    }
+    else if()
+    {
+      
+    }
+  
+  }
+</script>
+
+<style>
+  html,body {overflow-x: hidden;}
+</style>
+
+
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area">
+
+    {% include 'breadcrumbs' %}
+
+
+    <div id="quiz-result-wrap">
+
+      <div class="quiz-result-message">
+        <h2 class="quiz-result-title" id="quiz-result-title">YOUR PURE-FECT <BR />
+        DEODORANT MATCH IS
+        </h2>
+
+        <div class="quiz-result-type">
+          <h2 id="quiz-result-h2"></h2>
+        </div>
+
+
+
+        <div class="quiz-result-description">
+          <p id="result-description-paragraph">
+
+
+          </p>
+
+        </div>
+         <a href="/collections/deodorant" id="deodorant-action" class="action-button submit" value="Add to cart" > </a>
+
+
+        </div>
+
+      </div>
+
+
+
+  <div class="text-content-wrap clearfix">
+
+
+    <div class="main-deo-header">    
+        <div class="deodorant-header">
+         <img class="deo-header-mobile" src="{{ 'deodorant_Geranium_mobile.png' | asset_url }}" alt="About Primally Pure" />
+
+        </div>
+
+
+      <table class="deo-header-table">
+        <tr>
+          <td>
+            <img class="deo-header-desktop-image" src="{{ 'deodorant_header_desktop_left.png' | asset_url }}" alt="About Primally Pure" />
+
+          </td>
+
+
+          <td>
+          <img class="deo-header-desktop-image" src="{{ 'deodorant_header_desktop_center.png' | asset_url }}" alt="About Primally Pure" />
+
+          </td>
+
+
+          <td>
+               <img class="deo-header-desktop-image" src="{{ 'deodorant_header_desktop_right.png' | asset_url }}" alt="About Primally Pure" />
+
+
+          </td>
+
+        </tr>
+      </table>
+      </div>
+      <div style="margin-top: 10px;"></div>
+
+      <div class="deodorant-experts">
+            {{ settings.deo-story-1 }}
+            <a href="/collections/deodorant" style="padding: 9px 30px;" class="action-button submit" value="Add to cart" >  SHOP NOW  </a>
+        </div>
+
+      <div style="deo-image-divider">
+      </div>
+
+      <div class="full-width-deo-image-mobile">
+        <img style="height: 100%; width: 100%;" src="{{ 'deodorant_flatlay.png' | asset_url }}" alt="About Primally Pure" />
+      </div>
+
+      <div class="full-width-deo-image-desktop">
+
+      </div>
+
+      <div class="deodorant-love-section">
+        <div class="deo-side-float-left">
+          {{ settings.deo-story-2 }}
+          <a href="/collections/deodorant" style="margin-top: 4px;" class="action-button submit" value="Add to cart" >SHOP NOW</a>
+        </div>
+
+        <div class="deo-side-float-right">
+            <img id="love-image" src="{{ 'holding_deodorant_desktop.png' | asset_url }}" alt="About Primally Pure" />
+          <div class="spotlight-border-deo"></div>
+        </div>	
+
+      </div>
+
+      <div class="deodorant-love-section">
+
+        <div class="deo-side-float-right-mobile">
+            <img id="love-image" src="{{ 'holding_deodorant_desktop.png' | asset_url }}" alt="About Primally Pure" />
+            <div class="spotlight-border-deo"></div>
+        </div>
+
+        <div class="deo-side-float-left-mobile">
+          {{ settings.deo-story-3 }}
+          <a href="/collections/deodorant" style="padding: 9px 30px;" class="action-button submit deo-action"  value="Add to cart" >SHOP NOW</a>
+        </div>
+
+
+
+      </div>
+
+      <div style="deo-image-divider">
+      </div>
+
+    </div>
+</section>
+
+{% include 'deodorant-reviews' %}
+
+<section class="content content-area">
+  <div class="text-content-wrap clearfix">
+
+
+    <div class="deodorant-love-section">
+      <div class="deo-side-float-right" style="height: 100% !important;">
+        {{ settings.deo-story-4 }}
+        <a href="/collections/deodorant" style="padding: 9px 30px;"  class="action-button submit deo-action" value="Add to cart" >SHOP NOW</a>
+      </div>
+
+      <div class="deo-side-float-left" style="height=100%; position: relative;">
+        <img id="love-image" src="{{ 'deodorant_sink_desktop.png' | asset_url }}" alt="About Primally Pure" />
+        <div class="spotlight-border-deo-right"></div>
+      </div>	
+
+    </div>
+
+    <div class="deodorant-love-section">
+
+      <div class="deo-side-float-left-mobile" style="height: 100% !important;">
+
+          <img id="love-image" src="https://cdn.shopify.com/s/files/1/0874/6120/files/deodorant_sink_desktop.png?6581270165042106240">
+        <div class="spotlight-border-deo-right"></div>
+      </div>
+
+      <div class="deo-side-float-right-mobile">
+        {{ settings.deo-story-4 }}
+        <a href="/collections/deodorant" style="padding: 9px 30px;" class="action-button submit" value="Add to cart" >SHOP NOW</a>
+      </div>
+
+
+
+    </div>
+
+
+
+     <div class="deo-hashtag">
+          {{ settings.deo-hashtag }}
+      </div>
+
+    <div class="compare-table-section">
+    <table class="compare-table">
+        <tr>
+          <th></th>
+          <th style="background-color: #fcfaf7;">Primally Pure</th>
+          <th>Schmidt's</th>
+          <th>Native</th>
+          <th>Tom's</th>
+        </tr>
+
+      <tr>
+        <td style=" text-align: left;">Controls odor</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+        <td>&#10003;</td>
+        <td>&#10003;</td>
+        <td>X</td>
+      </tr>
+
+      <tr>
+        <td style=" text-align: left;">Aluminum-free</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+        <td>&#10003;</td>
+        <td>&#10003;</td>
+        <td>Sometimes</td>
+      </tr>
+
+      <tr>
+        <td  style=" text-align: left;">Fragrance-free</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+        <td>Sometimes</td>
+        <td>Sometimes</td>
+        <td>Sometimes</td>
+
+      </tr>
+
+      <tr>
+        <td style=" text-align: left;">Made with organic ingredients</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+        <td>X</td>
+        <td>X</td>
+        <td>X</td>
+
+      </tr>
+
+      <tr>
+        <td style=" text-align: left;">Handcrafted</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+         <td>X</td>
+        <td>X</td>
+        <td>X</td>
+
+      </tr>
+
+      <tr>
+        <td style=" text-align: left;">Independently owned</td>
+        <td style="background-color: #fcfaf7;">&#10003;</td>
+         <td>X</td>
+        <td>X</td>
+        <td>X</td>
+
+      </tr>
+
+    </table>
+    </div>
+
+    <div class="about-divider" style="margin-top: 115px; margin-bottom: 45px;">
+            <h2 class="about-section-title section-border"></h2>
+          </div>
+
+    <div class="deo-center" style="text-align: center; min-height: 300px;">
+      <h2>{{ settings.subscribe-headline }}</h2>
+      <P style="margin-bottom: 50px;">{{ settings.subscribe-description }}</P>
+
+      <div class="deo-feature-wrap" style="margin-left: 6%;">
+        {{ settings.box-1 }}
+
+      </div>
+
+      <div class="deo-feature-wrap center">
+        {{ settings.box-2 }}
+
+      </div>
+
+      <div class="deo-feature-wrap right" style="padding-top: 35px;">
+        {{ settings.box-3 }}
+
+      </div>
+
+
+    </div>
+    <div style="margin-top: 15px;
+      text-align: center; margin-bottom: 75px;">
+          {{ settings.subscribe-details }}
+
+      </div>
+
+    <div>
+      <table class="deo-image-table">
+        <tr>
+          <td>
+            <a href="/products/charcoal-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'deodorant_charcoal_desktop.png' | asset_url }}" alt="About Primally Pure" />
+        </a>
+          </td>
+
+
+          <td>
+            <a href="/products/geranium-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'Deodorant_two_geranium_desktop.png' | asset_url }}" alt="About Primally Pure" />
+            </a>
+          </td>
+
+
+          <td>
+            <a href="/products/lavender-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'Deodorant_lavender_desktop.png' | asset_url }}" alt="About Primally Pure" />
+           </a>
+          </td>
+
+
+          <td>
+            <a href="/products/lemongrass-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'Deodorant_lemongrass_desktop.png' | asset_url }}" alt="About Primally Pure" />
+            </a>
+          </td>
+
+
+          <td>
+            <a href="/products/tea-tree-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'Deodorant_TeaTree_desktop.png' | asset_url }}" alt="About Primally Pure" />
+        </a>
+          </td>
+
+
+          <td>
+            <a href="/products/sensitive-unscented-deodorant" class="with-border">
+              <img class="deo-image" src="{{ 'Deodorant_unscented_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+        </a>
+          </td>
+
+
+        </tr>
+
+      </table>	
+      <div>
+
+
+
+
+
+
+
+  </div>
+
+    <div class="deodorant-lineup-mobile" >
+       <div class="deo-lineup"> 
+
+            <a href="/products/charcoal-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'deodorant_charcoal_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+        </a>
+      </div>
+      <div class="deo-lineup">
+
+            <a href="/products/geranium-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'Deodorant_two_geranium_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+
+        </a>
+      </div>
+
+      <div class="deo-lineup">
+
+            <a href="/products/lavender-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'Deodorant_lavender_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+
+        </a>`
+      </div>
+        </div>
+
+
+
+    <div class="deodorant-lineup-mobile" >
+       <div class="deo-lineup">
+
+            <a href="/products/lemongrass-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'Deodorant_lemongrass_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+          </a>
+      </div>
+      <div class="deo-lineup">
+
+            <a href="/products/tea-tree-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'Deodorant_TeaTree_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+            </a>
+      </div>
+
+      <div class="deo-lineup">
+
+            <a href="/products/sensitive-unscented-deodorant" class="with-border">
+              <img class="lineup-image" src="{{ 'Deodorant_unscented_desktop.png' | asset_url }}" alt="About Primally Pure" />
+
+
+            </a>
+      </div>
+        </div>
+
+    <div style="margin:  45px auto;">
+    <a style="height: 10px;" ></a>
+      </div>
+    <div style="margin: 45px auto;
+      display: inline-block;
+      width: 100%;
+      text-align: center;">
+    <a href="/collections/deodorant" style="padding: 9px 30px;" class="action-button submit"  value="Add to cart" >Subscribe</a>
+      </div>
+
+
+    <div class="about-divider" style="margin-top: 65px; margin-bottom: 45px;">
+    	<h2 class="about-section-title section-border"></h2>
+    </div>
+
+
+      {% include 'deodorant-love-stories' %}
+      <a href="/collections/deodorant" style="padding: 9px 30px; " class="action-button submit" value="Add to cart" >SHOP OUR BEST-SELLING NATURAL DEODORANTS</a>
+
+
+
+    </div>
+</section>
+
+
+
+    

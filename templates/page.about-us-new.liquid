@@ -1,0 +1,348 @@
+<!-- about specific css -->
+{{ 'about.scss.css' | asset_url | stylesheet_tag }} 
+
+<section class="content content-area about-page">
+
+  {% include 'breadcrumbs' %}
+  {% comment %}
+  <div class="page-title">
+    <h1 class="label">{{ page.title }}</h1>
+  </div>
+  {% endcomment %}
+
+  <div class="text-content-wrap clearfix">
+    
+    <div class="rte clearfix text-content">
+     
+      <div class="photo-heros">
+        <div class="about-new">
+          <div class="featured-spotlight featured-about">
+            <!--<div class="about-spotlight-image">
+              <img src="{{ 'about-feature.jpg' | asset_url }}" alt="About Primally Pure" />
+            </div> -->
+          </div>
+        </div>
+      </div>
+      
+    </div> <!--rte text-content-->
+  </div><!--text-content-wrap-->
+</section><!--content-area-->
+
+
+        
+        
+        
+        
+        
+        <!------------------------->
+        
+<!-- STORY SECTION -->   
+<div class="story-bg">
+  
+  <section class="content content-area about-page">
+    <div class="text-content-wrap clearfix" style="padding-bottom: 0px;">
+      <div class="rte clearfix text-content about-story-section">
+        
+        <div class="about-left-new">
+          <div class="about-one" id="texture-image">
+            <img src="{{ 'PrimallyPure_Colors.png' | asset_url }}" alt="About Primally Pure" />
+          </div>
+
+          <div class="about-one" id="Bethany-image-mobile">
+            <img src="{{ 'bethany-main.jpg' | asset_url }}" alt="About Primally Pure" />
+          </div>
+          <div class="about-spacer">
+
+          </div>
+          <div class="about-two-top">
+            {{ settings.story-1 }}
+          </div>
+
+        </div>
+        <div class="about-right-new">
+          <div class="about-two" id="Bethany-image-desktop">
+            <img src="{{ 'bethany-main.jpg' | asset_url }}" alt="About Primally Pure" />
+          </div>
+        </div>
+        <div class="clearfix clear"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- END STORY SECTION --> 
+
+<section class="content content-area about-page">
+  <div class="text-content-wrap clearfix">
+    
+    <div class="rte clearfix text-content">
+        
+<!-- FEATURED TESTIMONIAL + PRODUCT SECTION -->
+        <div class="about-products">
+                    <div class="about-product-box product-box-1">
+            <div class="about-product-image">
+              <a href="{{settings.about-product-link-1}}"><img src="{{ 'about-deodorant.jpg' | asset_url }}" alt="Primally Pure Deodorant" /></a>
+            </div>
+            <div class="about-product-testi">
+              <p>{{settings.about-product-testimonial-1}}</p>
+              <p class="about-attribution">{{settings.about-product-attribution-1}}</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+          
+          <div class="about-product-box product-box-2">
+            <div class="about-product-image">
+              <a href="{{settings.about-product-link-2}}"><img src="{{ 'about-cream.jpg' | asset_url }}" alt="Primally Pure Beauty Cream" /></a>
+            </div>
+            <div class="about-product-testi">
+              <p>{{settings.about-product-testimonial-2}}</p>
+              <p class="about-attribution">{{settings.about-product-attribution-2}}</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+          
+          <div class="about-product-box product-box-3">
+            <div class="about-product-image">
+              <a href="{{settings.about-product-link-3}}"><img src="{{ 'about-spray.jpg' | asset_url }}" alt="Primally Pure Spray" /></a>
+            </div>
+            <div class="about-product-testi">
+              <p>{{settings.about-product-testimonial-3}}</p>
+              <p class="about-attribution">{{settings.about-product-attribution-3}}</p>
+          	</div>
+            <div class="clear"></div>
+       	  </div>
+          <div class="clear"></div>
+        </div>
+        
+<!-- SIDE BY SIDE PHOTO SECTION -->        
+		<div class="about-top-margin">
+  			<div class="about-side-float-left">
+              <img src="{{ 'PrimallyPure_About_office.png' | asset_url }}" alt="About Primally Pure" />
+            </div>
+          <div class="about-side-float-left">
+            <img src="{{ 'PrimallyPure_About_Selection.png' | asset_url }}" alt="About Primally Pure" />
+            </div>          
+          <div class="about-side-float-right">
+            <img src="{{ 'PrimallyPure_About_Decor.png' | asset_url }}" alt="About Primally Pure" />
+            </div>
+        
+        </div>      
+<!-- END SIDE BY SIDE PHOTO SECTION -->         
+        
+        <br /> <br />
+        <div class="main-about">
+          {{ settings.story-2 }}
+        </div>
+    </div>
+  </div>
+</section>
+      
+<div class="about-testimonial-bar">
+  <script src="//malsup.github.io/min/jquery.cycle2.min.js" defer></script>
+  <script src="//malsup.github.io/jquery.cycle2.center.js" defer></script>
+
+  <section id="test-holder">
+  <table class="testimonial-container clearfix cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-pause-on-hover="true"
+   data-cycle-speed="100" data-cycle-slides="tr" data-cycle-timeout="9000" data-cycle-center-horz="true" data-cycle-center-vert="true" data-cycle-prev="#prev"
+          data-cycle-next="#next">
+
+    
+    {% if settings.about-slide-1 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-1}}</p>
+        <p class="about-attribution">{{settings.about-attr-1}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-2 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-2}}</p>
+        <p class="about-attribution">{{settings.about-attr-2}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-3 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-3}}</p>
+        <p class="about-attribution">{{settings.about-attr-3}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-4 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-4}}</p>
+        <p class="about-attribution">{{settings.about-attr-4}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-5 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-5}}</p>
+        <p class="about-attribution">{{settings.about-attr-5}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-6 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-6}}</p>
+        <p class="about-attribution">{{settings.about-attr-6}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-7 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-7}}</p>
+        <p class="about-attribution">{{settings.about-attr-7}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-8 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-8}}</p>
+        <p class="about-attribution">{{settings.about-attr-8}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-9 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-9}}</p>
+        <p class="about-attribution">{{settings.about-attr-9}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    {% if settings.about-slide-10 != '' %}
+    <tr class="testim">
+      <td>
+        <p>{{settings.about-slide-10}}</p>
+        <p class="about-attribution">{{settings.about-attr-10}}</p>
+      </td>
+    </tr>
+    {% endif %}
+    
+    
+    
+    
+    
+    
+    
+
+   	
+      
+
+
+  </table>
+
+    <span id="prev"><img src="{{ 'larr.png' | asset_url }}" /></span>
+    <span id="next"><img src="{{ 'rarr.png' | asset_url }}" /></span>
+  </section>
+
+
+  <!--<p>"Primally Pure is the first natural deodorant that keeps me smelling great the entire day."</p>
+  <p class="about-attribution">Jordan on <a href="/products/geranium-deodorant">Geranium Deodorant</a></p>-->
+</div>
+
+<section class="content content-area about-page">
+  <div class="text-content-wrap clearfix">
+    
+    <div class="rte clearfix text-content">
+      
+        <div class="about-left-main-new">
+          	<img src="{{ 'bethany-secondary.jpg' | asset_url }}" alt="About Primally Pure" />
+        </div>
+        <div class="about-right-main-new">
+          <div class="about-spacer"></div>
+          {{ settings.story-3 }}           
+      	</div>
+      
+    	<div class="clearfix clear"></div>
+      	<h2 class="about-section-title section-border" style="margin: 40px 0px 0px 0px;"></h2> 
+		<div class="clearfix clear"></div>
+      
+       
+<!-- INGREDIENTS SECTION -->        
+       <div class="about-left-new ingredients-box" style="margin-top: 20px; width: 490px;">
+
+        	<div class="about-two-top">
+          	  <div class="about-spacer"></div>
+              {{ settings.story-4 }}
+              <div class="about-spacer" style="margin-top: 50px"></div>
+            </div>
+        	
+        </div>
+        
+        <div class="about-right-new" style="margin-top: 20px; margin-right: 0px;">
+          	<div class="about-two">
+              <img src="{{ 'ingredients.jpg' | asset_url }}" alt="About Primally Pure" />
+            </div>
+		</div>
+        <div class="clearfix clear"></div>
+
+      <!-- END INGREDIENTS SECTION -->      
+        
+        
+         
+         
+         <!-- SELF CARE SECTION -->        
+       <div class="about-left-new" id="sea-soak-desktop" style="margin-top: 70px; margin-left: 0px;">
+         <div class="about-two-top" >
+           <img src="{{ 'self-care.jpg' | asset_url }}" alt="About Primally Pure" />
+              <!--<img src="//cdn.shopify.com/s/files/1/0874/6120/t/22/assets/self-care.jpg?16441408821539351309" alt="Bethany at Primally Pure">-->
+           
+        </div>
+        	<!--<div class="about-one">
+              <img src="//cdn.shopify.com/s/files/1/0874/6120/files/PrimallyPure_Colors.png?7559066139924204970" alt="Color Palatte at Primally Pure">
+            </div>-->
+         	<!--<div class="about-spacer" style="margin-top: 5px; margin-bottom: 50px;">-->
+              
+         	</div>
+        	
+        
+        <div class="about-right-new" style="width: 550px; margin: 85px 0px 0px 0px; padding: 0px;">
+          
+          	<div class="about-two-top self-care-box">
+              <div class="about-spacer" style="margin-bottom: 30px;"></div>
+              {{ settings.story-5 }}
+              
+             <div class="about-spacer" style="Margin-top: 30px; width: 53%;"></div>
+            </div>
+          
+        </div>
+        <div class="about-left-new" id="sea-soak-mobile">
+         <div class="about-two-top self-care-pic" >
+           <img src="{{ 'self-care.jpg' | asset_url }}" alt="About Primally Pure" />
+        </div>
+        
+        
+	</div>
+        <div class="clearfix clear"></div>
+<!-- END SELF CARE SECTION --> 
+         
+      <div class="center tagline">
+        Pure ingredients, real results.	
+      </div>
+
+      
+    </div>
+      
+  </div>
+    
+
+</section>
+

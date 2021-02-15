@@ -1,0 +1,13 @@
+{% assign bold_product = bold-ro | default: product | default: item.product | default: item %}
+{% capture bold_ro_widget %}
+<div class='product_rp_div p{{ bold_product.id }}'></div>
+{% endcapture %}
+
+{% assign bold_add_to_cart_class = ' addtocart ' %}
+{% assign bold_subscription_only_list = bold_product.variants | map: 'metafields' | map: 'bold_rp' | map: 'rp_subscription_only' %}
+{% if bold_subscription_only_list contains 1 or bold_subscription_only_list contains '1' %}
+  {% assign bold_subscription_only = true %}
+  {% assign bold_add_to_cart_class = bold_add_to_cart_class | append: 'subscription-only '%}
+{% else %}
+  {% assign bold_subscription_only = false%}
+{% endif %}

@@ -1,0 +1,36 @@
+<section class="content content-area customer activate">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <!--<span class="label">{{ 'customer.activate_account.header' | t }}</span>-->
+  </div>
+
+  <div class="account-form">
+    {% form 'activate_customer_password' %}
+
+      <p class="message">{{ 'customer.activate_account.subtext' | t }}</p>
+
+      {% if form.errors %}
+        <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+      {% endif %}
+
+      <div class="field-wrap password">
+        <!--<label>{{ 'general.password' | t }}</label>-->
+        <label>PASSWORD</label>
+        <input type="password" name="customer[password]" class="field">
+      </div>
+
+      <div class="field-wrap password-confirmation">
+        <!--<label>{{ 'customer.general.password_confirmation' | t }}</label>-->
+        <label>REPEAT PASSWORD</label> 
+        <input type="password" name="customer[password_confirmation]" class="field">
+      </div>
+
+      <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+      <a class="decline helper" href="/"><span>{{ 'customer.general.or' | t }} </span>{{ 'customer.activate_account.decline' | t }}</a>
+
+    {% endform %}
+  </div>
+
+</section>

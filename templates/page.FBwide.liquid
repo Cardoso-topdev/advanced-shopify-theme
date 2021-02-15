@@ -1,0 +1,32 @@
+{% include 'shogun-products', content: page %}
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+  <div class="page-title">
+    <h1 class="label">{{ page.title }}</h1>
+  </div>
+
+  <div class="text-content-wrap clearfix">
+    <div class="rte clearfix text-content">
+      {{ page.content }}
+    </div>
+
+    {% if settings.display-pages-sidebar %}
+    <div class="sidebar rte">
+      {% if settings.pages-sidebar-title %}<h2 class="title">{{ settings.pages-sidebar-title }}</h2>{% endif %}
+      {% if settings.pages-sidebar-content.size == 0 %}
+        {% capture theme_settings_link %}
+          <a href="/admin/themes">{{ 'onboarding.theme_settings_link' | t }}</a>
+        {% endcapture %}
+        {{ 'onboarding.pages_sidebar_text_html' | t: theme_settings_link: theme_settings_link }}
+      {% else %}
+        {{ settings.pages-sidebar-content }}
+      {% endif %}
+    </div>
+    {% endif %}
+
+  </div>
+
+</section>

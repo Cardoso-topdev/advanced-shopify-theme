@@ -1,0 +1,42 @@
+<div class="sidebar">
+
+  {% if settings.display-recent-posts %}
+  <div class="module recent-posts first">
+    <label>{{ 'blogs.blog_sidebar.recent_posts' | t }}</label>
+    <ul class="posts">
+      {% for recent_article in blogs[blog.handle].articles | limit: 5 %}
+      <li class="post {% include 'for-looper' %}">
+        <a class="title" href="{{ recent_article.url }}">{{ recent_article.title }}</a>
+        <span class="date">{{ recent_article.published_at | date: format: 'short_month' }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if settings.display-tag-list and blog.all_tags.size > 0 %}
+  <div class="module tags-list {% unless settings.display-recent-posts %}first{% endunless %}">
+    <label>{{ 'blogs.blog_sidebar.tags' | t }}</label>
+    <ul class="tags">
+      {% for tag in blog.all_tags %}
+        {% assign tagCount = 0 %}
+        <li class="tag">
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+            {{ tag }}
+            <span class="count">
+              {% for article in blogs[blog.handle].articles %}
+                {% for temp_tag in article.tags %}
+                  {% if temp_tag == tag %}{% capture tagCount %}{{ tagCount | plus: 1 }}{% endcapture %}{% endif %}
+                {% endfor %}
+              {% endfor %}
+              ({{ tagCount }})
+            </span>
+          </a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  </div>
+  {% endif %}
+
+</div>

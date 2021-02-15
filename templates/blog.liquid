@@ -1,0 +1,41 @@
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <h1 class="label">{{ blog.title }}</h1>
+  </div>
+
+  <div class="content-wrap clearfix">
+
+    {% paginate blog.articles by settings.articles-per-page %}
+    <section class="articles">
+
+      {% for article in blog.articles %}
+        {% include 'article-item' %}
+      {% endfor %}
+
+      {% if paginate.previous or paginate.next %}
+        {% include 'pagination' %}
+      {% endif %}
+
+    </section>
+    {% endpaginate %}
+
+    {% if settings.display-recent-posts or settings.display-tag-list %}
+      {% include 'blog-sidebar' %}
+    {% endif %}
+
+    {% paginate blog.articles by settings.articles-per-page %}
+      {% if paginate.previous or paginate.next %}
+        <div class="mobile">
+          {% include 'pagination' %}
+        </div>
+      {% endif %}
+    {% endpaginate %}
+
+  </div>
+
+</section>

@@ -1,0 +1,51 @@
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+  $( document ).ready(function() {
+    $('.nested-accordion').find('.comment').slideUp();
+    $('.nested-accordion').find('h3').click(function(){
+      $(this).next('.comment').slideToggle(100);
+      $(this).toggleClass('selected');
+    });
+  });
+</script>
+
+<section>
+
+  <div class="faq-page faq-inner">
+    
+    <div class="combined-search">
+  	<h1>Working Together</h1>
+      <a href="/pages/faq">back to Resource Library</a></span>
+    </div>
+  
+  
+    
+    <div class="faq-page-container">
+      
+      {% for article in blogs.faqs.articles reversed  %}
+      	{% if article.tags contains 'working-together' %}
+      		<div class='nested-accordion'>
+              <h3>{{ article.title }}</h3>
+              <div class='comment'>
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+      		{% endif %}
+      {% endfor %}
+ 
+  	</div>
+      
+  	  <div class="back-to-library"><a href="/pages/faq">Back to Resource Library</a></div>
+
+      
+      <div class="message-contact" style="padding-bottom: 60px">
+        <p>Still need help?</p>
+        <div class="button"><a href="/pages/contact">Send a Message</a></div>
+      </div>
+  
+
+	
+  <div style="clear: both"></div>
+</section>

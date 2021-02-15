@@ -1,0 +1,260 @@
+<!-- Begin ReCharge code -->
+{% include 'subscription-cart-footer' %}
+<!-- End ReCharge code -->
+
+
+<script data-cfasync="false" type="text/javascript">if (typeof Shopify === "undefined") var Shopify = {}; Shopify.cart = {{ cart | json }};</script> 
+<div id="sca-fg-owl-carousel">
+  <div id="freegift_cart_container" class="sca-fg-cart-container" style="display: none;">
+    <div id="freegift_message" class="owl-carousel"></div>
+  </div> 
+  <div id="sca-fg-slider-cart" style="display: none;">
+    <div class="sca-fg-cart-title">
+      <strong>Select your free gift (s)</strong>
+    </div>
+    <div id="sca_freegift_list" class="owl-carousel"></div>
+  </div>
+</div>
+<div id="sca_fg_cart">
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  {% comment %}
+  <div class="page-title">
+    <h1 class="label">{{ 'cart.header' | t }}</h1>
+  </div>
+  {% endcomment %}
+<br>
+  
+
+  {% if cart.item_count > 0 %}
+  
+  	<script type="text/javascript">
+    function _conv_copy_cookies(form) {
+      try {
+          var _conv_v = encodeURIComponent(convert.getCookie("_conv_v"));
+            var _conv_s = encodeURIComponent(convert.getCookie("_conv_s"));
+        form.action ='/cart?_conv_v='+ _conv_v + '&_conv_s='+ _conv_s ;
+      } 
+      catch(e) {}
+      return true;
+    }
+    </script>
+
+    <form action="/cart" method="post" id="cart-form" onsubmit="return _conv_copy_cookies(this)">
+
+      <table class="table">
+
+        <thead>
+          <tr class="table-header">
+            <th class="first">{{ 'general.product' | t }}</th>
+            <th>{{ 'general.price' | t }}</th>
+            <th>{{ 'general.quantity' | t }}</th>
+            <th>{{ 'general.total' | t }}</th>
+            <th class="last"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in cart.items %}
+            <tr class="table-row {% include 'for-looper' %}">
+              <td class="product-item first">
+                <div class="image-wrap">
+                  <a class="image" href="{{ item.url }}">
+                    {{ item | img_url: 'compact' | img_tag }}
+                    {% if settings.product-image-borders %}<span class="outline"></span>{% endif %}
+                  </a>
+                </div>
+                <div class="wrap">
+                  
+                  <span class="label title">{{ item.product.title | link_to: item.url }}</span>
+                  {% unless item.variant.title == 'Default Title' %}<span class="label variant">{{ item.variant.title  | remove: ' / Default' | remove: 'Default' }}</span>{% endunless %}
+                  
+                  <span class="label vendor">
+                    {% for p in item.properties %}
+                      
+                      {% unless p.last == blank or p.first == "subscription_id" or p.first == "shipping_interval_frequency" or p.first == "shipping_interval_unit_type" %}
+                        <br />{{p.first}}: {{ p.last }}
+                      {% endunless %}
+                    {% endfor %}
+                  </span>
+                </div>
+              </td>
+              <td class="price">
+                <span class="money">
+                  <span class="saso-cart-item-price" data-key="{{item.key}}">{{ item.price | money }}</span>
+                </span>
+              </td>
+                            
+              <!-- hide quantity for hand sanitizer and freebies -->
+              
+              {% if item.product.id == 4546554134612  %}
+              <script>
+                  $(document).ready(function(){
+                    $("#updates_32202040180820").attr("max", "5");
+                  });
+              </script> 
+              {% endif %}
+              
+              {% if item.product.id == 6093840646314 %}
+              <script>
+                  $(document).ready(function(){
+                    $("#updates_37640749875370").hide();
+                  });
+              </script> 
+              {% endif %}
+              
+              {% if item.product.id == 6100381925546 %}
+              <script>
+                  $(document).ready(function(){
+                    $("#updates_37668385030314").hide();
+                  });
+              </script> 
+              {% endif %}
+              
+              <td class="quantity">
+                <input type="number" name="updates[]" class="field" value="{{ item.quantity }}" data-id="{{ item.variant.id }}"
+                       id="updates_{{ item.variant.id }}"
+                       {% unless item.variant.inventory_management == blank or item.variant.inventory_policy == 'continue' %} max="{{ item.variant.inventory_quantity }}" {% endunless %}>
+              </td>
+              <td class="total">
+                <span class="money">
+                  <span class="saso-cart-item-line-price" data-key="{{item.key}}">
+                    {{ item.quantity | times: item.price | money }}
+                  </span>
+                </span>
+              </td>
+              <td class="remove last"><a href="/cart/change/{{ item.variant.id }}?quantity=0">v</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+
+      <div class="cart-tools clearfix">
+        
+        <div class="instructions standard">
+          <p>{{ 'cart.note' | t }}</p>
+          <textarea class="field" name="note">{{ cart.note }}</textarea>
+        </div>
+        <div class="totals">
+          <p class="price"><span class="money">
+          <span class="saso-cart-original-total" style="font-size: 16px;" data-cart-total-price="{{ cart.total_price }}">{{ cart.total_price | money }}</span>
+             
+          <span class="saso-cart-total" style="margin-top: 10px"></span>
+          </span></p>
+                    
+          <p class="message">{{ 'cart.tax_and_shipping' | t }}</p>
+          
+          
+          <div class="checkout">
+           	<!--<p>Once an order is placed, we are unable to change or edit addresses or other order details.</p>-->
+            <input class="action-button desaturated cart-update" type="submit" name="update" value="{{ 'cart.update' | t }}" />
+			<input class="action-button" type="submit" name="checkout" value="{{ 'cart.submit' | t }}" />
+          </div>
+        </div>
+        <div class="instructions mobile">
+          <p>{{ 'cart.note' | t }}</p>
+        </div>
+      </div>
+    </form>      
+      
+    <!-- free shipping message -->
+    {% assign free_shipping_amount = 75 | times: 100 %}
+    {% assign cart_total = cart.total_price %}
+    {% assign remaining_amount = free_shipping_amount | minus: cart_total %}
+    
+    <div class="free-ship-calc-message cart-upsells">
+      {% if remaining_amount > 0 %}
+      	<h3>You are <span class="money-ammount-away">{{ remaining_amount | money }}</span> away from free shipping in the U.S.</h3>
+      	<p> A few faves we think you'll love:</p>
+      {% else %}
+      	<h3 style="margin-bottom: 30px">A few faves we think you'll love:</h3>
+      {% endif %}
+
+      <ul class="product-upsell">
+        <ul class="product-list four">
+          {% assign upsell_product_limit = 4 %}
+          {% assign upsell_count = 0 %}
+          {% for product in collections.cart-upsells.products %}
+            {% comment %} Check is upsell product is already in the cart {% endcomment %}
+            {% assign product_is_in_cart = false %}
+            {% for cart_line_item in cart.items %}
+              {% if product.id ==  cart_line_item.product_id %}
+                {% assign product_is_in_cart = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% if product_is_in_cart %}{% continue %}{% endif %}
+            {% if upsell_count >=  upsell_product_limit %}
+            	{% include 'cart-upsell-item', hide_upsell: true %}
+            {% else %}
+            	{% include 'cart-upsell-item' %}
+            {% endif %}
+            {% assign upsell_count = upsell_count | plus: 1 %}
+          {% endfor %}
+        </ul>
+      </ul>
+    </div>
+    
+      
+      
+      <a class="continue-shopping" href="https://primallypure.com/collections/primally-pure">Continue Shopping</a>
+  
+  
+  	
+  
+  		
+  
+
+  {% else %}
+
+    <p class="empty">{{ 'cart.empty' | t }} <a href="{{ shop.url }}/collections/primally-pure">{{ 'cart.continue' | t }}</a></p>
+
+  {% endif %}
+
+</section>
+
+<script>
+    jQuery('[max]').change(function() {
+      var max = parseInt(jQuery(this).attr('max'), 10);
+      if (isNaN(max)) {
+        return
+      }
+      var value = parseInt(jQuery(this).val(), 10) || 0;
+      if (value > max) { jQuery(this).val(max); }
+    });
+    /* change won't trigger on initial load */
+    jQuery('[max]').each(function() {
+      var max = parseInt(jQuery(this).attr('max'), 10);
+      if (isNaN(max)) {
+        return
+      }
+      var value = parseInt(jQuery(this).val(), 10) || 0;
+      if (value > max) { jQuery(this).val(max); }
+    });
+  
+    // SASO: disable checkout button until Ultimate Special Offers code has run
+    $('[name="checkout"]')
+      .attr('disabled', true)
+      .val('calculating...');
+
+    function SASOComplete(data) {
+      $('[name="checkout"]')
+        .attr('disabled', false)
+        .val("{{ 'cart.submit' | t }}");
+
+      return data;
+    }
+    
+    // fallback in case SASOComplete isn't defined
+    setTimeout(function() {
+      $('[name="checkout"]')
+        .attr('disabled', false)
+        .val("{{ 'cart.submit' | t }}");
+    }, 3000);
+</script>
+
+
+</div>

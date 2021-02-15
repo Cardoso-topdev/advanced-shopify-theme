@@ -1,0 +1,85 @@
+{% assign positionClass = '' %}
+{% if settings.display-welcome-message == false %}
+  {% assign positionClass = 'first' %}
+{% endif %}
+
+<!-- Featured collections
+============================================= -->
+<section class="featured-collections {{ positionClass }}">
+  <h2 class="section-title section-border">{{ 'home_page.featured_collections.title' | t }}</h2>
+  <div class="wrap">
+
+    {% if collections[settings.featured-collection-1].products.size > 0 or collections[settings.featured-collection-2].products.size > 0 or collections[settings.featured-collection-3].products.size > 0 %}
+
+      {% if collections[settings.featured-collection-1].image %}
+        {% assign imgSrc-1 = collections[settings.featured-collection-1].image.src | collection_img_url: 'large' %}
+      {% else %}
+        {% assign imgSrc-1 = collections[settings.featured-collection-1].products.first.featured_image | product_img_url: 'large' %}
+      {% endif %}
+
+      {% if collections[settings.featured-collection-2].image %}
+        {% assign imgSrc-2 = collections[settings.featured-collection-2].image.src | collection_img_url: 'large' %}
+      {% else %}
+        {% assign imgSrc-2 = collections[settings.featured-collection-2].products.first.featured_image | product_img_url: 'large' %}
+      {% endif %}
+
+      {% if collections[settings.featured-collection-3].image %}
+        {% assign imgSrc-3 = collections[settings.featured-collection-3].image.src | collection_img_url: 'large' %}
+      {% else %}
+        {% assign imgSrc-3 = collections[settings.featured-collection-3].products.first.featured_image | product_img_url: 'large' %}
+      {% endif %}
+
+      {% if collections[settings.featured-collection-1].products.size > 0 %}
+        <div class="collection-wrap first">
+          <div class="collection" style="background-image:url({{ imgSrc-1 }});">
+            <a href="{{ collections[settings.featured-collection-1].url }}">
+              <h3 class="label preload">{{ collections[settings.featured-collection-1].title }}</h3>
+              <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    
+    
+      {% if collections[settings.featured-collection-1].products.size > 0 %}
+        <div class="collection-wrap first">
+          <div class="collection" style="background-image:url({{ imgSrc-1 }});">
+            <a href="{{ collections[settings.featured-collection-1].url }}">
+              <h3 class="label preload">{{ collections[settings.featured-collection-1].title }}</h3>
+              <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+            </a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if collections[settings.featured-collection-2].products.size > 0 %}
+        <div class="collection-wrap">
+          <div class="collection" style="background-image:url({{ imgSrc-2 }});">
+            <a href="{{ collections[settings.featured-collection-2].url }}">
+              <h3 class="label preload">{{ collections[settings.featured-collection-2].title }}</h3>
+              <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+            </a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if collections[settings.featured-collection-3].products.size > 0 %}
+        <div class="collection-wrap">
+          <div class="collection" style="background-image:url({{ imgSrc-3 }});">
+            <a href="{{ collections[settings.featured-collection-3].url }}">
+              <h3 class="label preload">{{ collections[settings.featured-collection-3].title }}</h3>
+              <span class="browse">{{ 'collections.collection.browse' | t }}</span>
+            </a>
+          </div>
+        </div>
+      {% endif %}
+
+    {% else %}
+
+      <div class="load-up">
+        {{ 'onboarding.featured_collections_text_html' | t: theme_settings_link: theme_settings_link }}
+      </div>
+
+    {% endif %}
+  </div>
+</section>

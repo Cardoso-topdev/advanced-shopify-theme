@@ -1,0 +1,286 @@
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }}
+{{ 'skin-state-quiz.scss.css' | asset_url | stylesheet_tag }} 
+<script>
+  $( document ).ready(function() {
+    
+    // pre-select the oily cleansing oil for the double cleansing kit
+    $('.product-4098877849684 select[name="id"]').val("30120207843412").change();
+   
+    $('.bundle-collection').hide();
+    $('.tier2').show();
+    $('.tier2-link').addClass("selected");
+    $('.tier1-link').click(function() {
+      $('.bundle-collection').hide();
+      $('.tier1').show();
+      $('.regimen-nav li').removeClass("selected");
+      $('.tier1-link').addClass("selected");
+    });
+    $('.tier2-link').click(function() {
+      $('.bundle-collection').hide();
+      $('.tier2').show();
+      $('.regimen-nav li').removeClass("selected");
+      $('.tier2-link').addClass("selected");
+    });
+    $('.tier3-link').click(function() {
+      $('.bundle-collection').hide();
+      $('.tier3').show();
+      $('.regimen-nav li').removeClass("selected");
+      $('.tier3-link').addClass("selected");
+    });
+    
+    $('.nested-accordion').find('.comment').slideUp();
+    $('.nested-accordion').find('h3').click(function(){
+      $(this).next('.comment').slideToggle(100);
+      $(this).toggleClass('selected');
+    });
+  });
+</script>
+
+<div id="purescription" class="template-collection">
+  <section class="collection-hero">
+    <div class="content content-area flex">
+      <div class="collection-video">
+        <img src="{{ 'Oil-Rich-Regimen.jpg' | asset_url }}" alt="Oil Rich Skin Regimen" />
+      </div>
+      <div class="collection-text" style="width: 80%; max-width: 600px; display: block; margin: auto; text-align: center">
+        <p class="intro" style="text-align: center">Your skin state:</p>
+        <h1 style="text-align: center">Oil-Rich</h1>
+        <p style="text-align: left">Your skin is more prone to acne, tends to produce excess oil and pore size is visibly larger on forehead, nose, chin and cheeks. You often reach for oil-blotting sheets by noon, you’ve simply accepted the fact that blackheads have become your fate and finding a cure for chronic acne has been your mission in life. </p>
+		<p style="text-align: left">But oil-rich isn’t all bad - the best part about having oil-rich skin? Your skin is naturally hydrated and is slow to show signs of aging. Oil-rich skin = Youthful appearance.</p>
+      </div>
+    </div>
+  </section>
+  <section class="purescription-bundles content content-area" id="your-bundle">
+    <h3>Choose Your Oil-Rich Regimen</h3>
+    
+    <ul class="regimen-nav">
+      <li class="tier1-link">The <span>Basics</span></li>
+      <li class="tier2-link">The <span>Essentials</span></li>
+      <li class="tier3-link">The <span>Works</span></li>
+    </ul>
+    
+    <div class="tier1 bundle-collection">
+      <ul class="product-list four">
+        {% for product in collections.oil-rich-skin-level-1.products %}
+      		{% include 'bundle-item' %}
+        {% endfor %}
+      </ul>
+      <div class="button final-button" style="text-align: left; margin: 0">
+        <a href="{{ all_products['oil-rich-skin-regimen-the-basics'].url }}">Buy Together + Save</a>
+        <div class="bundle-sale">
+          <p>
+    		<p class="price">{{ all_products['oil-rich-skin-regimen-the-basics'].price | money }} 
+            <span>{{ all_products['oil-rich-skin-regimen-the-basics'].compare_at_price | money }}</span></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tier2 bundle-collection">
+      <ul class="product-list four">
+      	{% for product in collections.oil-rich-skin-level-2.products %}
+      		{% include 'bundle-item' %}
+        {% endfor %}
+      </ul>
+      <div class="button final-button">
+        <a href="{{ all_products['oil-rich-skin-regimen-the-essentials'].url }}">Buy Together + Save</a>
+        <div class="bundle-sale">
+          <p>{{ all_products['oil-rich-skin-regimen-the-essentials'].price | money }} 
+          <span>{{ all_products['oil-rich-skin-regimen-the-essentials'].compare_at_price | money }}</span></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tier3 bundle-collection">
+      <ul class="product-list four">
+      	{% for product in collections.oil-rich-skin-level-3.products %}
+      		{% include 'bundle-item' %}
+        {% endfor %}
+      </ul>
+      
+      <div class="button final-button">
+        <a href="{{ all_products['oil-rich-skin-regimen-the-works'].url }}">Buy Together + Save</a>
+        <div class="bundle-sale">
+          <p>{{ all_products['oil-rich-skin-regimen-the-works'].price | money }} 
+          <span>{{ all_products['oil-rich-skin-regimen-the-works'].compare_at_price | money }}</span></p>
+        </div>
+      </div>
+      
+      
+    </div>
+   
+    
+
+
+  </section>
+  
+  <section class="full-routine content content-area">
+    <h3 style="text-transform: uppercase; text-align: center;">Your Pure-Scription</h3>
+
+    <div class="reg-step">
+    <h4>Step 1: Cleanse</h4>
+    <ul>
+      <li><a href="/products/cleansing-oil-oily-acne-prone-skin">Oily Cleansing Oil:</a> Specifically formulated for oil-rich skin, dissolve buildup, break up makeup and purify pores without stripping the skin <em>(which can actually lead to a cycle of ongoing breakouts and inflammation)</em>.</li>
+    </ul>
+    <p><em>Skin Tip:</em> Cleansing 1x/day before bed is all you need! If you need more a refresh first thing in the morning (or after a sweat session), use the <a href="/products/baby-bar">Baby Bar</a> for a gentle cleanse.</p>
+    </div>
+    <div class="reg-step">
+      <h4>Step 2: Tone</h4>
+      <ul>
+        <li><a href="/products/everything-spray">Everything Spray</a>: Pour onto an organic cotton round and sweep across your skin to help calm redness, detoxify skin and balance pH levels with healing enzymes + anti-inflammatory ingredients.</li>
+        <li><a href="/products/neroli-complexion-mist">Neroli Complexion Mist</a>: Spritz onto skin to replenish, balance oil production and deeply deliver anti-bacterial benefits.</li>
+      </ul>
+    </div>
+    <div class="reg-step">
+      <h4>Step 3: Treat</h4>
+      <ul>
+        <li><a href="/products/clarifying-serum">Clarifying Serum</a>: Massage into damp skin morning + night to minimize breakouts, brighten uneven skin tone and create a clearer complexion.</li>
+      </ul>
+    </div>
+    <div class="reg-step">
+      <h4>Step 4: Hydrate</h4>
+      <ul>
+        <li><a href="/products/baby-balm">Baby Balm</a>: Gently dab this vitamin-rich balm around the delicate eye area to deeply nourish and soften signs of aging.</li>
+        <li><a href="/products/blue-tansy-beauty-cream">Blue Tansy Beauty Cream</a>: Apply a light layer <em>(if needed!)</em> to calm inflammation, balance the skin and deliver a potent dose of antioxidants - all without clogging pores.</li>
+      </ul>
+      <p><em>Skin Tip:</em> You can skip the morning moisturizer, but before bed, apply a light layer of <a href="/products/blue-tansy-beauty-cream">Beauty Cream</a> over your serum to deeply absorb the skin-loving benefits while you sleep. Zzzzz...</p>
+    </div>
+    
+    <div class="reg-step">
+      <h4>Bonus: Double Cleanse + Multi-Mask</h4>
+      <ul>
+        <li><a href="/products/double-cleansing-kit">Double Cleanse:</a> This 2-step technique (<a href="/products/cleansing-oil-oily-acne-prone-skin">Oily Cleansing Oil</a> + <a href="/products/baby-bar">Baby Bar</a>) purifies oil-rich skin while leaving it properly hydrated to create a clear, balanced complexion.</li>
+        <li><a href="/products/mask-trio">Mask Trio</a>: Gently sweep away dead/dull surface cells, refine skin texture and target oil-rich skin needs all at the same time. Multi-mask and relax to reveal visibly brighter skin.</li>
+      </ul>
+    </div>
+  
+  </section>
+
+  <section class="regimen-routine">
+    <div class="content content-area">
+    <h3 style="text-transform: uppercase; text-align: center;">Your Daily Ritual</h3>
+      <div class="routine flex">
+        <div class="time am">
+          <div class="head-wrap">
+          	<div class="icon"><img src="{{ 'icon-morning.svg' | asset_url }}" alt="" /></div>
+          	<h4>AM</h4>
+          </div>
+          <ol>
+            <li>Splash skin with water + pat dry</li>
+            <li>Apply <a href="/products/everything-spray">Everything Spray</a> and/or spritz <a href="/products/neroli-complexion-mist">Neroli Complexion Mist</a></li>
+            <li>Massage <a href="/products/clarifying-serum">Clarifying Serum</a> into damp skin</li>
+          </ol>
+        </div>
+        <div class="time pm">
+          <div class="head-wrap">
+          	<div class="icon"><img src="{{ 'icon-nightly.svg' | asset_url }}" alt="" /></div>
+          	<h4>PM</h4>
+          </div>
+          <ol>
+            <li><a href="/products/cleansing-oil-oily-acne-prone-skin">Oil Cleanse</a></li>
+            <li>Apply <a href="/products/everything-spray">Everything Spray</a> and/or spritz <a href="/products/neroli-complexion-mist">Neroli Complexion Mist</a></li>
+            <li>Massage <a href="/products/clarifying-serum">Clarifying Serum</a> into damp skin</li>
+            <li>Dab <a href="/products/baby-balm">Baby Balm</a> around eye area</li>
+            <li>Apply light layer of <a href="/products/blue-tansy-beauty-cream">Blue Tansy Beauty Cream</a> <em>(if needed!)</em></li>
+          </ol>
+        </div>
+        <div class="time weekly">
+          <div class="head-wrap">
+          	<div class="icon"><img src="{{ 'icon-weekly.svg' | asset_url }}" alt="" /></div>
+          	<h4>Weekly</h4>
+          </div>
+          <ol>
+            <li><a href="/products/double-cleansing-kit">Double Cleanse</a> as the first step in your PM routine 3-4x/week</li>
+            <li>Multi-mask with the <a href="/products/mask-trio">Mask Trio</a> after cleansing 1-3x/week</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content tan-bg helpful-resources" style="padding-bottom: 60px">
+    <h3 style="text-align: center; text-transform: uppercase;">Step-by-Step Rituals with our Holistic Esthetician</h3>
+    <div class="featured-posts flex">
+      <div class="featured-post">
+        <div class="post-image"><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/3c-2b3AC98c?modestbranding=1&autohide=1&showinfo=0&controls=0' frameborder='0' allowfullscreen></iframe></div>
+</div>
+        <div class="post-title">AM Routine</div>
+      </div>
+      <div class="featured-post">
+        <div class="post-image"><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/PvoIbeif4UI?modestbranding=1&autohide=1&showinfo=0&controls=0' frameborder='0' allowfullscreen></iframe></div>
+</div>
+        <div class="post-title">PM Routine</div>
+      </div>
+      <div class="featured-post">
+        <div class="post-image"><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/82LHn51kLUA?modestbranding=1&autohide=1&showinfo=0&controls=0' frameborder='0' allowfullscreen></iframe></div>
+</div>
+        <div class="post-title">Weekly Routine</div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="regimen-ingredients content content-area">
+    <h3 style="text-transform: uppercase; text-align: center;">KEY INGREDIENTS FOR OIL-RICH SKIN</h3>
+	<div class="ingredients flex">
+      <div class="ingredient one">
+        <div class="ingredient-image"><img src="{{'icon-blue-tansy.png' | asset_url }}" alt="Blue Tansy" /></div>
+        <h4>Blue Tansy</h4>
+        <p>The best botanical for healing + preventing breakouts, blue tansy is incredibly soothing, calms inflammation and regenerates skin at a cellular level. <em>(Found in <a href="/products/blue-tansy-beauty-cream">Blue Tansy Beauty Cream</a>.)</em></p>
+      </div>
+      <div class="ingredient two">
+        <div class="ingredient-image"><img src="{{'icon_neroli.png' | asset_url }}" alt="Neroli" /></div>
+        <h4>Neroli</h4>
+        <p>This aromatic flower seriously combats inflammation, rejuvenates skin cells and reduces scarring while also balancing the skin's oil production. <em>(Found in <a href="/products/neroli-complexion-mist">Neroli Complexion Mist</a>, <a href="/products/clarifying-serum">Clarifying Serum</a>, and <a href="/products/clarifying-mask">Clarifying Mask</a>.</em></p>
+
+      </div>
+      <div class="ingredient three">
+        <div class="ingredient-image"><img src="{{'icon_turmeric.png' | asset_url }}" alt="Turmeric" /></div>
+        <h4>Turmeric</h4>
+        <p>Curcumin – the main chemical compound in turmeric – helps to repair UV damage and hyperpigmentation and is also rich in antibacterial + anti-inflammatory benefits making it an effective natural acne treatment. <em>(This ingredient is in the <a href="/products/clarifying-serum">Clarifying Serum</a> and <a href="/products/clarifying-mask">Clarifying Mask</a>.)</em></p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="content tan-bg regimen-faq">
+    <h3 style="text-align: center">FAQs</h3>
+    <div class="regimen-faqs">
+      
+      <div class='nested-accordion'>
+        <h3>How long will it take to see results?</h3>
+        <div class='comment'>
+          <p>You may notice some results right away, such as more nourished, balanced skin and an overall more glowing complexion. For some skin states, if you're just starting out with a natural skincare routine and transitioning to non-toxic products for the first time, your skin may experience a bit of an adjustment period! We suggest staying consistent with your regimen for about 6-8 weeks for your skin to detoxify and determine how effective the regimen is for your skin needs. Natural products adopt the pace of nature (slow + steady), so sometimes patience is necessary with new products.</p>
+          <p>However, if your skin reacts immediately after applying a new product, discontinue use until your skin heals. You can try slowly incorporating that product back into your skincare routine to discover if it’s an allergy, sensitivity or just a bit of shock from a brand new product.</p>
+        </div>
+      </div>
+      <div class='nested-accordion'>
+        <h3>Will this regimen solve all my skin woes?</h3>
+        <div class='comment'>
+          <p>Because breakouts, sensitivities and dryness can all be impacted by hormones, gut health, environmental factors, stress, nutrition and more, topical products aren’t always the only solution. If you’re prone to these skin conditions, the best way to get real results is to start at the source. Our skin is our largest organ and is a reflection of what’s going on beneath the surface, so it’s essential to take a holistic approach to achieve a naturally clear, healthy complexion.</p>
+          <p>It’s important to build a consistent beauty routine on the foundations of a healthy lifestyle to support skin that truly glows - from the food we put on our plate and the way we cope with stress to the quality of our sleep and the state of our mind + mood, it all makes a difference. We encourage you to make healthy habits a priority in your clear skin protocol (and daily life) for vibrant, balanced and hydrated skin that lasts.</p>
+          <p>Not sure where to start? We’ve curated countless clear skin content on our blog, <a href="https://blog.primallypure.com">Pure Life</a>, and created a <a href="/products/holistic-skincare-guide">Holistic Skincare Guide</a> in partnership with other industry experts to offer you powerful insight + practical tips to promote glowing skin through diet + nutrition, lifestyle habits and topical skincare products.</p>
+        </div>
+      </div>
+      <div class='nested-accordion'>
+        <h3>What if my skin starts to feel overly dry, sensitive or oily after I start my regimen?</h3>
+        <div class='comment'>
+          <p>Sometimes dry skin can be the result of over-cleansing. If you're noticing more dryness with your double-cleansing ritual, try cleansing with just the Cleansing Oil at night and skip the double cleanse. You can also focus on hydration in your evening routine by layering your skin-specific serum and beauty cream to wake up with a healthy, hydrated glow. Some people find that adding a natural clay + honey-based mask into their routine helps their products absorb more deeply.</p>
+          <p>If your skin is experiencing more oil production throughout the day, feel free to use just your complexion mists as a moisturizer in the AM - some oil-rich skin states find that this is all they need for day-time hydration. Also try incorporating the double cleansing technique to your nightly routine more regularly to help deeply purify skin + balance oil production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="center tagline" style="text-transform: none;">#myPUREscription</div>
+    <div class="ugc">
+      <!--<div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+      <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+      <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+      <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+      <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+      <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>-->
+    </div>
+  </section>
+  
+  
+  
+</div>

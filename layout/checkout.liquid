@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    
+    <!-- Start WKND tag. Deploy at the beginning of document head. -->
+    <script>
+        (function(d) {
+            var e = d.createElement('script');
+            e.src = d.location.protocol + '//tag.wknd.ai/4318/i.js';
+            e.async = true;
+            d.getElementsByTagName("head")[0].appendChild(e);
+        }(document));
+    </script>
+    <!-- End WKND tag -->
+    
+    
+    
+
+    
+  
+    <!-- Global-e CSS Start-->
+    <link id="GEPIStyles" rel="stylesheet" href="//gex.global-e.com/gempro/css/10000627" />
+    <!-- Global-e CSS End-->
+  </head>
+  <body>
+    
+    
+    
+    
+    {{ skip_to_content_link }}
+
+    <header class="banner" data-header role="banner">
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </header>
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            <div id="orderbump"></div>
+            {{ alternative_payment_methods }}
+          </header>
+          
+          
+          <!-- CHECKOUT MESSAGE 
+          <div style="margin: 30px; padding: 30px; border: 2px solid rgb(231, 228, 223); text-align: center; letter-spacing: 1px; text-transform: uppercase;">We will be closed 12/24 — 12/27. Packages will begin shipping on 12/28. Happy Holidays!</div>
+          -->
+          
+          
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+    <script src="https://tvg-order-bump.herokuapp.com/storefront/assets/order-bump.js"></script>
+    
+  
+                
+                
+                <!-- Global-e Script Start-->
+                <script id="globaleScript">
+                  (function () {
+                    var reg = /showpro=(true|false)/i;
+                    var showpro = ((reg.exec(document.location.search) || reg.exec(document.cookie) || [])[1] || '').toLowerCase();
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = '//gex.global-e.com/gempro/get/10000627' + (showpro ? '?showpro=' + showpro : '');
+                    document.getElementsByTagName('head')[0].appendChild(s);
+
+                    if (showpro) {
+                        var cssElement = document.createElement('link');
+                        cssElement.rel = 'stylesheet';
+                        cssElement.id = 'GEPIStyles';
+                        cssElement.href = '//gex.global-e.com/gempro/css/10000627?showpro=' + showpro;
+                        document.cookie = 'showpro=' + showpro;
+                        document.getElementsByTagName('head')[0].appendChild(cssElement);  
+                    }
+
+                    //GlobalE_Gem_Data cookie
+                    var name = 'GlobalE_Gem_Data';
+                    var value = JSON.stringify({ StoreCode : 'primallypure' });
+                    var days = 10;
+
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                    var expires = '; expires=' + date.toUTCString();
+                    document.cookie = name + ' = ' + (value || '')  + expires + '; path =/ ';
+                })()
+                </script>
+                {% if customer.id  %}
+                    <input type="hidden" name="customer_id" id="customer_id" value="{{ customer.id }}_{{ customer.id | append: "!#Gl0b@lE-$3cr3t!)%1#" | sha1 }}">
+                {% endif %}
+                <script>
+                    (function () {
+                      setTimeout(function() {
+                        if (typeof GEP == 'undefined') {
+                          var toDisplay = document.querySelectorAll('[globale-product-price],[globale-order-details-price],[globale-order-list-price]');
+                          toDisplay.forEach(function(i) {  i.style.visibility = 'visible'; });
+} else {
+                        }
+                      }, 2000);
+                    })()
+                  </script>
+                <!-- Global-e Script End-->
+                </body>
+</html>
+

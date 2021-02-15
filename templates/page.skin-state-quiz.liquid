@@ -1,0 +1,97 @@
+{{ 'skin-state-quiz.scss.css' | asset_url | stylesheet_tag }} 
+<div id="skin-state-quiz">
+  <section class="skin-state-intro">
+	<div class="intro-text">
+      <h1>Discover your personalized, holistic skincare routine.</h1>
+      <p style="font-weight: bold">Figuring out your skin type can be tough. Navigating the world of natural beauty is even tougher.</p>
+      <p>Our quick, comprehensive quiz is your guide to determining your skin state and the most supportive product recommendations + self-care practices to promote your skin health, holistically.</p>
+      <div class="button"><a href="/pages/skin-state-quiz">Take the quiz</a></div>
+    </div>
+  </section>
+  <div class="skin-state-mobile-image"><img src="{{ 'Regimen-Hero-Mobile.jpg' | asset_url  }} " alt="Dry Skin" /></div>
+
+
+  <section class="content content-area find-your-skin-state">
+    <h3>Find Your Skin State</h3>
+    <p>Instead of figuring out your skin type, we’ll help you discover your skin state. Think of it as your skin’s way of being and behaving. Your skin state is ever-evolving and changing with seasons, stress, and lifestyle shifts. </p>
+    <div class="skin-state-choices">
+      <div class="choice oil">
+        <a href="/pages/oil-rich-skin">
+          <img src="{{ 'oil-rich-skin.svg' | asset_url  }} " alt="Oil-Rich Skin" />
+          <span>Oil-Rich Skin</span>
+        </a>
+      </div>
+      <div class="choice balanced">
+        <a href="/pages/balanced-skin">
+          <img src="{{ 'balanced-skin.svg' | asset_url  }} " alt="Balanced Skin" />
+          <span>Balanced Skin</span>
+        </a>
+      </div>
+      <div class="choice sensitive">
+        <a href="/pages/sensitive-skin">
+          <img src="{{ 'sensitive-skin.svg' | asset_url  }} " alt="Sensitive Skin" />
+          <span>Sensitive Skin</span>
+        </a>
+      </div>
+      <div class="choice dry">
+        <a href="/pages/dry-skin">
+          <img src="{{ 'dry-skin.svg' | asset_url  }} " alt="Dry Skin" />
+          <span>Dry Skin</span>
+        </a>
+      </div>
+    </div>
+	<div class="button"><a href="/pages/skin-state-quiz">Take the quiz</a></div>
+  </section>
+  
+  <!--<div class="special-fields">
+      <div class="cleanse special-field">Cleanse</div>
+      <div class="tone special-field">Tone</div>
+      <div class="moisturize special-field">Moisturize</div>
+      <div class="mask special-field">Mask</div>
+    </div>-->
+  
+  <section class="content content-area collection">
+    <h3>Oil-Rich Products + Regimens</h3>
+
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collections.oil-rich-skin.products limit: 4 %}
+        {% include 'product-item' %}
+      {% endfor %}
+      </ul>
+   	  <div class="button"><a href="/collections/oil-rich-skin">View All</a></div>
+  </section>
+  
+  <section class="content content-area collection">
+    <h3>Balanced Products + Regimens</h3>
+
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collections.balanced-skin.products limit: 4 %}
+        {% include 'product-item' %}
+      {% endfor %}
+      </ul>
+   	  <div class="button"><a href="/collections/balanced-skin">View All</a></div>
+  </section>
+  
+  <section class="content content-area collection">
+    <h3>Sensitive Products + Regimens</h3>
+
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collections.sensitive-skin.products limit: 4 %}
+        {% include 'product-item' %}
+      {% endfor %}
+      </ul>
+   	  <div class="button"><a href="/collections/sensitive-skin">View All</a></div>
+  </section>
+  
+  <section class="content content-area collection" style="padding-bottom: 30px">
+    <h3>Dry Products + Regimens</h3>
+
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collections.dry-skin.products limit: 4 %}
+        {% include 'product-item' %}
+      {% endfor %}
+      </ul>
+   	  <div class="button"><a href="/collections/dry-skin">View All</a></div>
+  </section>
+</div>
+

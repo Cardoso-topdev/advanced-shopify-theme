@@ -1,0 +1,199 @@
+<!-- spa specific css -->
+{{ 'spa.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+
+
+    $(document).ready(function() {
+        
+      $(".who1").click(function() {
+        $(".text1").show();
+        $(".text2").hide();
+        $(".text3").hide();
+      });
+
+      
+      $(".who2").click(function() {
+        $(".text1").hide();
+        $(".text2").show();
+        $(".text3").hide();
+      });
+
+      
+      $(".who3").click(function() {
+        $(".text1").hide();
+        $(".text2").hide();
+        $(".text3").show();
+      });
+      
+      
+      
+    });
+
+</script>
+
+
+<section class="spa-header spa-desktop"><a href="/pages/spa"><img src="{{ 'spa-header.jpg' | asset_url }}"/></a></section>
+<section class="spa-header spa-mobile"><a href="/pages/spa"><img src="{{ 'spa-header-mobile.jpg' | asset_url }}"/></a></section>
+
+
+
+<section class="content content-area">
+  
+  <div class="text-content-wrap clearfix spa-content">
+    <div class="rte clearfix">
+      <div class="headline-3"><img src="{{ 'holistic-skin-treatments.png' | asset_url }}" alt="Holistic Skin Treatments" /></div>
+      
+      <!-- REFRESH -->
+      <div class="treatment">
+        <h2>{{settings.spa-treatment-1-name}}</h2>
+        <img src="{{ 'vertical-line.png' | asset_url }}" alt="" />
+        <div class="spa-quote">{{ settings.spa-treatment-1-definition }}</div>
+        
+        <div class="treatment-details">
+          <img src="{{ 'refresh-spa.jpg' | asset_url }}" alt="Refresh" />
+          <div class="treatment-text">
+            {{settings.spa-treatment-1-description}}
+            <div class="price-callout pink">
+              {{settings.spa-treatment-1-price-description}}                    
+              <br />
+              {{settings.spa-treatment-1-price}}
+          </div>
+          <div class="clear clearfix"></div>
+        </div>
+          
+        <div class="line"><img src="{{ 'line.jpg' | asset_url }}" alt="" /></div>
+      </div>
+        
+      <!-- CLARIFY -->
+      <div class="treatment">
+        <h2>{{settings.spa-treatment-2-name}}</h2>
+        <img src="{{ 'vertical-line.png' | asset_url }}" alt="" />
+        <div class="spa-quote">{{ settings.spa-treatment-2-definition }}</div>
+        
+        <div class="treatment-details">
+          <img src="{{ 'clarify-spa.jpg' | asset_url }}" alt="Clarify" />
+          <div class="treatment-text">
+            {{settings.spa-treatment-2-description}}
+            <div class="price-callout green">
+              {{settings.spa-treatment-2-price-description}}                    
+              <br />
+              {{settings.spa-treatment-2-price}}
+          </div>
+          <div class="clear clearfix"></div>
+        </div>
+          
+        <div class="line"><img src="{{ 'line.jpg' | asset_url }}" alt="" /></div>
+      </div>
+        
+        
+      <!-- SOOTHE -->
+      <div class="treatment">
+        <h2>{{settings.spa-treatment-3-name}}</h2>
+        <img src="{{ 'vertical-line.png' | asset_url }}" alt="" />
+        <div class="spa-quote">{{ settings.spa-treatment-3-definition }}</div>
+        
+        <div class="treatment-details">
+          <img src="{{ 'soothe-spa.jpg' | asset_url }}" alt="Soothe" />
+          <div class="treatment-text">
+            {{settings.spa-treatment-3-description}}
+            <div class="price-callout pink">
+              {{settings.spa-treatment-3-price-description}}                    
+              <br />
+              {{settings.spa-treatment-3-price}}
+          </div>
+          <div class="clear clearfix"></div>
+        </div>
+          
+        <div class="line"><img src="{{ 'line.jpg' | asset_url }}" alt="" /></div>
+      </div>
+        
+      <!-- PLUMP -->
+      <div class="treatment">
+        <h2>{{settings.spa-treatment-4-name}}</h2>
+        <img src="{{ 'vertical-line.png' | asset_url }}" alt="" />
+        <div class="spa-quote">{{ settings.spa-treatment-4-definition }}</div>
+        
+        <div class="treatment-details">
+          <img src="{{ 'plump-spa.jpg' | asset_url }}" alt="Soothe" />
+          <div class="treatment-text">
+            {{settings.spa-treatment-4-description}}
+            <div class="price-callout green">
+              {{settings.spa-treatment-4-price-description}}                    
+              <br />
+              {{settings.spa-treatment-4-price}}
+            </div>
+            <div class="clear clearfix"></div>
+          </div>
+        </div>
+          
+        
+      <p class="clear clearfix spa-note">{{settings.spa-note-1}}</p>
+      <div class="extractions">{{settings.spa-note-2}}</div>
+        
+        <a class="action-button submit schedule-treatment" href="#onlinebookings">Schedule a Holistic Skin Treatment</a>
+        
+		<div class="line"><img src="{{ 'line.jpg' | asset_url }}" alt="" /></div>        
+        
+        
+        
+        <div class="headline-4 clear clearfix"><img src="{{ 'holistic-massage.png' | asset_url }}" alt="Holistic Massage + Treatment Techniques" /></div>
+      
+      <!-- WHO ARE YOU -->
+      <div class="who">
+        <div class="who-box who1">
+          <a href="#text1">
+            <h3>{{settings.spa-technique-1-name}}</h3>
+            <div class="lm">Learn more</div>
+          </a>
+        </div>
+        <div class="who-box who2">
+          <a href="#text2">
+            <h3>{{settings.spa-technique-2-name}}</h3>
+            <div class="lm">Learn more</div>
+          </a>
+        </div>
+
+        <div class="who-box who3">
+          <a href="#text3">
+            <h3>{{settings.spa-technique-3-name}}</h3>
+            <div class="lm">Learn more</div>
+          </a>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="pbox">
+          <div class="who-text text1" id="text1">
+            {{settings.spa-technique-1-text}}
+          </div>
+
+          <div class="who-text text2" id="text2">
+            {{settings.spa-technique-2-text}}
+          </div>
+
+          <div class="who-text text3" id="text3">
+            {{settings.spa-technique-3-text}}
+          </div>
+        </div> 
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<script src="https://booking-widget.phorestcdn.com/obwidget.bundle.js"></script> 
+
+<script>
+  window.widget = new OBWidget('thespaatprimallypure')
+  
+  // hide the phorest button
+  
+  function injectStyles(rule) {
+    var div = $("<div />", {
+      html: '&shy;<style>' + rule + '</style>'
+    }).appendTo("body");    
+  }
+  injectStyles('.ob-widget-btn { display: none; }');
+ 
+</script>

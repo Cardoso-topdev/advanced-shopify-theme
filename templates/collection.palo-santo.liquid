@@ -1,0 +1,128 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero">
+        <div class="content content-area flex">
+          	<div class="collection-video">
+              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/9x2gujGwePA?modestbranding=1&rel=0' frameborder='0' allowfullscreen></iframe></div>
+            </div>
+            <div class="collection-text">
+              <h3>Clear Your Mind, Body + Spirit</h3>
+              <p>Known as "holy wood" in Spanish and native to Central + South America, Palo Santo has been an integral part of traditional ceremonies and rituals for centuries and offers many benefits:</p>
+              <ul>
+                <li>Relaxes the nervous system + relieves feelings of anxiety</li>
+                <li>Purifying properties + an uplifting aroma to promote calm</li>
+                <li>Supports a more creative + connected state of being</li>
+                <li>An effective insect repellent + topical skin healer</li>
+              </ul>
+           </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection palo-santo-intro">
+    <h3>INVOKE A SENSE OF PEACE + BALANCE</h3>
+    <p>A blend of sacred wood essential oils with hints of sweet vanilla and herbal smoke inspire serenity, purity and peace.</p>
+
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+{% endpaginate %}
+
+<section class="content tan-bg flex">
+  <div class="side-by-side text">
+    <h3>Sustainably Sourced to Support Reforestation + Local Communities</h3>
+    <p>We partner with a distributor who maintains a direct connection with the communities in Ecuador who incorporate ethical, regenerative practices and source Palo Santo from the non-endangered species, Bursera Graveolens.</p>
+    <p>They are committed to harvesting from only naturally fallen trees as well as investing back into its reforestation by employing + empowering local families and replanting tens of thousands of Palo Santo trees — making it not only sustainable but renewable for the land and the livelihood of its local communities.</p>
+  </div>
+  <div class="side-by-side image">
+  </div>
+  
+</section>
+
+<section class="content content-area collection-collection palo-santo-intro">
+  <h3>HELPFUL RESOURCES</h3>
+  <div class="collection-blog">
+    <div class="blog-image"><img src="{{ 'Palo-Santo-Blog.jpg' | asset_url }}" alt="Palo Santo" /></div>
+    <div class="blog-text">
+      <h4 class="blog-post-title">PALO SANTO: THE TRUTH ABOUT ITS ROOTS + HOW IT WILL ENHANCE YOUR WELLNESS ROUTINE</h4>
+      <div class="blog-post-text">Here's everything you need to know about this aromatic tree, the truth about its roots, regenerative sourcing practices and how to enhance your wellness ritual, from sunrise to sunset.</div>
+      <div class="blog-post-button"><a href="https://blog.primallypure.com/palo-santo-the-truth-about-its-roots-how-it-will-enhance-your-wellness-routine/">Read More</a></div>
+  </div>
+
+    
+</section>
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+

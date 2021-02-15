@@ -1,0 +1,722 @@
+/* VIDEO */
+
+@media screen and (max-width: 875px) {
+  video {
+    display: none;
+  }
+}
+
+#holiday {
+  overflow-x: hidden;
+}
+
+#holiday .content,
+#holiday .content-area {
+  width: 84%;
+  max-width: 1400px;
+}
+
+
+body, html {
+  height: 100%;
+  min-height: 100%;
+}
+
+#video-container  {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  background: url(//cdn.shopify.com/s/files/1/0874/6120/t/124/assets/Holiday-Placeholder-Desktop.jpg?v=14874121165824445987) center center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 875px) {
+  #video-container  {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    background: url(//cdn.shopify.com/s/files/1/0874/6120/t/124/assets/Holiday-Placeholder-Mobile.jpg?v=12230617163588321582) center center;
+    background-size: cover;
+  }
+}
+
+#video-container video,
+.video-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#video-container .video-overlay {
+  z-index: 400;
+  background: rgba(0,0,0,.5);
+}
+
+#video-container .video-content {
+  z-index: 500;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#video-container .video-content .inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  position: relative;
+}
+
+#video-container .promo-overlay {
+  text-align: center;
+  position: absolute;
+  top: calc(50% - 75px);
+  width: 100%;
+  z-index: 999;
+}
+
+@media screen and (max-width: 867px) {
+  #video-container .video-overlay,
+  #video-container video {
+   display: none; 
+  }
+}
+
+#video-container .promo-overlay h1 {
+  font-family: "Novel" !important;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400 !important;
+  margin-bottom: 20px;
+  color: #fff;
+  padding: 0px 30px;
+}
+
+#video-container .promo-overlay h2 {
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #FFF;
+  padding: 0px 30px;
+}
+
+#video-container .promo-overlay h2:before {
+  width: 150px;
+  height: 1px;
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  content: "";
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+}
+
+#video-container .promo-overlay a {
+  color: #FFF;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+
+/*
+#holiday .holiday-video {
+  position: relative;
+}
+
+
+#holiday .video {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: url(//cdn.shopify.com/s/files/1/0874/6120/t/124/assets/Holiday-Placeholder.jpg?v=16387925300846334416);
+  background-size: cover;
+}
+
+#holiday .video video {
+  width: 100%;
+  height: 100vh;
+}
+
+.video .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;  
+  background: #000;
+  opacity: .3;
+}
+
+
+#holiday .placeholder{
+  top: -30px;
+  left: 50%;
+  min-width: 100%;
+  width: auto;
+  height: 100vh;
+  position: absolute;
+  background-size: cover;
+  transform: translate(-50%);
+  z-index: -1;
+}
+
+
+@media screen and (max-width: 867px) {
+  #main-container {
+	margin-top: 0px !important;
+  }
+}
+
+#holiday .promo-container {
+  text-align: center;
+  margin: auto;
+  max-width: 370px;
+}
+
+#holiday .promo-overlay .promo-centerer,
+.video-side .promo-centerer {
+  background: #fff;
+  padding: 60px;
+  text-align: center;
+  max-width: 370px;
+  position: absolute;
+}
+
+
+
+.video .promo-centerer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+
+.video .promo-centerer div {
+  margin: auto;
+}
+
+#holiday .promo-overlay .promo-centerer h1,
+.video .promo-centerer h1 {
+  font-family: "Novel" !important;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400 !important;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+#holiday .promo-overlay .promo-centerer h2,
+.video .promo-centerer h2 {
+  font-size: 22px;
+  text-transform: uppercase;
+  color: #FFF;
+}
+
+#holiday .promo-overlay .promo-centerer h2::before,
+.video .promo-centerer h2:before {
+  width: 150px;
+  height: 1px;
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  content: "";
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+}
+
+.video .promo-centerer h2:before {
+  width: 150px;
+  height: 1px;
+  margin: 0px auto;
+  text-align: center;
+  display: block;
+  content: "";
+  padding-top: 20px;
+  border-top: 1px solid #fff;
+}
+
+.video .promo-centerer a {
+  color: #FFF;
+}
+
+@media screen and (max-width: 1060px) {
+  .video-side .side {
+    flex: 100% 0 0;
+    padding: 0px 30px;
+  }
+  
+  #holiday .promo-overlay {
+    min-width: 100%; 
+    margin-top: 30px;
+    padding-bottom: 0px;
+  }
+  
+  #holiday .promo-overlay .promo-centerer {
+    max-width: none;
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  #holiday .embed-container {
+    margin: 0 auto 30px auto;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  #holiday .promo-overlay {
+    min-width: 100%; 
+  }
+  #holiday .promo-overlay {
+	align-items: flex-end;
+    padding-bottom: 30px;
+  }
+  
+  #holiday .promo-overlay .promo-centerer {
+    max-width: none;
+    width: 100%;
+  }
+  
+}
+
+
+
+
+/* PROMO MESSAGE */
+
+#holiday .sale-area {
+  background: #653015;
+  color: #FFF;
+  padding: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+#holiday .sale-area .cols {
+  display: flex;
+  flex-wrap: wrap;
+  width: 84%;
+  max-width: 1400px;
+  margin: auto;
+  align-items: center;
+}
+
+#holiday .sale-area .cols .sale-msg {
+  flex: 25% 0 0;
+  padding: 30px;
+  border-left: 1px solid #FFF;
+  font-weight: bold;
+}
+
+#holiday .sale-area .cols .sale-msg:first-child {
+  border-left: 0;
+}
+
+@media screen and (max-width: 800px) {
+  #holiday .sale-area .cols .sale-msg {
+    flex: 100% 0 0;
+    padding: 0 15px 30px 15px;
+    font-weight: bold;
+    border-left: 0;
+    border-bottom: 1px solid #FFF;
+  }
+  
+}
+
+@media screen and (max-width: 767px) {
+  #holiday .sale-area {
+    margin-top: 0;
+  }
+}
+
+
+
+
+
+/* HOLIDAY PRODUCTS */
+
+#holiday .holiday-products {
+  margin: 60px auto 60px auto;
+}
+
+#holiday .holiday-products h3 {
+  max-width: 690px;
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  padding: 0px 30px;
+}
+
+#holiday .holiday-products p.intro {
+  max-width: 720px;
+  margin: auto;
+  text-align: center;
+  padding: 0px 30px;
+}
+
+#holiday .holiday-product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+}
+
+#holiday .holiday-product-grid .holiday-product {
+  flex: 50% 0 0;
+  padding: 60px 30px 0px 30px;
+}
+
+@media screen and (max-width: 767px) {
+  #holiday .holiday-products p.intro { 
+    padding-bottom: 30px;
+  }
+  
+  #holiday .holiday-product-grid .holiday-product {
+    flex: 50% 0 0;
+    padding: 0px 10px 60px 10px;
+  }
+}
+#holiday .holiday-product-grid .holiday-product img {
+  width: 100%;
+}
+
+#holiday .holiday-product a {
+  color: #000000;
+}
+
+#holiday .holiday-product .product-title {
+  font-size: 18px;
+  color: #653015;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px 0px 10px 0px;
+}
+
+#holiday .holiday-product .product-teaser {
+  font-style: italic;
+  color: #A59C8D;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#holiday .holiday-product .product-desc {
+  color: #222;
+  text-align: left;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  #holiday .holiday-product {
+    text-align: center;
+  }
+  
+  #holiday .holiday-product .product-desc {
+    display: none;
+  }
+}
+
+
+#holiday .holiday-product .product-buy {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 20px;
+}
+
+#holiday .holiday-product .product-buy .product-btn,
+#holiday .button{
+  background: #3D4A3A;
+  color: #FFF;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  flex: 40% 0 0;
+  padding: 5px 0px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+#holiday .holiday-product .product-btn:hover {
+  background: #653015;
+}
+
+#holiday .button {
+  background: rgb(231, 228, 223);
+  display: inline-block;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#holiday .button a {
+  color: #222;
+  display: block;
+  padding: 5px 25px;
+}
+
+#holiday .button:hover {
+  background: #222;
+  color: #fff;
+}
+
+#holiday .button:hover a {
+  color: #fff;
+}
+
+#holiday .holiday-product .product-buy .product-price {
+  flex: 60% 0 0;
+  display: block;
+  padding: 5px 0px 5px 20px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 767px) {
+  #holiday .holiday-product .product-buy .product-btn,
+  #holiday .holiday-product .product-buy .product-price {
+    flex: 100% 0 0;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+/* HOLIDAY CONTENT */
+
+.holiday-banner {
+  margin-top: -30px;
+}
+
+@media screen and (max-width: 767px) {
+  .holiday-banner {
+    margin-top: -90px !important;
+    margin-bottom: 0px;
+  }
+}
+
+
+#holiday .holiday-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 80px auto 20px auto;
+  align-items: center;
+  padding: 0px 30px 60px 30px;
+}
+
+#holiday .holiday-text {
+  flex: 50% 0 0;
+}
+
+#holiday .holiday-photo {
+  flex: 50% 0 0;
+  text-align: right;
+}
+
+#holiday .holiday-text {
+  padding-right: 50px;
+}
+
+#holiday .holiday-photo img {
+  width: 100%;
+  max-width: 525px;
+  text-align: center;
+}
+
+#holiday .holiday-text h3 {
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 850px) {
+  #holiday .holiday-text,
+  #holiday .holiday-photo {
+    flex: 100% 0 0;
+  }
+
+  #holiday .holiday-text {
+    padding-right: 0px;
+    text-align: center;
+  }
+  
+  #holiday .holiday-photo {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+
+/* BETHANY MESSAGE */
+
+.bethany-message {
+  background: #FBF9F6;
+  padding: 60px 0px;
+}
+
+.bethany-message h3 {
+  text-transform: uppercase;
+}
+
+.bethany-message h3,
+.bethany-message p {
+  max-width: 690px;
+  margin: auto;
+  padding: 15px 30px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px) { 
+  .bethany-message h3,
+  .bethany-message p {
+  text-align: center;
+}
+}
+
+.bethany-message p img {
+  max-width: 160px;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.behind-scenes {
+  margin: 80px auto 60px auto;
+}
+
+.behind-scenes h3 {
+  font-family: "Novel" !important;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.behind-scenes .images {
+   display: flex;
+  flex-wrap: wrap;
+}
+
+.behind-scenes .images .img {
+  flex: 33.33% 0 0;
+  padding: 15px;
+}
+
+.behind-scenes .images img { 
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .behind-scenes .images .img {
+    flex: 50% 0 0;
+    padding: 10px;
+  }
+  
+  .candle .product-title {
+    max-width: 90px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+  }
+}
+
+
+
+@media screen and (max-width: 767px) {
+
+ #holiday .holiday-product .product-title {
+    font-size: 14px;
+   line-height: 18px;
+   height: 60px;
+  }
+  
+  #holiday .holiday-product .product-teaser {
+    font-size: 12px;
+    line-height: 16px;
+     height: 40px;
+  }
+}
+  
+  
+
+.popup__overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0, 0.8);
+  text-align: center;
+  z-index: 999999;
+}
+
+.popup__overlay:after {
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+  content: "";
+}
+
+.popup {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  padding: 60px 20px;
+  border: 1px solid fff;
+  background: fff;
+  color: white;
+  vertical-align: middle;
+}
+
+.popup-form__row {
+  margin: 1em 0;
+}
+
+.popup__close {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 16px;
+  height: 16px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  line-height: 16px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.popup__close:hover {
+  color: #fff;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+#sbs-video {
+  max-width: 990px;
+  margin: -20px auto 0px auto;
+  text-align: center;
+}

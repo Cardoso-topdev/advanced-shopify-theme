@@ -1,0 +1,5 @@
+{% layout none %}{% capture results %}{% paginate collection.products by 50 %}{% capture next_page %}{% if paginate.next.is_link %}{{paginate.current_page | plus: 1}}{%else%}-1{%endif%}{% endcapture %}{% for product in collection.products %}"{{ product.id | json }}":{{ product.handle | json }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endpaginate %}{% endcapture %}{% capture script %}{"results_count":{{ collection.products_count }},"terms":"collection_id:{{collection.id}}","next_page":{{next_page}},"results":{ {{ results }} }}{% endcapture %}{{script}}
+{% comment %}
+Do not remove or edit this file, this file need for Freegifts Application searching products
+http://www.secomapp.com
+{%endcomment %}

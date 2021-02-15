@@ -1,0 +1,40 @@
+{% capture asSeenOnLogos %}home-as-seen-on-1|home-as-seen-on-2|home-as-seen-on-3|home-as-seen-on-4|home-as-seen-on-5|home-as-seen-on-6|home-as-seen-on-7|home-as-seen-on-8|home-as-seen-on-9|home-as-seen-on-10|home-as-seen-on-11|home-as-seen-on-12{% endcapture %}
+{% assign logos = asSeenOnLogos | split: '|' %}
+
+{% assign itemCount = 0 %}
+{% for logo in logos %}
+  {% if settings[logo] %}
+    {% assign itemCount = itemCount | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if itemCount > 0 %}
+  <section class="as-seen-on clearfix rows-of-{{ settings.home-as-seen-on-per-row }}">
+
+    <h2 class="section-title section-border">
+      {% if settings.home-as-seen-on-title != blank %}
+        {{ settings.home-as-seen-on-title }}
+      {% endif %}
+    </h2>
+
+    {% for logo in logos %}
+
+      {% capture url %}{{ logo }}-url{% endcapture %}
+      {% capture image %}{{ logo | append: '.png' }}{% endcapture %}
+
+      {% if settings[logo] %}
+        <div class="as-seen-on-item">
+          {% if settings[url] != blank %}
+            <a href="{{ settings[url] | escape }}" target="_blank">
+              {{ image | asset_url | img_tag }}
+            </a>
+          {% else %}
+            {{ image | asset_url | img_tag }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
+  </section>
+{% endif %}

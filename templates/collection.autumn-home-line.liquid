@@ -1,0 +1,148 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero">
+        <div class="content content-area flex" style="margin-bottom: 30px">
+          	<div class="collection-video">
+              <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/QL9DF2JJfXI?modestbranding=1&rel=0' frameborder='0' allowfullscreen></iframe></div>
+            </div>
+            <div class="collection-text">        
+              <h3>The Autumn Home Collection is here</h4>
+              <p>Inspired by the familiar, fragrant aroma of Autumn, <strong>fresh citrus spice with hints of rich cacao, sweet honey, golden hay, and apple blossoms</strong> enhance the health of your home while offering a gentle reminder to slow down and savor the season.</p>
+              <p>This grounding blend of organic and wildcrafted essential oils powerfully promotes well-being and invokes a sense of nostalgia for the warmth, comfort and ease that this season brings.</p>
+           </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection autumn-home-intro">
+    <div class="welcome-home"><img src="{{'Welcome-Home-Tan.png' | asset_url }}" alt="Welcome home" /></div>
+
+    <!--<h3>INVOKE A SENSE OF PEACE + BALANCE</h3>
+    <p>A blend of sacred wood essential oils with hints of sweet vanilla and herbal smoke inspire serenity, purity and peace.</p>-->
+
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+{% endpaginate %}
+
+<section class="content tan-bg flex flip-flops image1">
+  <div class="side-by-side text">
+    <h3>Create a Healthy Home</h3>
+    <p>With studies showing that the air quality within our home can actually be more toxic than outside, it’s essential to swap harmful home products (like air fresheners, artificially scented candles and skin-stripping hand soaps) with solutions that are safe and support wellness for your whole family. <strong>That’s where our new, non-toxic Autumn Home Collection comes in.</strong></p>
+  </div>
+  <div class="side-by-side image">
+  </div>
+</section>
+
+<section class="content tan-bg flex flip-flops image2">
+  
+  <div class="side-by-side image">
+  </div>
+  <div class="side-by-side text">
+    <h3>Why Wildcrafted</h3>
+    <p>We intentionally source wildcrafted ingredients whenever possible for their heightened purity, potent aroma and powerful benefits. These botanicals are foraged from their natural habitat and have adapted to their own wild climates + difficult conditions. Due to their exposure to the elements, they grow stronger and heartier (without any help from humans) and develop more rare, rich + complex properties than even plants that are organically grown. </p>
+    <p class="pullquote">Wildcrafted oils not only create a more therapeutic and nutrient-dense product, but sustainably harvesting these plants protects our home (planet earth) and its precious resources.</p>
+  </div>
+</section>
+
+<section class="content tan-bg flex flip-flops image3">
+  <div class="side-by-side text">
+    <h3>From Our Home to Yours</h3>
+	<p>Home is a powerful place. And health and wholeness start here. From the way we raise our little ones to love and accept those different from them, to how we warmly welcome and offer hospitality to our neighbors, to the grace and forgiveness we extend when hurt and pain are inevitably experienced (we’re all imperfectly human, aren’t we?). It all happens within these walls, first. 
+    </p>
+    <p class="pullquote">Our heart is to come alongside our community to help create a safe space for you to raise your family, support wellness for every friend who walks through your front door, and do the heart-work of learning to listen, love and cultivate belonging - no matter where home may be.</p>
+  </div>
+  <div class="side-by-side image">
+  </div>
+</section>
+
+<section>
+  <div class="center tagline" style="text-transform: none;">#PUREifyyourhome</div>
+  <div class="ugc">
+    <!--<div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>-->
+  </div>
+</section>
+
+
+
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+

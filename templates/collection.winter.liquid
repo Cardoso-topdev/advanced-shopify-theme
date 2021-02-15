@@ -1,0 +1,175 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+<div class="special-collection-hero">
+  <div class="collection-intro-text collection-side">
+    <div class="promo-overlay">
+      <h1>Wrap up with the</h1>
+      <h2>Winter Home Collection</h2>
+    </div>
+  </div>
+  <div class="collection-image collection-side"></div>
+  <!--<div class="collection-image collection-side" style="background-image: url({{'Winter-Home.jpg' | asset_url }}); background-size: cover; background-position: center;"></div>-->
+</div>
+
+<div class="winter-intro">
+  <div class="content content-area flex" style="margin-bottom: 60px">
+    <div class="winter-side">
+      <p class="pullquote">Embrace the unhurried nature of this new season as you hibernate at home.</p>
+    </div>
+    <div class="winter-side">        
+      <p>As you come in from the cold, this collection encourages stillness and space for quiet contemplation while enhancing a deep sense of warmth and wellness.</p>
+      <p>Infused with notes of crisp, cleansing black spruce and bay laurel, hints of sweet, woodsy silver fir and cedarwood, and a touch of the rich, smoky aroma of tobacco, this mindfully formulated blend of organic + wildcrafted botanicals turns an ordinary winter day into a moment of wonder.</p>
+    
+    </div>
+  </div>
+</div>
+
+<section class="content content-area collection-collection">
+  {% if collection.products.size == 0 %}
+  <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+  {% else %}
+  <ul class="product-list {{ settings.products-per-row }}">
+    {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item' %}{% endfor %}
+  </ul>
+  {% endif %}
+  {% if paginate.previous or paginate.next %}
+  {% include 'pagination' %}
+  {% endif %}
+</section>
+{% endpaginate %}
+
+
+<div class="regimen-bg">
+	<section class="regimen-ingredients content content-area">
+    <h3 style="text-transform: uppercase; text-align: center;">enhance wellness this season</h3>
+  	<div class="ingredients flex">
+      <div class="ingredient one">
+        <div class="ingredient-image"><img src="{{'Black-Spruce.png' | asset_url }}" alt="Black Spruce" /></div>
+        <h4>Black Spruce</h4>
+        <p>Clears congestion<br />
+Promotes healthy lungs<br />
+Encourages deep relaxation</p>
+      </div>
+      <div class="ingredient two">
+        <div class="ingredient-image"><img src="{{'Bay-Laurel.png' | asset_url }}" alt="Bay Laurel" /></div>
+        <h4>Bay Laurel</h4>
+        <p>Highly antiviral<br />
+Powerfully preserves immunity<br />
+Helps to protect against viruses + sickness</p>
+
+      </div>
+      <div class="ingredient three">
+        <div class="ingredient-image"><img src="{{'Silver-Fir.png' | asset_url }}" alt="Bakuchiol" /></div>
+        <h4>Silver Fir</h4>
+        <p>Warms the body<br />
+Softens tension<br />
+Supports respiratory health</p>
+      </div>
+      
+    </div>
+  </section>
+  <div class="flex content ingredients-p content-area">
+    <p>Studies have revealed that the concentration of pollutants inside the home is hundreds of times higher than outside - leading to a whole host of negative health issues. Let the cleansing, calming aroma of winter wrap around you and fortify your family’s wellness this season as you diffuse, mist and cleanse with the Winter Home Collection.</p>
+    <p>The perfect complement to frosty mornings and chilly nights, this highly antiviral blend of organic and wildcrafted essential oils delivers an immediate dose of powerful plant medicine to purify your home and provide seasonal wellness support to help you + your family stay healthy all winter long.</p>
+  </div>
+</div>
+
+<section class="bethany-message">
+  <div class="content content-area flex" style="margin-bottom: 0; padding-bottom: 0">
+    <div class="signoff-text">
+      <h3>From our Family To Yours</h3>
+      <p>As winter dawns, may we re-discover the natural rhythms and wonder unfolding all around us - the intricacy of a snowflake, the faint scent of pine, the feeling of wool wrapped around your skin, the crackling fire as the season’s only soundtrack, the peaceful pace of nature and the promise of all that’s still to come.</p>
+      <p>This season, seek solace at home and create a sanctuary you can retreat to at any time with the Winter Home Collection.</p>
+      <p>xo,</p>
+      <p><img src="{{ 'bethany-signoff.png' | asset_url }}" alt="Bethany + The Primally Pure Team" /></p>
+    </div>
+    <div class="signoff-photo">
+        <img src="{{ 'Bethany-Girls.jpg' | asset_url }}" alt="Bethany + Girls" />
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="center tagline" style="text-transform: none;">#PUREifyyourhome</div>
+  <div class="ugc">
+    <!--<div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>
+    <div><img src="{{ 'Autumn-Home-Wildcrafted.jpg' | asset_url }}" alt="" /></div>-->
+  </div>
+</section>
+
+
+
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+

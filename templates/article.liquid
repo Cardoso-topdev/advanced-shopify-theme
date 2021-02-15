@@ -1,0 +1,25 @@
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }}
+
+<section>
+
+  <div class="faq-page faq-inner">
+
+    <div class="combined-search">
+      <h1>{{ article.title }}</h1>
+      <a href="/pages/faq">back to Resource Library</a>
+    </div>
+
+    <div class="faq-page-container">
+    	{{ article.content }}
+    </div>
+  </div>
+  
+    	  <div class="back-to-library"><a href="/pages/faq">Back to Resource Library</a></div>
+  <div><br /><br /></div>
+
+  
+</section>
+

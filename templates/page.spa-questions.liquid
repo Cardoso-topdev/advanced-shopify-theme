@@ -1,0 +1,196 @@
+<script>
+  $(document).ready(function() {
+
+    $('.faq_question').click(function() {
+
+      if ($(this).parent().is('.open')){
+        $(this).closest('.faq').find('.faq_answer_container').animate({'height':'0'},500);
+        $(this).closest('.faq').removeClass('open');
+
+      }else{
+        var newHeight =$(this).closest('.faq').find('.faq_answer').height() + 100 +'px';
+        $(this).closest('.faq').find('.faq_answer_container').animate({'height':newHeight},500);
+        $(this).closest('.faq').addClass('open');
+      }
+
+    });
+
+  });
+</script>
+
+<script src="https://booking-widget.phorestcdn.com/obwidget.bundle.js"></script> 
+
+
+<script>
+  window.widget = new OBWidget('thespaatprimallypure')
+  
+  // hide the phorest button
+  
+  function injectStyles(rule) {
+    var div = $("<div />", {
+      html: '&shy;<style>' + rule + '</style>'
+    }).appendTo("body");    
+  }
+  injectStyles('.ob-widget-btn { display: none; }');
+  
+</script>
+
+<style>
+  
+  .headline-5 {
+    margin-bottom: 30px;
+  }
+  
+  .faq_answer_container {
+    height: 0px;
+    overflow: hidden;
+  }
+  
+  .faq_question h1 {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  
+  .faq_question {
+    margin: 0px;
+  	padding: 40px 0px 20px 0px;
+    border-top: 1px solid #ddd;
+    display: block;
+    cursor: pointer;
+    cursor: hand;
+  }
+  
+  .faq_answer p {
+    padding-bottom: 40px;
+    font-family: "Novel", sans-serif !important;
+    font-size: 15px;
+    line-height: 24px;
+    max-width: 700px;
+    margin: 0px auto 30px auto;
+  }
+  
+  .button-holder div {
+    margin-top: 60px;
+  }
+  
+  
+
+</style>
+
+
+<!-- spa specific css -->
+{{ 'spa.scss.css' | asset_url | stylesheet_tag }} 
+
+<section class="spa-header spa-desktop"><a href="/pages/spa"><img src="{{ 'spa-header.jpg' | asset_url }}"/></a></section>
+<section class="spa-header spa-mobile"><a href="/pages/spa"><img src="{{ 'spa-header-mobile.jpg' | asset_url }}"/></a></section>
+
+
+
+<section class="content content-area">
+  
+  <div class="text-content-wrap clearfix spa-content">
+    <div class="rte clearfix">
+      <div class="headline-5"><img src="{{ 'faq.png' | asset_url }}" alt="Frequently Asked Questions" /></div>
+      
+      
+      <div class="faq">
+        <h1 class="faq_question" style="border: none;">{{settings.spa-q1}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a1}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q3}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a3}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q9}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a9}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q4}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a4}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q5}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a5}}
+          </div>      
+        </div>
+      </div>
+      
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q2}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a2}}
+          </div>      
+        </div>
+      </div>
+      
+      
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q6}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a6}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q7}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a7}}
+          </div>      
+        </div>
+      </div>
+      
+      <div class="faq">
+        <h1 class="faq_question">{{settings.spa-q8}}</h1>
+        <div class="faq_answer_container">
+          <div class="faq_answer">
+            {{settings.spa-a8}}
+          </div>      
+        </div>
+      </div>
+      
+      
+      
+      <div class="button-holder" style="border-top: 1px solid #ddd;">
+        <div>
+      		<a href="#onlinebookings" class="action-button submit" >Book Now</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="action-button submit" href="/pages/spa-treatments">View treatments</a>
+
+        </div>
+      </div>
+    
+
+  </div>
+
+</section>
+
+
+

@@ -1,0 +1,161 @@
+{{ 'rewards.css' | asset_url | stylesheet_tag }} 
+
+<script>
+  $(window).on('load', function () {	
+    
+      $('#slider, .slider-overlay').hide();
+      $('.manage-perks').click(function() {
+        $('.slider-overlay').show();
+        $('#slider').show().animate({
+            'width': '90%',
+            'max-width': '500px'
+        },500);
+        $('body').addClass('slider-open');
+      });
+    
+      $(document).mouseup(function(e) {
+          var container = $("#slider");
+          // if the target of the click isn't the container nor a descendant of the container
+          if (!container.is(e.target) && container.has(e.target).length === 0) {
+              container.hide();
+              $('.slider-overlay').hide();
+        	  $('body').removeClass('slider-open');
+          }
+      });
+    
+      $('#btn-close-slider').click(function() {
+        $('#slider, .slider-overlay').hide();
+        $('body').removeClass('slider-open');
+      });
+    
+    
+      $('.lion-rule-item--signup .lion-rule-item__points').insertBefore('.lion-rule-item--signup .lion-rule-item__title');
+      $('.lion-rule-item--purchase .lion-rule-item__points').insertBefore('.lion-rule-item--purchase .lion-rule-item__title');
+      $('.lion-rule-item--110138 .lion-rule-item__points').insertBefore('.lion-rule-item--110138 .lion-rule-item__title');
+      $('.lion-rule-item--137085 .lion-rule-item__points').insertBefore('.lion-rule-item--137085 .lion-rule-item__title');
+      $('.lion-rule-item--birthday .lion-rule-item__points').insertBefore('.lion-rule-item--birthday .lion-rule-item__title');
+      $('.lion-rule-item--instagram-follow .lion-rule-item__points').insertBefore('.lion-rule-item--instagram-follow .lion-rule-item__title');
+      $('.lion-rule-item--facebook-like .lion-rule-item__points').insertBefore('.lion-rule-item--facebook-like .lion-rule-item__title');
+      $('.lion-rule-item--newsletter-signup .lion-rule-item__points').insertBefore('.lion-rule-item--newsletter-signup .lion-rule-item__title');
+      $('.lion-rule-item--stampedio-review .lion-rule-item__points').insertBefore('.lion-rule-item--stampedio-review .lion-rule-item__title');
+      $('.lion-tier-compare__header-cell--tier-0').text("Jade");
+      $('.lion-tier-compare__header-cell--tier-1').text("Rose Quartz");
+      $('.lion-tier-compare__header-cell--tier-2').text("Nephrite");
+      $('.lion-tier-compare__header-cell--tier-0.lion-tier-compare__header-cell--current').prepend("<div class='button you-are-here'>You are Here</div>");
+      $('.lion-tier-compare__header-cell--tier-1.lion-tier-compare__header-cell--current').prepend("<div class='button you-are-here'>You are Here</div>");
+      $('.lion-tier-compare__header-cell--tier-2.lion-tier-compare__header-cell--current').prepend("<div class='button you-are-here'>You are Here</div>");
+      $('.logged-in .lion-rule-item--signup .lion-rule-item__title').after("<div class='lion-rule-item__completed-forever'></div>");
+  	  $('.logged-in .lion-rule-item--110138 .lion-action-button').after("<div class='lion-action-button lion-rule-item__button'><a href='https://primallypure.com/pages/find-your-skin-state'>Take the Quiz</a></div>");
+      $('.logged-in .lion-rule-item--137085 .lion-rule-item__title').after("<div class='lion-action-button lion-rule-item__button'><a href='http://primallypure.com/pages/deodorant-quiz'>Take the Quiz</a></div>");
+      $('.lion-rule-item--110138 .lion-action-button--tile').hide();
+      $('.lion-rule-item--purchase .lion-action-button').after("<div class='lion-action-button lion-rule-item__button'><a href='https://primallypure.com/'>Shop Now</a></div>");
+      $('.lion-rule-item--purchase .lion-action-button--tile').hide();
+      $('td.lion-tier-rules-compare__rule-value').append(" &nbsp;points");
+      $('.lion-tier-rules-compare__row--rule-106313').before("<tr><td class='lion-tier-rules-compare__row-cell lion-tier-rules-compare__row-cell--tier-00 lion-tier-rules-compare__rule-value'></td><td class='lion-tier-rules-compare__row-cell lion-tier-rules-compare__row-cell--tier-0 jade lion-tier-rules-compare__rule-value'>$0 - $150 &nbsp;spent last 12 months</td><td class='lion-tier-rules-compare__row-cell lion-tier-rules-compare__row-cell--tier-1 quartz lion-tier-rules-compare__rule-value'>$150 - $300 &nbsp;spent last 12 months</td><td class='lion-tier-rules-compare__row-cell nephrite lion-tier-rules-compare__row-cell--tier-2 lion-tier-rules-compare__rule-value'>$300+ &nbsp;spent last 12 months</td></tr>");
+	  $('.lion-rule-item__completed-forever:eq(1)').hide();
+      
+
+  });
+</script>
+
+<div id="rewards">
+  
+  <!-- WELCOME -->
+  <div class="rewards-welcome">
+    <div class="welcome-image"></div>
+    <div class="welcome-text">
+      <div class="welcome-flex">
+        {% if customer %}
+          <h1>Welcome back, {{customer.first_name }}</h1>
+        <p style="text-align: center; margin-left: auto; margin-right: auto;">You have <span data-lion-points="approved"></span> points <em>(yay!)</em></p>
+          <div class="rewards-btn"><a class="manage-perks button">Redeem Now</a></div>
+          <!--<div class="login"><a class="manage-perks">manage my Pure Perks</a></div>-->
+        {% else %}
+		  <h1>Welcome to Pure Perks</h1>
+          <p>Become a member and earn Pure Points + exclusive perks with every purchase. Plus, receive a birthday gift and special offers all year long. </p>
+          <div class="rewards-btn"><a href="/account/login?return_url=%2Faccount" class="button">Join Now</a></div>
+          <div class="login">already a member? <a href="/account/login?return_url=%2Faccount">login</a></div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="mobile-image"><img src="{{ 'Pure-Rewards-1.jpg' | asset_url }}" alt="" /></div>
+  
+  {% if customer %}
+  <!-- REDEEM -->
+  <div class="rewards-section" id="redeem">
+  	<h2>Redeem for Discounts</h2>
+    <p>Redeem your Pure Points for exclusive discounts. It's easy — just apply your discount at checkout!</p>
+    <div data-lion-rewards-list></div>
+  </div>
+  {% else %}
+  <!-- HOW IT WORKS -->
+  <div class="rewards-explainer">
+    <div class="explainer-text">
+      <div class="explainer-flex">
+        <h2>How it Works</h2>
+        <h3 class="first">Join</h3>
+        <p>Join Pure Rewards, and we’ll start you off with 25 points today.</p>
+        <h3>Earn</h3>
+        <p>Earn Pure Points every time you shop. Plus, you can earn for writing reviews, taking quizzes, following us on social and more.</p>
+        <h3>Redeem</h3>
+        <p>Redeem your Pure Points for exclusive discounts.</p>
+      </div>
+    </div>
+    <div class="explainer-image">
+    </div>
+  </div>
+  {% endif %}
+  
+  <!-- WAYS TO EARN -->
+  <div class="rewards-section">
+    <h2>Ways to Earn</h2>
+    <div data-lion-rules-list></div>
+  </div>
+  
+  <!-- MORE LOVE = MORE REWARDS -->
+  <div class="rewards-section table-vip">
+  	<h2>More Love = More Rewards<span class="mobile-arrow"><br />&rarr;</span></h2>
+    <div class="vip-badge"><img src="{{ 'VIP.png' | asset_url }}" alt="" /></div>
+    <div data-lion-tier-rules-compare></div>
+  </div>
+  
+  {% if customer %}
+  {% else %}
+  <!-- REDEEM -->
+  <div class="rewards-section" id="redeem">
+  	<h2>Redeem for Discounts</h2>
+    <p>Redeem your Pure Points for exclusive discounts. It's easy — just apply your discount at checkout!</p>
+    <div data-lion-rewards-list></div>
+  </div>
+  {% endif %}
+</div>
+
+
+{% if customer %}
+<!-- logged in sidebar -->
+<div class="slider-overlay"></div>
+<sidebar class="slider visible" id="slider">
+  <a href="#" id="btn-close-slider" class="btn-close"><img src="{{"LL_close_2x.png" | asset_url}}" alt=""></a>
+  <div class="slider-card">
+    <div class="points">
+      <span class="approved" data-lion-points="approved"></span> points
+    </div>
+
+    <h2>My Rewards</h2>
+    <div data-lion-rewards-list></div>
+    
+    <h2>Claimed Rewards</h2>
+    <div data-lion-claimed-rewards-list></div>
+
+    <h2>Rewards History</h2>
+    <div data-lion-history-table></div>
+
+  </div>        
+</sidebar>
+{% endif %}
+
+
+Ashli testing iframe:<br />
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprimallypure%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=196869830363147" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>

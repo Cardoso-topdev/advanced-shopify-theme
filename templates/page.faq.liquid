@@ -1,0 +1,103 @@
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }}
+
+<script>
+  $( document ).ready(function() {
+    $('.nested-accordion').find('.comment').slideUp();
+    $('.nested-accordion').find('h3').click(function(){
+      $(this).next('.comment').slideToggle(100);
+      $(this).toggleClass('selected');
+    });
+  });
+
+
+</script>
+
+<section>
+
+  <div class="faq-page">
+    
+    <div class="combined-search">
+  	<h1>Hello! How can we help you?</h1>
+    
+    <!--<div class="combined-search">
+      <form>
+        <input type="text" class="field" placeholder="Search" />
+        <input type="submit" class="faq-submit" value="Go" />
+      </form>      
+    </div>-->
+    
+     <div class="faq-answer-grid">
+          <div class="answer-box">
+            <a href="/pages/faq-products">
+              <div class="answer-wrapper">
+                <img src="{{'icon-info.png' | asset_url}}" alt="Product Information" />
+                <div>Product Information</div>
+              </div>
+            </a>
+       	  </div>
+       	  <div class="answer-box">
+            <a href="/pages/faq-skincare-regimen">
+              <div class="answer-wrapper">
+                <img src="{{'icon-regimen.png' | asset_url}}" alt="Skincare Regimen" />
+                <div>Skincare Regimen</div>
+              </div>
+            </a>
+       	  </div>
+       	  <div class="answer-box">
+            <a href="/pages/faq-order-questions">
+              <div class="answer-wrapper">
+                <img src="{{'icon-orders.png' | asset_url}}" alt="Order Questions" />
+                <div>Order Questions</div>
+              </div>
+            </a>
+       	  </div>
+          <div class="answer-box">
+            <a href="/pages/faq-subscriptions">
+              <div class="answer-wrapper">
+                <img src="{{'icon-subscriptions.png' | asset_url}}" alt="Subscriptions" />
+                <div>Subscriptions</div>
+              </div>
+            </a>
+       	  </div>
+          <div class="answer-box">
+            <a href="/pages/faq-working-together">
+              <div class="answer-wrapper">
+                <img src="{{'icon-together.png' | asset_url}}" alt="Working Together" />
+                <div>Working Together</div>
+              </div>
+            </a>
+       	  </div>
+          <div class="answer-box">
+            <a href="/pages/spa-questions">
+              <div class="answer-wrapper">
+                <img src="{{'icon-spa.png' | asset_url}}" alt="Spa" />
+                <div>Spa Appointments</div>
+              </div>
+            </a>
+       	  </div>
+      	</div>
+    </div>
+    
+    <div class="combined-search" style="padding: 60px;">
+      <h2 style="margin-top: 0; padding-top: 0">Search the Resource Library</h2>
+      <form method="get" action="/search">
+         <input type="hidden" name="type" value="article" />
+        <input class="search-input field" name="q" type="text" placeholder="{{ 'general.search_placeholder' | t }}" value="" autofocus>
+        <input type="submit" class="search-go faq-submit" value="Go" />
+      
+      </form>
+      
+        
+      <div class="clear"></div>
+    </div>
+    
+      <div class="message-contact" style="padding-bottom: 60px">
+        <p>Still need help?</p>
+        <div class="button"><a href="/pages/contact">Send a Message</a></div>
+      </div>
+  
+
+	
+  <div style="clear: both"></div>
+</section>

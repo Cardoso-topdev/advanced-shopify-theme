@@ -1,0 +1,131 @@
+<script type="text/javascript">var app_5aa61d5001f6cf00148a86b3;(function(d, t){var s=d.createElement(t),options={"appId":"5aa61d5001f6cf00148a86b3","aspect_ratio":"100%","async":true,"host":"quiz.tryinteract.com","no_cover":true,"redirect_host":true};s.src='https://i.tryinteract.com/embed/app.js';s.onload=s.onreadystatechange=function(){var rs=this.readyState;if(rs)if(rs!='complete')if(rs!='loaded')return;try{app_5aa61d5001f6cf00148a86b3=new InteractApp();app_5aa61d5001f6cf00148a86b3.initialize(options);app_5aa61d5001f6cf00148a86b3.display();}catch(e){}};var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr);})(document,'script');</script>
+   
+<script type="text/javascript">
+ 
+</script>
+<style>
+  .template-page{
+    background: url("https://cdn.shopify.com/s/files/1/0874/6120/files/Deodorant_Quiz_background.jpg?12835805668674128401") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    
+  }
+  .Quiz-section{
+  /*  width: 50%;
+    margin: auto;
+     background-color: white;
+    opacity: .85;
+    text-align: center;*/
+    display: block;
+  }
+  .quiz-result-panel {
+    width: 500px;
+    margin: auto;
+    background-color: #fdf3f3;
+    opacity: .85;
+    text-align: center;
+  }
+  .deodorant-result-logo-wrap{
+    margin-top: 15%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .result-logo{
+    margin-top: 10%;
+    width: 45%; 
+  }
+  .quiz-result-text{
+    margin-top: 10%;
+    
+  }
+  .quiz-result-text h2 { color: #222; }
+  
+  .quiz-action{
+    color: #ffffff;
+    padding-right: 6%;
+    padding-left: 6%;
+    margin-bottom: 12%;
+    margin-top: 10%;
+    font-weight: 600;
+  }
+  
+  @media screen and (max-width: 700px) {
+    #Quiz-section{ width: 80%;}
+    .quiz-result-panel {
+    width: 80%;
+    }
+  }
+</style>
+
+{% include 'shogun-products', content: page %}
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area" id="deodorant-quiz-section">
+
+<div class="quiz-result-panel" >  
+    
+  <div class="deodorant-result-logo-wrap">
+    <img class="result-logo" src="{{ 'logo.png' | asset_url }}">
+  </div>
+  
+  <div class="quiz-result-text">
+    <h2 style="padding-left: 12px; padding-right: 8px;">
+      WHICH <br />
+      PRIMALLY PURE DEODORANT <br />
+      IS THE PURE-FECT FIT<br />
+      FOR YOUR LIFESTYLE?
+    </h2>
+  </div>
+  
+      <a href="/pages/pure-fect-deodorant-quiz/" id="quiz-button" class="action-button submit quiz-action" value="Take the quiz" >TAKE THE QUIZ</a>
+ 
+  
+</div>
+  
+ <!-- <div id="Quiz-section"> 
+    
+    <div id="interact-5aa61d5001f6cf00148a86b3" class="Quiz-section"></div>
+    
+  </div> -->
+  
+  
+
+</section>
+
+
+<script>
+$( "#quiz-button" ).click(function() {
+  
+   (function(i,n,t,e,r,a,c){i['InteractPromotionObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=n.createElement(t),
+  c=n.getElementsByTagName(t)[0];a.async=1;a.src=e;c.parentNode.insertBefore(a,c)
+  })(window,document,'script','https://i.tryinteract.com/promotions/init.js','i_promo');
+  i_promo('init', 'SJpZ4omYM');
+  
+  
+  
+  
+  
+  
+//  $( this ).parent().slideToggle( "slow", function() {
+    
+    //$( "#Quiz-section" ).text( $( "#quiz-button", this ).text() + " has completed." );
+    
+//  });
+//  $(".Quiz-section").slideToggle(1000);
+});
+  
+  
+//  $( "#interact-promotion-popup-close" ).click(function() {
+   // $( '.quiz-result-panel').slideToggle( "slow", function() {
+
+      //$( "#Quiz-section" ).text( $( "#quiz-button", this ).text() + " has completed." );
+
+   // });
+//  }
+  
+</script>
+
+

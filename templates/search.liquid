@@ -1,0 +1,85 @@
+<style>
+  .result form {display: none;}
+</style>
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <h1 class="label">{{ 'general.search.header' | t }}</h1>
+  </div>
+
+  {% paginate search.results by settings.search-results-per-page %}
+  <section class="results">
+
+    <p class="results-label"></p>
+   
+    {% capture results %}
+      {{ 'general.search.results' | t: count: search.results_count }}
+    {% endcapture %}
+   
+    {% for item in search.results %}
+    
+      <!-- hide items tagged 'hidesearch' from results -->
+      {% unless item.tags contains 'hidesearch' or item.handle =='lip-balm-details' or item.handle =='holiday-early-access' or item.handle == 'join-our-email-family-get-a-free-lip-balm' or item.handle == 'deodorant-quiz-blue-tansy' or item.handle == 'deodorant-quiz-charcoal' or item.handle == 'deodorant-quiz-lavender' or item.handle == 'deodorant-quiz-geranium' or item.handle == 'deodorant-quiz-tea-tree' or item.handle == 'deodorant-quiz-unscented' or item.handle == 'deodorant-quiz-lemongrass'  or item.handle == 'pure-fect-deodorant-quiz' %}
+    	
+      
+        <article class="result {% include 'for-looper' %} {% if item.featured_image %}item-product{% else %}item-article{% endif %}" data-type="{{ item.type }}">
+
+          {% if item.featured_image %}
+
+            <figure>
+              <img alt="{{ item.images[0].alt }}" src="{{ item.images[0] | product_img_url: 'large' }}">
+                <a class="{% if settings.product-image-borders %}overlay{% endif %}" href="{{ item.url }}"></a>
+            </figure><div class="details">
+              <p class="brand">{{ item.vendor | link_to_vendor }}</p>
+              <p class="title"><a href="{{ item.url }}">{{ item.title }}</a></p>
+
+          {% include 'buyx-price-min' with item %} 
+
+              {% if item.compare_at_price > buyx_price_min %}
+                  <p class="price sale"><span class="label">{{ 'products.product.on_sale' | t }}</span> 
+                    <span class="original money">{{ item.compare_at_price_min | money }}</span> 
+                    <span class="money">{{ buyx_price_min | money }}</span></p>
+              {% else %}
+                  <p class="price"><span class="money">{{ buyx_price_min | money }}</span></p>
+              {% endif %}
+            </div>
+
+          {% else %}
+
+            <h2 class="title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+            <div class="rte clearfix">
+              {% if item.excerpt.size > 0 %}
+                {{ item.excerpt }}
+              {% else %}
+                <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+              {% endif %}
+            </div>
+
+          {% endif %}
+
+        </article>
+    	{% endunless %}
+    
+    {% endfor %}
+  </section>
+
+  
+
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+
+  {% endpaginate %}
+  
+  <div class="more-search">
+    <p><span><strong>Looking for more?</strong></span><br /> Try searching our <a href="https:///blog.primallypure.com/?s={{ search.terms | escape }}&x=0&y=0" target="_blank">blog</a>!</p>
+  </div>
+
+</section>
+
+
+
+
+<div id="smoothie-search-redirects-app-data" style="display: none !important;" count="{{ search.results_count }}" shop="{{ shop.permanent_domain }}" query="{{ search.terms }}"></div>

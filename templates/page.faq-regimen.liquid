@@ -1,0 +1,62 @@
+<!-- faq specific css -->
+{{ 'faq.scss.css' | asset_url | stylesheet_tag }} 
+
+<script>
+  $( document ).ready(function() {
+    $('.nested-accordion').find('.comment').slideUp();
+    $('.nested-accordion').find('h3').click(function(){
+      $(this).next('.comment').slideToggle(100);
+      $(this).toggleClass('selected');
+    });
+  });
+
+
+</script>
+
+<section>
+
+  <div class="faq-page faq-inner">
+    
+    <div class="combined-search">
+  	<h1>Skincare Regimen</h1>
+      <a href="/pages/faq">back to Resource Library</a></span>
+    </div>
+  
+  
+    
+    <div class="faq-page-container">
+      
+      <p>While everyone's skin is unique and requires customized care, there are some guidelines we suggest following when it comes to applying our skincare products. This is our simple skincare routine for the evening:</p>
+      <ul>
+        <li><a href="https://primallypure.com/collections/cleansing-oil">Cleansing Oil</a> and/or <a href="https://primallypure.com/products/baby-bar">Baby Bar</a>: Begin with a clean, fresh canvas</li>
+        <li><a href="https://primallypure.com/collections/complexion-mist">Complexion Mist</a> or <a href="https://primallypure.com/products/everything-spray">Everything Spray</a>: Replenish skin + prep skin for moisture</li>
+        <li><a href="https://primallypure.com/collections/skin-specific-serums">Skin-Specific Facial Serum</a> (Plumping, Clarifying or Soothing): Target specific skin needs </li>
+        <li><a href="https://primallypure.com/collections/beauty-cream">Beauty Cream</a> or <a href="https://primallypure.com/products/baby-balm">Baby Balm</a> (if needed): Moisturize and nourish</li>
+      </ul>
+      <p> Watch a video tutorial With Our Holistic Esthetician, <a href="https://blog.primallypure.com/steps-for-a-simple-skincare-routine-video-tutorial-with-our-holistic-esthetician/" target="_blank">Steps to a Simple Skincare Routine</a> for even more tips + tricks.</p>
+      <p>&nbsp;</p>
+      
+      {% for article in blogs.faqs.articles reversed  %}
+      	{% if article.tags contains 'skincare-regimen' %}
+      		<div class='nested-accordion'>
+              <h3>{{ article.title }}</h3>
+              <div class='comment'>
+                <p>{{ article.content }}</p>
+              </div>
+            </div>
+      		{% endif %}
+      {% endfor %}
+ 
+  	</div>
+      
+  	  <div class="back-to-library"><a href="/pages/faq">Back to Resource Library</a></div>
+
+      <div class="message-contact" style="padding-bottom: 60px">
+        <p>Still need help?</p>
+        <div class="button"><a href="/pages/contact">Send a Message</a></div>
+      </div>
+  
+
+	
+  <div style="clear: both"></div>
+</section>

@@ -1,0 +1,438 @@
+
+.saso-notification {
+    z-index: 2147483647;
+    display: none;
+    left: 0px;
+    width: 100%;
+    margin: 0px;
+    padding: 7px 0px;
+    font-size: 100%;
+    text-align: center;
+    text-transform: uppercase;
+  
+  p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    font-weight: bold;
+  }
+
+}
+
+.saso-notification-x {
+  font-weight: bold;
+  float:right;
+  height: 0;
+  overflow: visible;
+  margin-right: 2em;
+  cursor: pointer; 
+  /*position: absolute;*/
+}
+
+.saso-price {
+  color: #000000;
+  font-weight: bold;
+  display: inline !important;
+}
+
+
+.saso-cross-sell-popup {
+  position: relative;
+  background: #ffffff;
+  color: #000000;
+  padding: 20px;
+  width: auto;
+  min-width: 250px;
+  margin: 20px auto;
+  text-align: center;
+  text-transform: none;
+
+  .saso-message {
+    font-size: 120%;
+  }
+  
+  .saso-products-container {
+    display: block;
+	overflow: auto;
+  }
+  
+  table {
+    table-layout: fixed;
+    width: auto;
+    margin: auto;
+    border: 0 !important;
+  }
+  tr {
+    border-top: 1px solid #DCDCDC;
+    /*border-bottom: 1px solid #DCDCDC;*/
+  }
+
+  td {
+    text-align: center !important;
+    border: 0 !important;
+    padding: 15px !important; /* some themes have padding first-child 0px */
+    display: table-cell !important;
+  }
+  
+  .saso-image {
+    width: 180px;
+    height: 180px;
+    line-height: 180px;
+    margin: auto;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+  }
+  .saso-image img {
+    width: auto;
+    height: auto;
+    max-width: 180px;
+    max-height: 180px;
+    vertical-align: middle;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  
+  .saso-title {
+    margin: 4px 0px 0px 0px;
+    /*height: 39px;*/
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    /*line-height: 1.4em;*/
+    /*font-size: 14px;*/
+    /* text-overflow: ellipsis; */
+    /* white-space: nowrap; */
+  }
+  
+  .saso-variants-container {
+    height: 42px;
+    margin: 4px 0px;
+  }
+  .saso-variants {
+    width: 100%;
+   	/*
+  	background: transparent url(https://cdn.shopify.com/s/files/1/0653/0119/t/1/assets/select.png) no-repeat right;
+  	*/
+  }
+
+  .saso-price {
+  }
+  .saso-was-price {
+    text-decoration: line-through;
+    font-size: 90%;
+    opacity: 0.8;
+  }
+  .saso-was-price:empty {
+    display:none;
+  }
+  
+  .saso-add-to-cart, button.saso-click-here {
+    background: #000000;
+    color: #fff;
+    height: 36px;
+    line-height: 36px;
+    border: none;
+    margin: 6px 0px 0px 0px;
+    padding: 0 20px !important;
+    font-weight: 700;
+    float: none !important;
+  }
+  button.saso-click-here {
+    width: auto;
+  }
+  
+  
+  a.saso-click-here {
+    /*display: block;
+    margin-top: 10px;
+    text-align: center;*/
+    color: #ffffff;
+  }
+  a.saso-click-here:hover {
+    opacity: 0.9;
+  }
+  
+/*  .saso-click-here-h {
+    text-align: center;
+  }
+*/
+  a.saso-close {
+    float: none !important;
+    display: block;
+    margin: 10px 0 0 0;
+  }
+
+}
+
+
+.saso-cross-sell-popup0 {
+  padding: 60px;
+}
+
+.saso-cart-item-discount-notes, .saso-cart-item-upsell-notes {  	
+  display: block;  
+  color: #d54f4c;
+  a {
+    color: #d54f4c;
+  }
+}
+
+.saso-cart-item-upsell-notes {  	
+  font-weight: bold;
+}
+
+.saso-cart-item-price, .saso-cart-item-line-price {
+
+  .original_price {
+    display: inline;
+    text-decoration: line-through;
+  }
+  .discounted_price {
+    display: inline;
+    font-weight: bold;
+    padding-left: 20px;
+  }
+
+}
+
+.saso-cart-total {
+  display: block;
+  font-weight: bold;
+  /*text-align: right;*/
+}
+
+.saso-summary {
+/*
+  text-align: right;
+  font-weight: bold;
+  */
+  font-size: 14px;
+}
+
+.saso-cart-offers {
+  
+  .saso-hide-when-embedded {
+  	display: none;
+  }
+  
+  .saso-cross-sell-popup {
+    padding: 5px; /* embedded */
+    margin: 0px;
+  }
+  
+  .title {
+    padding: 0px !important;
+    height: auto;
+  }
+
+  /*
+  .select-options  {
+  	display: none;
+  }
+  
+  .image {
+    height: auto;
+  }
+  */
+}
+
+
+.saso-volumes {
+  margin-top: 10px;
+}
+
+.saso-volume-discount-tiers .saso-table {
+  margin-top: 6px;
+  border-collapse: collapse;
+  
+  th, td {
+  	border: 1px solid #e6e6e6;
+    padding: 4px;
+  }
+  
+  tbody {
+    tr:nth-child(even) {
+      background: #f8f8f8;
+      color: #000000;
+    }
+    tr:nth-child(odd) {
+      background: #ececec;
+      color: #000000;
+    }
+    
+    .saso-add-to-cart {
+      font-weight: bold;
+    }
+  }
+}
+
+
+.saso-summary {
+  position: relative;
+}
+
+.saso-use-discount-code-cart-container {
+  position: absolute;
+  top: 100px;
+
+  input {
+    display: inline !important;
+    width: auto;
+    width: 80%; 
+    border: 1px solid #ddd;
+    padding: 5px;
+    font-family: "Lato", sans-serif;
+    margin-top: 10px;
+  }
+  button {
+    margin: 0px 0px;
+    background: #363636;
+    font-family: "Work Sans";
+    color: #FFF;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 0;
+  }
+  
+}
+
+/*.saso-use-discount-code-cart-container::after {
+  margin-top: 3px;
+  background-color: rgba(175,175,175,0.34);
+  content: '';
+  display: block;
+  height: 1px;
+  transition: background-color 0.3s cubic-bezier(0.3, 0, 0, 1);
+  width: 100%;
+  z-index: 4;
+}*/
+
+.saso-use-discount-code-cart-code {
+  display: inline !important; 
+  max-width: 10em !important;
+}
+
+.saso-use-discount-instead-container {
+}
+
+
+
+/* mobile */
+@media (max-width: 960px) {
+
+  .saso-notification {
+    font-size: 12px;
+  }
+  .saso-notification-x {
+    margin: 0px 4px 0px 0px;
+    font-size: 12px;
+  }
+
+  .saso-cross-sell-popup {
+    min-width: 100px;    
+  
+    .saso-message {
+      font-size: 14px;
+    }
+
+    .saso-title {
+      font-size: 16px;
+    }
+
+    .saso-image {
+      width: 160px;
+      height: 160px;
+      line-height: 160px;
+    }
+    .saso-image img {
+      max-width: 160px;
+      max-height: 160px;
+    }
+
+  }
+
+  
+  ::-webkit-scrollbar {
+      -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:vertical {
+      width: 24px;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+      height: 24px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, .5);
+      border-radius: 10px;
+      border: 2px solid #ffffff;
+  }
+
+  ::-webkit-scrollbar-track {
+      border-radius: 10px;  
+      background-color: #ffffff; 
+  }
+  
+  
+}
+
+
+            
+
+.saso-bundle-popup {
+  background: #f4f4f4;
+  td {
+    text-align: center !important;
+    border: 0 !important;
+    padding: 0px !important; /* overwrite Upsell */
+  }
+
+  .saso-product-container {
+    width: 170px;
+  }
+  
+  .saso-image {
+    width: 160px;
+    height: 160px;
+    line-height: 160px;
+  }
+  .saso-image img {
+    max-width: 160px;
+    max-height: 160px;
+  }
+  
+  .saso-bundle-row {
+    border-top: 0px solid #DCDCDC;
+  }
+  
+  .saso-quantity-container, .saso-plus-container, .saso-equal-container {
+    color: #f45b4f;
+    font-weight: bold;
+	font-size: 60px;
+  	display: inline-block;
+  }
+  .saso-quantity-container {
+	font-size: 30px;
+    vertical-align: top;
+  }
+  .saso-plus-container {
+    padding-bottom: 60px !important;
+  }
+  .saso-plus-container:last-child {
+    display: none !important;
+  }
+  .saso-bundle-price-container {
+	font-size: 40px;
+    padding: 0px 0px 0px 10px !important;
+  }
+  
+  .saso-bundle-success {
+    display: none;
+  }
+}
+

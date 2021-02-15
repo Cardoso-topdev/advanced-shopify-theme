@@ -1,0 +1,81 @@
+{% assign positionClass = '' %}
+{% if settings.display-welcome-message == false and settings.display-featured-collections == false %}
+  {% assign positionClass = 'first' %}
+{% endif %}
+
+{% assign featured-product-limit = settings.featured-products-limit | times: 1 %}
+
+<!-- Featured products
+============================================= -->
+<section class="featured-products clearfix {{ positionClass }} {% if featured-product-limit > 4 %}multi-row{% endif %}">
+  
+  <h2 class="section-title section-border"></h2>
+
+  {% if shop.products_count > 0 and collections.[settings.featured-products-collection].title.size == 0 %}
+
+    <p class="load-up">{{ 'onboarding.featured_products_text_html' | t: theme_settings_link: theme_settings_link }}</p>
+
+  {% elsif shop.products_count > 0 and collections.[settings.featured-products-collection].products.size == 0 %}
+    <!-- ONLY renders when the store has products but the specified collection does NOT have any products -->
+    {% capture collection_screen_link %}
+      <a href="{{ shop.url }}/admin/collections">{{ 'onboarding.collection_screen_link' }}</a>
+    {% endcapture %}
+    <p class="load-up">{{ 'onboarding.featured_products_empty_text_html' | t: collection_screen_link: collection_screen_link }}</p>
+
+  {% elsif shop.products_count == 0 %}
+
+    {% capture new_product_link %}
+      <a href="{{ shop.url }}/admin/products/new">{{ 'onboarding.new_product_link' }}</a>
+    {% endcapture %}
+    <div class="load-up">{{ 'onboarding.no_products_text_html' | t: new_product_link: new_product_link }}</div>
+
+  {% else %}
+
+    <ul class="product-list">
+      <li style="" class="product first">
+      	<div class="product-inner">
+        	<figure style="background: #fdf3f3;">
+              
+              <img alt="Our Current Favorites" data-src="{{ 'current-favorites-gray.png' | asset_url }}" class="lazyload">
+              <a href="/collections/best-sellers">
+              	
+              </a>
+          </figure>
+        </div>
+      </li>
+      {% for product in collections.[settings.featured-products-collection].products limit: settings.featured-products-limit %}
+        {% include 'product-item' %}
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+
+</section>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>

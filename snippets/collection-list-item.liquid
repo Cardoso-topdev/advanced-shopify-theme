@@ -1,0 +1,23 @@
+<div class="collection-wrap first">
+
+  {% if collection-list-item == 'linklist' %}
+    {% assign link_handle = link.handle %}
+    {% assign collection = collections[link_handle] %}
+  {% endif %}
+
+  {% if collection.image %}
+    {% assign imgSrc = collection.image.src | collection_img_url: 'large' %}
+  {% else %}
+    {% assign imgSrc = collection.products.first.featured_image | product_img_url: 'large' %}
+  {% endif %}
+
+  <div class="collection" style="background-image:url({{ imgSrc }});">
+    <a href="{{ collection.url }}">
+      <h2 class="label preload">{{ collection.title }}</h2>
+      <h2 class="browse">{{ 'collections.collection.browse' | t }}</h2>
+    </a>
+  </div>
+  <div class="rte clearfix">
+    {{ collection.description }}
+  </div>
+</div>

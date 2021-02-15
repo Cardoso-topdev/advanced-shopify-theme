@@ -1,0 +1,7 @@
+{% layout none %}
+{% capture results %}{% paginate search.results by 6 %}{% for item in search.results %}{% assign product = item %}{"id":{{ product.id | json }},"title":{{ product.title | json }},"product_type":{{ product.type | json }},"vendor":{{ product.vendor | json }},"handle":{{ product.handle | json }},{% capture productvariant %}{% assign sca_found_fg=false %}{% for variant in product.variants %}{%unless variant.metafields.secomapp.freegifts or variant.title contains '(Bundle price)' or variant.title contains '% off)' or variant.metafields.brodev_scn.hide == "true" or variant.metafields.shappify_qb.qb_hide =="1" or variant.metafields.shappify_bundle.is_bundle=="true"%}{% if sca_found_fg %},{% endif %}{{ variant|json }}{% assign sca_found_fg=true %}{%endunless%}{%endfor%}{% endcapture %}"variants":[{{ productvariant }}],"url":{{ product.url | within: product.collections.last | json }},"thumbnail":{{ product.featured_image.src | product_img_url: 'thumb' | json }}}{% unless forloop.last %},{% endunless %}{% endfor %}{% endpaginate %}{% endcapture %}{% capture script %}SECOMAPP.searchCallback({"results_count":{{ search.results_count }},"results":[{{ results }}]})
+{% endcapture %}{{script}}
+{% comment %}
+Do not remove this file, this file need for Freegifts Application searching products
+http://www.secomapp.com
+{%endcomment %}

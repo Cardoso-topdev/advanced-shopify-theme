@@ -1,0 +1,164 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero">
+        <div class="content content-area flex">
+          	<div class="collection-video">
+              <img src="{{'Jenna1.jpg' | asset_url }}" alt="Jenna Kutcher loves Primally Pure" />
+            </div>
+            <div class="collection-text">
+              <h3 style="font-family: 'Novel'; font-size: 24px">I’m Jenna Kutcher, and Primally Pure totally changed my skin.</h3>
+              <p>I'll be honest, before our miscarriages, I didn't really care what chemicals were going on or in my body, but once I started to really dig into things, I was shocked. I had this belief that natural stuff just couldn't work as well and a fear of ditching the products I was raised on.</p>
+              <p>As I slowly transitioned, I became obsessed with reading labels, knowing that I was treating my body with the ultimate respect and I started to fall in love with the natural scents, the feel of the products, and the way I felt when I used them. Consider me a completely converted skeptic.</p>
+    		  <div class="flip-flops" style="padding-bottom: 30px"><a href="https://www.primallypure.com/?rfsn=1527660.c6a1f6" class="button btn">Use code JK10 to save 10%</a></div>
+            </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection palo-santo-intro">
+    
+    <h3>HERE'S WHAT I'M LOVING</h3>
+    <P>Here are my tried-and-true Primally Pure favorites. These truly changed my skin from the inside out.</P>
+    
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}" style="margin-top: 0">
+      {% for product in collection.products limit: settings.products-per-page %}
+        {% for tag in product.tags %}
+          {% if tag contains "jenna-item"  %} 
+        	{% include 'product-item-jenna-kutcher' %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+
+<section class="content tan-bg flex flip-flops image1">
+  <div class="side-by-side text" style="text-align: left !important">
+    <h3>My skin transformation</h3>
+    <p>When I went to Target, some marketing sucked me into buying a new serum or cutesy face mask or extra strength pimple cream. I honestly don't know how many dollars I dropped filling my beauty cabinet over the years. When I say I tried a mountain of products, I mean it.</p>
+    <p>After our second miscarriage in 2017, I switched to all-natural products and started to notice a change. Can I tell you how happy I was to actually start to like the face looking back at me in the mirror?</p>
+    <p>I didn’t necessarily want perfect skin, but I wanted to simply know that I was taking care of it! And, of course, being able to truly take care of your skin can deliver a huge boost of real confidence, right?
+    <div class="flip-flops"><a href="https://www.primallypure.com/?rfsn=1527660.c6a1f6" class="button btn">Use code JK10 to save 10%</a></div>
+  </div>
+  <div class="side-by-side image" style="background: #FBF9F6"><img src="{{'Jenna-Kutcher-Before-After.jpg' | asset_url }}" alt="Jenna Kutcher Before and After" style="width: 100%" /></div>
+</section>
+
+<section class="content content-area collection-collection palo-santo-intro bundle-it-jenna" style="margin-bottom: 0">
+    
+    <h3>BUNDLE IT BABY</h3>
+    <p>Just diving into natural products? Not sure where to begin? I've bundled my favorite products &mdash; whether you want to start simple or dive into the deluxe! These are the products I use, love, and recommend (plus you can snag them at a discount when you bundle them up!) </P>
+    
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}" style="margin-top: 0">
+      {% for product in collection.products limit: settings.products-per-page %}
+        {% for tag in product.tags %}
+          {% if tag contains "jenna-bundle"  %} 
+        	{% include 'product-item-jenna-kutcher' %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+{% endpaginate %}
+
+<section class="content tan-bg flex flip-flops image2">
+  <div class="side-by-side image" style="background-image: url('{{'JennaKutcher2.jpg' | asset_url }}'); background-size: cover; background-position: center left;"></div>
+  <div class="side-by-side text" style="text-align: left !important">
+    <h3 style="margin-top: -30px">Primally Pure is all-natural + non-toxic</h3>
+    <p style="padding-top: 20px">Have you ever spent some time reading the ingredients on the products you're putting on your skin? Lemme remind you: your skin is your largest organ... </p>
+    <p>When I started to get serious about looking at the labels, I was shocked to realize I couldn't pronounce most of what my body was ingesting through my skin. Primally Pure is different. Every single product is made with safe, natural ingredients — and nothing else. Trust me, this is one label you'll be able to read.</p>
+    <div class="flip-flops"><a href="https://www.primallypure.com/?rfsn=1527660.c6a1f6" class="button btn">Use code JK10 to save 10%</a></div>
+  </div>
+</section>
+
+
+<section class="testimonial-quote">
+  <p class="quote">Are you ready to swap your products to all-natural, non-toxic ones with with ingredients you can actually pronounce? It's time.</p>
+    <div class="flip-flops" style="margin: 10px auto 0px auto"><a href="https://www.primallypure.com/?rfsn=1527660.c6a1f6" class="button btn">Use code JK10 to save 10%</a></div>
+</section>
+
+<p style="margin: 0 auto 60px auto; padding: 0px 30px; max-width: 700px; text-align: center; font-style: italic;">Sharing is caring! When you purchase Primally Pure using my coupon code (it's JK10, in case you missed it!) I get an affiliate commission &mdash; which is like, the BEST, because then I can buy more of my faves and keep sharing them with you. </p>
+
+
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+
+
+

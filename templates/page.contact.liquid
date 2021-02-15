@@ -1,0 +1,54 @@
+<link href="{{ 'favicon.png' | asset_url }}" rel="shortcut icon" />
+
+<section class="content content-area">
+  {% include 'breadcrumbs' %}
+
+  {% comment %}
+  <div class="page-title">
+    <h1 class="label">{{ page.title }}</h1>
+  </div>
+  {% endcomment %}
+
+  <div class="text-content-wrap clearfix">
+    <div class="rte clearfix text-content">
+      {{ page.content }}
+    </div>
+
+    <div class="sidebar rte">
+      {% form 'contact' %}
+
+        {% if form.errors %}
+          <div class="alert-message error"><span>{{ 'contact.error' | t }}</span></div>
+        {% endif %}
+
+        {% if form.posted_successfully? %}
+          <div class="alert-message success"><span>{{ 'contact.success' | t }}</span></div>
+        {% else %}
+
+          <div class="field-wrap author">
+            <label>NAME</label>
+            <input type="text" placeholder="{{ 'general.name_placeholder' | t }}" value="" name="contact[name]" class="field {% if form.errors contains "author" %}error{% endif %}">
+          </div>
+
+          <div class="field-wrap email">
+            <label>EMAIL</label>
+            <input type="text" placeholder="{{ 'general.email_placeholder' | t }}" value="" name="contact[email]" class="field {% if form.errors contains "email" %}error{% endif %}">
+          </div>
+
+          <div class="field-wrap body">
+            <label>MESSAGE</label>
+            <textarea name="contact[body]" class="field {% if form.errors contains "body" %}error{% endif %}"></textarea>
+          </div>
+
+          <input type="hidden" class="comment-check" value="" />
+          <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+
+        {% endif %}
+
+      {% endform %}
+
+    </div>
+
+  </div>
+
+</section>

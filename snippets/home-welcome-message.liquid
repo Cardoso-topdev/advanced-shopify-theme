@@ -1,0 +1,15 @@
+{% capture theme_settings_link %}
+  <a href="/admin/themes">{{ 'onboarding.theme_settings_link' | t }}</a>
+{% endcapture %}
+
+<!-- Welcome area
+============================================= -->
+<section class="welcome-area">
+  {% if settings.welcome-title == blank and settings.welcome-tagline == blank %}
+    <h2>{{ 'onboarding.welcome_title' | t }}</h2>
+    <h3>{{ 'onboarding.welcome_text_html' | t: theme_settings_link: theme_settings_link }}</h3>
+  {% else %}
+    {% if settings.welcome-title != blank %}<h2>{{ settings.welcome-title }}</h2>{% endif %}
+    {% if settings.welcome-tagline != blank %}<h3>{{ settings.welcome-tagline }}</h3>{% endif %}
+  {% endif %}
+</section>

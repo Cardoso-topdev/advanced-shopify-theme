@@ -1,0 +1,90 @@
+<section class="content content-area customer order">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <a class="back-link" href="/account">{{ 'customer.general.back_to_account' | t }}</a>
+    <span class="label">{{ 'customer.order.header' | t }} {{ order.name }}</span>
+    <a class="header-link" href="/account/logout">{{ 'customer.general.logout' | t }}</a>
+  </div>
+
+  <div class="content-wrap clearfix">
+    <div class="shipping-info">
+
+      <div class="address-wrap">
+        <span class="shipping-title">{{ 'customer.order.shipping_address' | t }}</span>
+        <span class="name">{{ order.shipping_address.name }}</span>
+        <span class="address">{{ order.shipping_address.street }}</span>
+        <span class="city">
+          {{ order.shipping_address.city }}{% if order.shipping_address.province.size > 0 %}, {{ order.shipping_address.province }}{% endif %}</span>
+        <span class="country">{{ order.shipping_address.country }}{% if order.shipping_address.zip.size > 0 %}, {{ order.shipping_address.zip }}{% endif %}</span>
+      </div>
+
+      <div class="address-wrap">
+        <span class="shipping-title">{{ 'customer.order.billing_address' | t }}</span>
+        <span class="name">{{ order.billing_address.name }}</span>
+        <span class="address">{{ order.billing_address.street }}</span>
+        <span class="city">
+          {{ order.billing_address.city }}{% if order.billing_address.province.size > 0 %}, {{ order.billing_address.province }}{% endif %}</span>
+        <span class="country">{{ order.billing_address.country }}{% if order.billing_address.zip.size > 0 %}, {{ order.billing_address.zip }}{% endif %}</span>
+      </div>
+
+    </div>
+
+    <div class="order-history">
+
+      <table class="order table">
+
+        <thead>
+          <tr>
+            <th class="first">{{ 'general.product' | t }}</th>
+            <th>{{ 'general.price' | t }}</th>
+            <th>{{ 'general.quantity' | t }}</th>
+            <th class="last">{{ 'general.total' | t }}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for line_item in order.line_items %}
+          <tr class="{% include 'for-looper' %} {% if order.cancelled %}cancelled_order{% endif %}">
+            <td class="product-item first">
+              <div class="image-wrap">
+                  {{ line_item.product.featured_image |  product_img_url: 'small' | img_tag: line_item.product.featured_image.alt }}
+                  <a class="{% if settings.product-image-borders %}overlay{% endif %}" href="{{ line_item.product.url }}"></a>
+              </div><div class="wrap">
+                <span class="label vendor">{{ line_item.vendor }}</span>
+                <span class="label title">{{ line_item.title | link_to: line_item.product.url }}</span>
+                {% unless line_item.variant.title == 'Default Title' %}<span class="label variant">{{ line_item.variant.title }}</span>{% endunless %}
+              </div>
+            </td>
+            <td class="price"><span class="money">{{ line_item.price | money }}</span></td>
+            <td class="quantity"><span>{{ line_item.quantity }}</span></td>
+            <td class="total last"><span class="money">{{ line_item.quantity | times: line_item.price | money }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+
+      </table>
+
+      <div class="order-totals">
+        <ul class="sub-total">
+          <li class="order-subtotal"><h2>{{ 'general.subtotal' | t }}</h2><span class="money">{{ order.subtotal_price | money }}</span></li>
+          {% for shipping_method in order.shipping_methods %}
+            <li class="order-shipping"><h2>{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</h2><span class="money">{{ shipping_method.price | money }}</span></li>
+          {% endfor %}
+          {% for tax_line in order.tax_lines %}
+            <li class="order-tax {% include 'for-looper' %}"><h2>{{ 'general.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</h2><span class="money">{{ tax_line.price | money }}</span></li>
+          {% endfor %}
+        </ul>
+
+        <ul class="total">
+          <li class="order-total"><h2>{{ 'general.total' | t }}</h2><span class="money">{{ order.total_price | money }}</span></li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+
+
+</section>

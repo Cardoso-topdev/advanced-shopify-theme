@@ -1,0 +1,213 @@
+<style>
+  #account-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  
+  #account-form .left-form,
+  #account-form .right-form {
+    flex: 50% 0 0;
+    padding: 60px;
+  }
+  
+  #account-form .left-form {
+    background: #FCFAF7;
+  }
+  
+  #account-form h2 {
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  
+  #account-form .left-form form,
+  #account-form .left-form .h2-wrap {
+    float: right;
+    clear: both;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  #account-form .right-form form,
+  #account-form .right-form .h2-wrap {
+    float: left;
+    clear: both;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  #account-form .field-wrap {
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    
+  }
+  
+  #account-form .field-wrap input {
+    width: 100%;
+    letter-spacing: 1px;
+    background: #FFF;
+  }
+  
+  #account-form .field-wrap input::placeholder {
+    text-transform: uppercase;
+  }
+  
+  #account-form input[type="submit"] {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  #account-form .forgot-password {
+    font-size: 14px;
+    padding-top: 10px;
+    display: block;
+  }
+  
+  #account-form .subscription-helper {
+    font-size: 14px;
+    border-top: 1px solid #000;
+    padding-top: 20px;
+    margin-top: 20px;
+    display: block;
+    clear: both;
+    max-width: 300px;
+    float: right;
+    text-align: left;
+  }
+  
+  #account-form #recover-password {
+    display: none;
+  }
+  
+  @media screen and (max-width: 867px) {
+    #account-form .left-form,
+    #account-form .right-form {
+      flex: 100% 0 0;
+      padding: 60px;
+    }
+    
+    #account-form form,
+    #account-form h2,
+    #account-form p,
+    #account-form .h2-wrap {
+      max-width: 100% !important;
+      text-align: center !important;
+    }
+  }
+  
+  .error-message {
+    height: auto;
+    line-height: 18px;
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .right-form .error-message {
+    display: none !important;
+  }
+
+</style>
+
+  
+  <div id="account-form">
+    <div class="left-form">
+      <div class="h2-wrap"><h2>Sign In</h2></div>
+      
+      <div id="customer-login">
+      {% form 'customer_login' %}
+
+        {% if form.errors %}
+          <div class="error-message"><span>{{ 'customer.login.error' | t }}</span></div>
+        {% endif %}
+
+        <div class="field-wrap email">
+          <input type="text" placeholder="Email Address" value="" name="customer[email]" class="field">
+        </div>
+
+        <div class="field-wrap password">
+          <input type="password" placeholder="Password" name="customer[password]" class="field">
+        </div>
+
+        <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+        <a class="forgot-password helper" href="#recover" onclick="showRecoverPasswordForm()">{{ 'customer.login.forgot_password' | t }}</a>
+      	
+      	<p class="subscription-helper"><strong>Have a subscription but can't log in?</strong> Create an account using the email address tied to your subscription to manage your account at any time.</p>
+      {% endform %}
+      </div>
+        
+        <div id="recover-password" class="account-form">
+          {% form 'recover_customer_password' %}
+
+          <p class="message">{{ 'customer.reset_password.subtext' | t }}</p>
+
+          {% if form.errors %}
+          <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+          {% endif %}
+
+          <div class="field-wrap email">
+            <input type="text" placeholder="Email Address" value="" name="email" class="field">
+          </div>
+
+          <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+          <a class="forgot-password helper" href="#recover" onclick="hideRecoverPasswordForm()"><span>{{ 'customer.general.or' | t }} </span>{{ 'customer.general.cancel' | t }}</a>
+
+          {% endform %}
+        </div>
+    </div>
+    
+    <div class="right-form">
+      <h2>Create an Account</h2>
+      <div id="customer-create" class="account-form">
+        {% form 'create_customer' %}
+
+          {% if form.errors %}
+            <div class="error-message"><span>{{ form.errors | default_errors }}</span></div>
+          {% endif %}
+
+          <div class="field-wrap first-name">
+            <input type="text" placeholder="First Name" value="" name="customer[first_name]" class="field">
+          </div>
+
+          <div class="field-wrap last-name">
+            <input type="text" placeholder="Last Name" value="" name="customer[last_name]" class="field">
+          </div>
+
+          <div class="field-wrap email">
+            <input type="text" placeholder="Email Address" value="" name="customer[email]" class="field">
+          </div>
+
+          <div class="field-wrap password">
+            <input type="password" placeholder="Password" value="" name="customer[password]" class="field">
+          </div>
+
+          <input type="submit" class="action-button submit-button" value="{{ 'general.submit' | t }}">
+
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+
+    if (window.location.hash == '#recover') { showRecoverPasswordForm() }
+
+    function showRecoverPasswordForm() {
+      document.getElementById('recover-password').style.display = 'block';
+      document.getElementById('customer-login').style.display='none';
+      window.location.hash = '#recover';
+      return false;
+    }
+
+    function hideRecoverPasswordForm() {
+      document.getElementById('recover-password').style.display = 'none';
+      document.getElementById('customer-login').style.display = 'block';
+      return false;
+    }
+
+  </script>

@@ -1,0 +1,120 @@
+{%assign SPSettings = shop.metafields.SPScarCount.ScarSettings | split: "$$" %}
+{%assign viewSettings = SPSettings[0] | split: "^" %}
+{%assign cartSettings = SPSettings[1] | split: "^" %}
+{%assign boughtSettings = SPSettings[2] | split: "^" %}
+{%assign SP_view = product.metafields.SPScarCount.ScarViewCount %}
+{%assign SP_add_to_cart = product.metafields.SPScarCount.ScarCartCount %}
+{%assign SP_ordered = product.metafields.SPScarCount.ScarOrderCount %}
+{%assign isEnbl = false %}
+{%assign viewEnable = viewSettings[0] | plus : 0 %}
+{%assign viewlimit = viewSettings[2] | plus : 0 %}
+{%assign SP_view = SP_view | plus : 0 %}
+{%if viewEnable == 1 and SP_view >= viewlimit %}{% assign isEnbl = true %}{%endif%}
+{%assign cartEnable = cartSettings[0] | plus : 0 %}
+{%assign cartlimit = cartSettings[2] | plus : 0 %}
+{%assign SP_add_to_cart = SP_add_to_cart | plus : 0 %}
+{%if cartEnable == 1 and SP_add_to_cart >= cartlimit %}{% assign isEnbl = true %}{%endif%}
+{%assign orderEnable = boughtSettings[0] | plus : 0 %}
+{%assign orderlimit = boughtSettings[2] | plus : 0 %}
+{%assign SP_ordered = SP_ordered | plus : 0 %}
+{%if orderEnable == 1 and SP_ordered >= orderlimit %}{% assign isEnbl = true %}{%endif%}
+
+
+{% if isEnbl %}
+<div class="sp_stick_l-sidebar sp_viewCount sp_l-sidebar_hide sp_{%if SPSettings[6] != ''%}{{SPSettings[6]}}{%else %}right{%endif%}_view">
+  <ul class="sp_t_wrapper">   
+    {% if viewEnable == 1 and SP_view >= viewlimit %}
+    {% assign txt = '{{VIEW}}' %}
+    {% assign SP_view = SP_view | times : 100 | money_without_currency | remove: '.00' %}
+    <li>
+      <span class="sp_icon">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"width="26.625px" height="32px" viewBox="154.938 39 26.625 32" enable-background="new 154.938 39 26.625 32" xml:space="preserve"> <path fill="#BBECFF" d="M180.688,41.26c0-0.903-0.732-1.635-1.635-1.635h-13.731c-0.903,0-1.634,0.732-1.634,1.635v24.105 c0,0.903,0.731,1.635,1.634,1.635h13.731c0.903,0,1.635-0.731,1.635-1.635V41.26z"/> <rect x="163.746" y="43" fill="#F1FBFF" width="16.941" height="19.938"/> <g> <path fill="#FEE0B0" d="M162.74,65.188h2.299c1.786,0,3.46-0.865,4.494-2.321l2.638-3.717c0.73-1.029-0.006-2.456-1.269-2.456l0,0 c-0.334,0-0.661,0.108-0.93,0.309l-3.947,2.94c-0.252,0.188-0.559,0.29-0.874,0.29l0,0c-0.808,0-1.463-0.655-1.463-1.464V58"/> <path fill="#FEE0B0" d="M163.688,65.015h-3.72h-2.218v-6.988c0-4.749,2.191-9.233,5.938-12.151l0,0v10.689V65.015z"/> </g> <path fill="#FDBA4F" d="M155.938,70.375h12.339v-4.563c0-0.346-0.28-0.625-0.625-0.625h-11.089c-0.345,0-0.625,0.279-0.625,0.625 V70.375z"/> <path fill="#C1EE92" d="M175.007,54.542h-5.64c-0.357,0-0.666-0.251-0.738-0.602l-0.822-3.994c-0.096-0.467,0.261-0.905,0.738-0.905 h7.284c0.478,0,0.834,0.438,0.738,0.905l-0.822,3.994C175.673,54.291,175.365,54.542,175.007,54.542z"/> <path d="M165.313,67.438c-0.164,0-0.326,0.066-0.442,0.183c-0.116,0.117-0.183,0.278-0.183,0.442s0.067,0.325,0.183,0.442 c0.116,0.115,0.278,0.183,0.442,0.183c0.165,0,0.325-0.067,0.441-0.183c0.117-0.117,0.184-0.278,0.184-0.442 s-0.067-0.325-0.184-0.442C165.638,67.504,165.477,67.438,165.313,67.438z"/> <path d="M174.149,40.744h-3.923c-0.345,0-0.625,0.28-0.625,0.625c0,0.345,0.279,0.625,0.625,0.625h3.923 c0.345,0,0.625-0.28,0.625-0.625C174.774,41.023,174.494,40.744,174.149,40.744z"/> <path d="M179.053,39h-13.731c-1.246,0-2.259,1.014-2.259,2.26v4.316c-1.804,1.462-3.292,3.328-4.311,5.414 c-1.064,2.179-1.627,4.613-1.627,7.037v6.536h-0.562c-0.689,0-1.25,0.562-1.25,1.25v4.563c0,0.345,0.28,0.625,0.625,0.625 c0.345,0,0.625-0.28,0.625-0.625v-4.563h11.089v4.563c0,0.345,0.28,0.625,0.625,0.625s0.625-0.28,0.625-0.625v-2.75h10.151 c1.246,0,2.26-1.014,2.26-2.26v-7.67c0-0.345-0.28-0.624-0.625-0.624c-0.345,0-0.625,0.279-0.625,0.624v4.617h-9.371l1.988-2.801 c0.474-0.668,0.535-1.535,0.16-2.263c-0.376-0.729-1.119-1.181-1.938-1.181c-0.466,0-0.929,0.153-1.303,0.432l-3.947,2.941 c-0.144,0.106-0.321,0.165-0.5,0.165c-0.462,0-0.838-0.375-0.838-0.838V58V43.752h15.75V52.5c0,0.345,0.28,0.625,0.625,0.625 c0.345,0,0.625-0.28,0.625-0.625V41.26C181.313,40.014,180.299,39,179.053,39z M180.063,65.365c0,0.557-0.453,1.01-1.01,1.01 h-10.151v-0.563c0-0.41-0.199-0.774-0.505-1.002c0.52-0.34,0.991-0.761,1.391-1.249c0.008,0,0.016,0.001,0.025,0.001h10.25V65.365 L180.063,65.365z M165.15,60.857c0.446,0,0.889-0.147,1.247-0.414l3.947-2.94c0.16-0.119,0.357-0.185,0.557-0.185 c0.355,0,0.664,0.188,0.827,0.504c0.163,0.315,0.138,0.677-0.068,0.966l-2.637,3.717c-0.915,1.288-2.404,2.058-3.984,2.058h-6.665 v-6.536c0-4.144,1.694-8.011,4.688-10.798V58v0.769C163.063,59.921,163.999,60.857,165.15,60.857z M164.313,42.503V41.26 c0-0.557,0.453-1.01,1.009-1.01h13.731c0.557,0,1.01,0.453,1.01,1.01v1.243H164.313z"/> <path d="M172.188,65.54c0.164,0,0.326-0.065,0.442-0.183c0.116-0.116,0.183-0.276,0.183-0.441s-0.067-0.326-0.183-0.442 s-0.278-0.183-0.442-0.183c-0.165,0-0.325,0.066-0.442,0.183c-0.116,0.116-0.183,0.277-0.183,0.442s0.066,0.325,0.183,0.441 C171.862,65.475,172.023,65.54,172.188,65.54z"/> <path d="M171.636,47.271c-0.299-0.172-0.681-0.07-0.854,0.229l-0.529,0.917h-1.708c-0.416,0-0.805,0.185-1.068,0.507 c-0.262,0.323-0.366,0.742-0.282,1.149l0.823,3.993c0.131,0.638,0.699,1.1,1.35,1.1h5.64c0.651,0,1.219-0.462,1.35-1.101 l0.822-3.993c0.084-0.408-0.019-0.827-0.282-1.149c-0.262-0.322-0.652-0.507-1.068-0.507h-1.708l-0.529-0.917 c-0.173-0.299-0.555-0.401-0.854-0.229c-0.299,0.173-0.401,0.555-0.229,0.854l0.168,0.292h-0.982l0.168-0.292 C172.038,47.826,171.935,47.444,171.636,47.271z M173.4,49.667l0.716,1.239c0.116,0.2,0.326,0.313,0.542,0.313 c0.106,0,0.213-0.027,0.312-0.083c0.299-0.173,0.402-0.555,0.229-0.854l-0.355-0.614h0.987c0.05,0,0.082,0.025,0.1,0.047 c0.017,0.021,0.036,0.058,0.026,0.107l-0.822,3.994c-0.012,0.059-0.064,0.103-0.125,0.103h-5.64c-0.061,0-0.113-0.043-0.126-0.103 l-0.822-3.994c-0.009-0.049,0.009-0.085,0.027-0.106c0.018-0.022,0.049-0.047,0.099-0.047h0.986l-0.355,0.614 c-0.173,0.299-0.07,0.681,0.229,0.854c0.098,0.057,0.206,0.083,0.312,0.083c0.216,0,0.426-0.112,0.542-0.313l0.716-1.239H173.4 L173.4,49.667z"/> <path d="M180.688,54.375c-0.164,0-0.326,0.067-0.442,0.183s-0.183,0.277-0.183,0.442c0,0.164,0.067,0.326,0.183,0.442 c0.116,0.116,0.278,0.183,0.442,0.183c0.165,0,0.325-0.067,0.442-0.183c0.116-0.116,0.183-0.278,0.183-0.442 c0-0.165-0.067-0.326-0.183-0.442C181.013,54.442,180.852,54.375,180.688,54.375z"/> </svg>
+      </span>
+      <span class="message-widget">{{viewSettings[1] | replace: txt , SP_view}}</span> 
+    </li>
+    {% endif %}
+    {% if cartEnable == 1 and SP_add_to_cart >= cartlimit %}
+    {% assign txt = '{{CART}}' %}
+    {% assign SP_add_to_cart = SP_add_to_cart | times : 100 | money_without_currency | remove: '.00' %}
+    <li>
+      <span class="sp_icon">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"width="30px" height="30px" viewBox="241 241 30 30" enable-background="new 241 241 30 30" xml:space="preserve"> <path fill="#57565C" d="M256.938,267.719c0,1.813-1.469,3.281-3.281,3.281s-3.281-1.469-3.281-3.281s1.469-3.281,3.281-3.281 S256.938,265.906,256.938,267.719z"/> <path fill="#57565C" d="M268.188,267.719c0,1.813-1.469,3.281-3.281,3.281s-3.281-1.469-3.281-3.281s1.469-3.281,3.281-3.281 S268.188,265.906,268.188,267.719z"/> <path fill="#77959E" d="M270.063,262.563h-21.348l-4.688-17.813h-2.09c-0.518,0-0.938-0.42-0.938-0.938s0.42-0.938,0.938-0.938 h3.535l4.688,17.813h19.902c0.518,0,0.938,0.42,0.938,0.938S270.58,262.563,270.063,262.563z"/> <path fill="#FDD835" d="M267.25,258.813h-15.648l-3.202-12.188H271v8.438C271,257.134,269.32,258.813,267.25,258.813z"/> <g> <path fill="#FBC02D" d="M268.188,256c-0.518,0-0.938-0.42-0.938-0.938v-5.625c0-0.518,0.42-0.938,0.938-0.938 s0.938,0.42,0.938,0.938v5.625C269.125,255.58,268.705,256,268.188,256z"/> <path fill="#FBC02D" d="M258.813,256c-0.518,0-0.938-0.42-0.938-0.938v-5.625c0-0.518,0.42-0.938,0.938-0.938 s0.938,0.42,0.938,0.938v5.625C259.75,255.58,259.33,256,258.813,256z"/> <path fill="#FBC02D" d="M254.125,256c-0.518,0-0.938-0.42-0.938-0.938v-5.625c0-0.518,0.42-0.938,0.938-0.938 s0.938,0.42,0.938,0.938v5.625C255.063,255.58,254.643,256,254.125,256z"/> </g> <path fill="#2D2D30" d="M253.656,269.125c-1.481,0-2.722-0.993-3.128-2.344c-0.09,0.299-0.153,0.609-0.153,0.938 c0,1.81,1.472,3.281,3.281,3.281s3.281-1.472,3.281-3.281c0-0.328-0.063-0.639-0.152-0.938 C256.378,268.132,255.138,269.125,253.656,269.125z"/> <path fill="#2D2D30" d="M264.906,269.125c-1.481,0-2.722-0.993-3.129-2.344c-0.09,0.299-0.152,0.609-0.152,0.938 c0,1.81,1.473,3.281,3.281,3.281s3.281-1.472,3.281-3.281c0-0.328-0.063-0.639-0.152-0.938 C267.628,268.132,266.388,269.125,264.906,269.125z"/> <path fill="#FBC02D" d="M267.25,256.938h-16.14l0.493,1.875h15.647c2.07,0,3.75-1.679,3.75-3.75v-1.875 C271,255.258,269.32,256.938,267.25,256.938z"/> <path fill="#FBC02D" d="M271,246.625v6.225c-1.547,1.922-3.909,3.15-6.563,3.15c-4.65,0-8.438-3.788-8.438-8.438 c0-0.319,0.019-0.628,0.056-0.938H271z"/> <path fill="#4ADEED" d="M271,247.563c0,3.625-2.938,6.563-6.563,6.563s-6.563-2.938-6.563-6.563s2.938-6.563,6.563-6.563 S271,243.938,271,247.563z"/> <path fill="#FFFFFF" d="M267.25,246.625h-1.875v-1.875H263.5v1.875h-1.875v1.875h1.875v1.875h1.875V248.5h1.875V246.625z"/> </svg>
+      </span>
+      <span class="message-widget">{{ cartSettings[1] | replace: txt , SP_add_to_cart}}</span> 
+    </li>  
+    {% endif %}
+    {% if orderEnable == 1 and SP_ordered >= orderlimit %}
+    {% assign txt = '{{ORDER}}' %}
+    {% assign SP_ordered = SP_ordered | times : 100 | money_without_currency | remove: '.00' %}
+    <li>
+      <span class="sp_icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 0 1028.002 1028" width="26px"><path d="m205.597656 119.933594h616.800782c18.925781 0 34.265624 15.34375 34.265624 34.265625v719.601562c0 18.921875-15.339843 34.265625-34.265624 34.265625h-616.800782c-18.921875 0-34.265625-15.34375-34.265625-34.265625v-719.601562c0-18.921875 15.34375-34.265625 34.265625-34.265625zm0 0" fill="#e6e7e8"/><path d="m171.332031 942.332031c0 37.851563 30.683594 68.53125 68.535157 68.53125h548.265624c37.847657 0 68.53125-30.679687 68.53125-68.53125v-34.265625h-685.332031zm376.933594 17.132813" fill="#414042"/><path d="m788.132812 17.132812h-548.265624c-37.851563 0-68.535157 30.683594-68.535157 68.535157v34.265625h685.332031v-34.265625c0-37.851563-30.683593-68.535157-68.53125-68.535157zm0 0" fill="#414042"/><g fill="#33dfe5"><path d="m771 479.734375v342.664063h119.929688v-342.664063zm0 0"/><path d="m651.066406 479.734375h119.933594v342.664063h-119.933594zm0 0"/><path d="m633.933594 479.734375h-102.800782l68.53125 342.664063h51.402344v-342.664063zm0 0"/><path d="m890.929688 479.734375v342.664063h51.402343l68.53125-342.664063zm0 0"/></g><path d="m171.332031 702.464844c85.164063 0 154.199219-69.035156 154.199219-154.199219 0-85.160156-69.035156-154.199219-154.199219-154.199219-85.160156 0-154.199219 69.039063-154.199219 154.199219 0 85.164063 69.039063 154.199219 154.199219 154.199219zm0-154.199219c-18.925781 0-34.265625-15.339844-34.265625-34.265625s15.339844-34.265625 34.265625-34.265625 34.265625 15.339844 34.265625 34.265625c0-18.925781-15.339844-34.265625-34.265625-34.265625s-34.265625 15.339844-34.265625 34.265625 15.339844 34.265625 34.265625 34.265625 34.265625 15.34375 34.265625 34.269531c0 18.921875-15.339844 34.265625-34.265625 34.265625s-34.265625-15.34375-34.265625-34.265625c0 18.921875 15.339844 34.265625 34.265625 34.265625s34.265625-15.34375 34.265625-34.265625c0-18.925781-15.339844-34.269531-34.265625-34.269531zm0 0" fill="#ff9811"/><path d="m771 171.332031h34.265625v34.269531h-34.265625zm0 0"/><path d="m702.464844 171.332031h34.269531v34.269531h-34.269531zm0 0"/><path d="m633.933594 171.332031h34.265625v34.269531h-34.265625zm0 0"/><path d="m222.734375 171.332031h34.265625v34.269531h-34.265625zm0 0"/><path d="m548.265625 942.332031h-68.53125c-9.464844 0-17.132813 7.671875-17.132813 17.132813 0 9.460937 7.667969 17.132812 17.132813 17.132812h68.53125c9.460937 0 17.132813-7.671875 17.132813-17.132812 0-9.460938-7.671876-17.132813-17.132813-17.132813zm0 0"/><path d="m1024.109375 468.871094c-3.253906-3.96875-8.113281-6.269532-13.246094-6.269532h-92.894531l-44.171875-76.5v-300.433593c-.054687-47.289063-38.375-85.6093752-85.664063-85.667969h-548.265624c-47.289063.0585938-85.609376 38.378906-85.667969 85.667969v257h34.265625v-205.601563h651.066406v189.683594l-19.429688-33.648438c-4.675781-8.226562-15.132812-11.105468-23.359374-6.429687-8.226563 4.675781-11.105469 15.136719-6.429688 23.363281.039062.066406.078125.132813.117188.199219l87.960937 152.367187h-214.785156l87.964843-152.367187c4.675782-8.226563 1.796876-18.6875-6.429687-23.363281-8.148437-4.628906-18.503906-1.855469-23.246094 6.230468l-97.863281 169.5h-92.898438c-9.460937-.003906-17.136718 7.667969-17.136718 17.128907 0 1.152343.117187 2.300781.347656 3.429687l68.53125 342.667969c1.628906 7.976563 8.648438 13.707031 16.789062 13.707031h239.867188v51.398438h-651.066406v-137.066406h-34.265625v188.464843c.058593 47.289063 38.378906 85.609375 85.667969 85.667969h548.265624c47.289063-.058594 85.609376-38.378906 85.667969-85.667969v-102.796875h68.53125c8.144531 0 15.160157-5.730468 16.792969-13.707031l68.53125-342.667969c1.027344-5.054687-.273438-10.304687-3.546875-14.289062zm-835.644531-366.070313v-17.132812c0-28.386719 23.015625-51.398438 51.402344-51.398438h548.265624c28.386719 0 51.398438 23.011719 51.398438 51.398438v17.132812zm599.667968 890.929688h-548.265624c-28.386719 0-51.402344-23.011719-51.402344-51.398438v-17.132812h651.066406v17.132812c0 28.386719-23.011719 51.398438-51.398438 51.398438zm0-496.863281h85.664063v308.398437h-85.664063zm-34.265624 308.398437h-85.667969v-308.398437h85.667969zm-201.832032-308.398437h81.898438v308.398437h-20.21875zm376.246094 308.398437h-20.214844v-308.398437h81.894532zm0 0"/><path d="m342.667969 548.265625c0-94.625-76.710938-171.332031-171.335938-171.332031-94.621093 0-171.332031 76.707031-171.332031 171.332031s76.707031 171.332031 171.332031 171.332031c94.582031-.101562 171.230469-76.75 171.335938-171.332031zm-308.402344 0c0-75.699219 61.367187-137.066406 137.066406-137.066406 75.703125 0 137.066407 61.367187 137.066407 137.066406s-61.367188 137.066406-137.066407 137.066406c-75.664062-.085937-136.980469-61.402343-137.066406-137.066406zm0 0"/><path d="m188.464844 651.066406v-20.285156c26.714844-9.410156 40.742187-38.691406 31.332031-65.40625-7.238281-20.550781-26.675781-34.28125-48.464844-34.242188-9.460937 0-17.132812-7.671874-17.132812-17.132812s7.671875-17.132812 17.132812-17.132812c9.460938 0 17.132813 7.671874 17.132813 17.132812h34.269531c-.09375-21.703125-13.804687-41.011719-34.269531-48.246094v-20.285156h-34.265625v20.285156c-26.710938 9.40625-40.738281 38.691406-31.332031 65.402344 7.242187 20.550781 26.675781 34.285156 48.464843 34.246094 9.464844 0 17.132813 7.667968 17.132813 17.132812 0 9.460938-7.667969 17.132813-17.132813 17.132813-9.460937 0-17.132812-7.671875-17.132812-17.132813h-34.265625c.089844 21.703125 13.804687 41.011719 34.265625 48.246094v20.285156zm0 0"/><path d="m325.53125 308.402344h34.269531v34.265625h-34.269531zm0 0"/><path d="m376.933594 308.402344h137.066406v34.265625h-137.066406zm0 0"/><path d="m325.53125 359.800781h34.269531v34.265625h-34.269531zm0 0"/><path d="m376.933594 359.800781h137.066406v34.265625h-137.066406zm0 0"/></svg>
+      </span><span class="message-widget">{{  boughtSettings[1] | replace: txt , SP_ordered }}</span> 
+    </li>  
+    {% endif %}
+    <div class="sp_hide-side sp_view_arrow">
+      <svg version="1.1" id="Capa_1" fill='{%if SPSettings[3] != ''%}{{SPSettings[3]}} {%else %}#333{%endif%}' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           width="15px" height="20px" viewBox="0 0 792 792" style="enable-background:new 0 0 792 792;" xml:space="preserve">
+        <g id="Rectangle_5_copy">
+          <g>
+            <polygon points="580.802,369.604 580.802,369.604 211.198,0 184.802,26.396 554.405,396 184.802,765.604 211.198,792 
+                             607.198,396"/>
+          </g>
+        </g>
+      </svg>
+    </div>    
+  </ul>
+</div>
+
+<style type="text/css"> /* Only for sticky sidebar */
+  .sp_stick_l-sidebar{position: fixed;z-index: 9999999;transition: all .8s ease;border-radius: 5px;top: 41%;display:none;}  
+  .sp_stick_l-sidebar *, .sp_stick_l-sidebar :before, .sp_stick_l-sidebar :after{box-sizing: border-box;}
+  .sp_stick_l-sidebar .sp_t_wrapper{padding: 5px 12px;margin: 0;background-color: {%if SPSettings[4] != ''%}{{SPSettings[4]}}{%else %}#fff{%endif%};position: relative;box-shadow: 2px 2px 10px 1px rgba(0,0,0,.15);}
+  .sp_stick_l-sidebar .sp_t_wrapper li{padding: 3px 0px;margin: 0;list-style-type: none;display: -ms-flexbox;display: -ms-flex;display: flex;-ms-flex-align: center;align-items: center;} 
+  .sp_stick_l-sidebar .sp_t_wrapper li:not(:first-child) {border-top: 1px solid {%if SPSettings[5] != ''%}{{SPSettings[5]}}{%else %}#ededed{%endif%};}
+  .sp_stick_l-sidebar .sp_t_wrapper .sp_icon{width: 32px;text-align: center;margin-right: 10px;}    
+  .sp_stick_l-sidebar .sp_t_wrapper .message-widget{color:{%if SPSettings[3] != ''%}{{SPSettings[3]}}{%else %}#333{%endif%};}
+  .sp_stick_l-sidebar .sp_hide-side{position: absolute;cursor: pointer;width: 25px;height: 40px;top: 1px;right: 0;-webkit-transform: translateX(100%);-moz-transform: translateX(100%);-ms-transform: translateX(100%);-o-transform: translateX(100%);border-radius: 0 5px 5px 0;background: {%if SPSettings[4] != ''%}{{SPSettings[4]}}{%else %}#fff{%endif%};}
+  .sp_stick_l-sidebar .sp_t_wrapper .sp_view_arrow svg{position: relative;vertical-align: middle;top: 4px;}
+  .sp_stick_l-sidebar .sp_cart-noti{position: absolute;background: #ba000d;color: white;padding: 20px;width: 200px;top: 100%;    margin-top: 10px;left: 50%;}
+  .sp_stick_l-sidebar .sp_cart-noti:before{content:'';position: absolute;bottom: 100%;border-left: 10px solid transparent;    border-right: 10px solid transparent;border-bottom: 10px solid #ba000d;}
+  
+  /* Left view */
+  .sp_stick_l-sidebar.sp_left_view{left: 0;}
+  .sp_stick_l-sidebar.sp_l-sidebar_hide.sp_left_view{-webkit-transform: translateX(-100%);-moz-transform: translateX(-100%);-ms-transform: translateX(-100%);-o-transform: translateX(-100%);}
+  .sp_stick_l-sidebar.sp_left_view .sp_hide-side{right:0;border-radius: 0px 5px 5px 0px;-webkit-transform: translateX(100%);-moz-transform: translateX(100%);-ms-transform: translateX(100%);-o-transform: translateX(100%);}
+  .sp_stick_l-sidebar.sp_left_view .sp_t_wrapper{border-radius: 0 5px 5px 0;}
+  .sp_stick_l-sidebar.sp_left_view .sp_t_wrapper .sp_view_arrow svg{left: 3px;}
+  .sp_stick_l-sidebar.sp_left_view .sp_t_wrapper .sp_view_arrow.sp_right svg{transform: rotate(180deg);}
+
+  /* Right view */
+  .sp_stick_l-sidebar.sp_right_view{right: 0;left: inherit;}
+  .sp_stick_l-sidebar.sp_l-sidebar_hide.sp_right_view{-webkit-transform: translateX(100%);-moz-transform: translateX(100%);-ms-transform: translateX(100%);-o-transform: translateX(100%);}
+  .sp_stick_l-sidebar.sp_right_view .sp_hide-side{left:0;border-radius: 5px 0px 0 5px;-webkit-transform: translateX(-100%);-moz-transform: translateX(-100%);-ms-transform: translateX(-100%);-o-transform: translateX(-100%);}
+  .sp_stick_l-sidebar.sp_right_view .sp_t_wrapper{border-radius: 5px 0 0 5px;}  
+  .sp_stick_l-sidebar.sp_right_view .sp_t_wrapper .sp_view_arrow svg{left: 7px;transform: rotate(180deg);top:9px;}
+  .sp_stick_l-sidebar.sp_right_view .sp_t_wrapper .sp_view_arrow.sp_right svg{transform: rotate(0deg);}
+
+  /* Bottom view */
+  .sp_stick_l-sidebar.sp_bottom_view{bottom: 0;top: initial;z-index: 99999999;left: 5%;}
+  .sp_stick_l-sidebar.sp_l-sidebar_hide.sp_bottom_view{-webkit-transform: translateY(100%);-moz-transform: translateY(100%);-ms-transform: translateY(100%);-o-transform: translateY(100%);}
+  .sp_stick_l-sidebar.sp_bottom_view .sp_hide-side{ top: 0;width: 40px;height: 25px; left: 10px;border-radius: 5px 5px 0px 0px;-webkit-transform: translateY(-100%);-moz-transform: translateX(-100%);-ms-transform: translateX(-100%);-o-transform: translateX(-100%);}
+  .sp_stick_l-sidebar.sp_bottom_view .sp_t_wrapper{border-radius: 5px 5px 0 0;}
+  .sp_stick_l-sidebar.sp_bottom_view .sp_t_wrapper .sp_view_arrow svg{left: 50%;transform: rotate(270deg);margin-left: -8px;top: 0;}
+  .sp_stick_l-sidebar.sp_bottom_view .sp_t_wrapper .sp_view_arrow.sp_right svg{transform: rotate(90deg);}
+
+  /* Top view */
+  .sp_stick_l-sidebar.sp_top_view{top: 0;z-index: 99999999;left: 5%;}
+  .sp_stick_l-sidebar.sp_l-sidebar_hide.sp_top_view{-webkit-transform: translateY(-100%);-moz-transform: translateY(-100%);-ms-transform: translateY(-100%);-o-transform: translateY(-100%);}
+  .sp_stick_l-sidebar.sp_top_view .sp_hide-side{ width: 40px;height: 25px; left: 10px;border-radius: 0 0 5px 5px;-webkit-transform: translateY(100%);-moz-transform: translateX(-100%);-ms-transform: translateX(-100%);-o-transform: translateX(-100%);bottom: 0;top: inherit;}
+  .sp_stick_l-sidebar.sp_top_view .sp_t_wrapper{border-radius: 0 0 5px 5px;}
+  .sp_stick_l-sidebar.sp_top_view .sp_t_wrapper .sp_view_arrow svg{left: 50%;transform: rotate(90deg);margin-left: -8px;top: -3px;}
+  .sp_stick_l-sidebar.sp_top_view .sp_t_wrapper .sp_view_arrow.sp_right svg{transform: rotate(270deg);top:-4px;}
+  @media only screen and (max-width:420px) {
+     .sp_stick_l-sidebar{ width: calc(100% - 30px);}
+     .sp_stick_l-sidebar .sp_t_wrapper .message-widget{font-size:14px;}
+     .sp_stick_l-sidebar .sp_t_wrapper .sp_icon svg {max-width: 25px;max-height: 28px;}
+     .sp_stick_l-sidebar.sp_top_view, .sp_stick_l-sidebar.sp_bottom_view{width:auto;}
+   }
+</style>
+{% endif %}

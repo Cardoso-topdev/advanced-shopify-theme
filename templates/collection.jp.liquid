@@ -1,0 +1,131 @@
+{% paginate collection.products by settings.products-per-page %}
+
+{% capture collection_url %}{% if collection.url.size == 0 %}/collections/all{% else %}{{ collection.url }}{% endif %}{% endcapture %}
+
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+</section>
+
+<!-- deodorant specific css -->
+{{ 'deodorant.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'special-collection.scss.css' | asset_url | stylesheet_tag }} 
+{{ 'index.scss.css' | asset_url | stylesheet_tag }} 
+
+      <div class="collection-hero">
+        <div class="content content-area flex">
+          	<div class="collection-video">
+              <img src="{{'JP-Sears-1.jpg' | asset_url }}" alt="JP Sears loves Primally Pure" />
+            </div>
+            <div class="collection-text">
+              <h3 style="font-family: 'Novel'; font-size: 24px">I’M JP SEARS, AND I’M ALL ABOUT AUTHENTICITY - BUT NOT WHEN IT COMES TO ARMPIT SMELLS.</h3>
+              <p>That’s why I use Primally Pure Deodorant. It keeps me smelling better than I actually smell while keeping me as natural as I want to be.</p>
+           </div>
+        </div>
+      </div>
+  <section class="content content-area collection-collection palo-santo-intro">
+    <h3>HERE'S WHAT I'M LOVING</h3>
+    <P>Ditch the drugstore stuff (with bad-for-you chemicals like fragrance, aluminum and parabens) and empower your pits to be the healthiest version of themselves possible.</P>
+    
+    {% if collection.products.size == 0 %}
+      <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+    {% else %}
+      <ul class="product-list {{ settings.products-per-row }}">
+      {% for product in collection.products limit: settings.products-per-page %}{% include 'product-item-jp' %}{% endfor %}
+      </ul>
+    {% endif %}
+    {% if paginate.previous or paginate.next %}
+      {% include 'pagination' %}
+    {% endif %}
+</section>
+{% endpaginate %}
+
+<section class="content tan-bg flex flip-flops image1">
+  <div class="side-by-side text" style="text-align: left !important">
+    <h3>Only real + natural ingredients</h3>
+    <p style="padding-top: 20px"><strong>BAKING SODA:</strong> Naturally mined baking soda is super gentle for sensitive skin (like mine) and with just the right amount it combats odor and won’t leave you with red, rashy underarms - or stinky pits.</p>
+    <p><strong>ESSENTIAL OILS:</strong> You don’t need anything fake in your life so swap artificial fragrance for pure, organic essential oils to enhance your health and give you that fresh-out-of-the-shower feel all day long.</p>
+    <p><strong>TALLOW:</strong> This vitamin-rich, anti-bacterial topical skin-superfood has been around forever (and is ethically sourced from grass-fed cows, how cool) and is the secret ingredient for healthy skin and underarms that don’t smell.</p>
+    <div><a href="/collections/deodorant/?rfsn=4667149.a9c9c1" class="button btn">Buy Now</a></div>
+  </div>
+  <div class="side-by-side image" style="background-image: url('{{'JP-Sears-2.jpg' | asset_url }}'); background-size: cover; background-position: center right;"></div>
+</section>
+
+<section class="content tan-bg flex flip-flops image2" style="margin-top: 0">
+  <div class="side-by-side image" style="background-image: url('{{'JP-Sears-3.jpg' | asset_url }}'); background-size: cover; background-position: center left;"></div>
+  <div class="side-by-side text" style="text-align: left !important">
+    <h3>I’ve used a number of natural deodorants in the past that look great on paper, but sadly don’t work in reality. Can you relate? </h3>
+    <p style="padding-top: 20px">But Primally Pure is sent from the heavens above as it keeps me fresh all day long while supporting my vitality with its all-natural, non-toxic ingredients. And here’s how to have a heavenly experience when you switch:</p>
+    <ul>
+      <li>Sweat it out: Sure, I’m a man and don’t mind sweating, but for every single human being, sweating is essential for your pits to be their best selves. It’s a natural, necessary function to detox and maintain balance. You may sweat a little more after switching, but the longer you use it, the better it works and the more balanced you’ll be, inside and out.</li>
+      <li>Less is more: Pure, concentrated ingredients without any cheap fillers means you can simplify your swipe. 1-2 light swipes will last all day long - and that means your tube will last twice as long, too. Win-win in my opinion.</li>
+    </ul>
+    <div><a href="/collections/deodorant/?rfsn=4667149.a9c9c1" class="button btn">Buy Now</a></div>
+  </div>
+</section>
+
+<section class="testimonial-quote">
+  <p class="quote">"Primally Pure Deodorant accomplishes both keeping me fresh all day long while also supporting my devotion to keeping my body clean and pure with it’s all-natural, non-toxic ingredients. I’m in love with Primally Pure!"</p>
+  <p class="attribution">JP Sears</p>
+  <p class="title">Youtuber, comedian, emotional healing coach, author, speaker, world traveler, and curious student of life</p>
+</section>
+
+
+
+<script>
+  /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+  /* Brought to you by Caroline Schnapp */
+  var collFilters = jQuery('.coll-filter');
+  collFilters.change(function() {
+    var newTags = [];
+    collFilters.each(function() {
+      if (jQuery(this).val()) {
+        newTags.push(jQuery(this).val());
+      }
+    });
+    if (newTags.length) {
+      var query = newTags.join('+');
+      window.location.href = jQuery('{{ 'tag' | link_to_tag: 'tag' }}').attr('href').replace('/tag', '/'+query);
+    }
+    else {
+      {% if collection.handle %}
+      window.location.href = '/collections/{{ collection.handle }}';
+      {% elsif collection.products.first.type == collection.title %}
+      window.location.href = '{{ collection.title | url_for_type }}';
+      {% elsif collection.products.first.vendor == collection.title %}
+      window.location.href = '{{ collection.title | url_for_vendor }}';
+      {% endif %}
+    }
+  });
+</script>
+<script>
+  $(window).on('load',function() {
+    $('select').each(function() {
+var options = $(this).find("option");                    // Collect options         
+options.detach().sort(function(a,b) {               // Detach from select, then Sort
+    var at = $(a).text();
+    var bt = $(b).text();         
+    return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
+});
+options.appendTo($(this));                          // Re-attach to select
+    });
+        $('select').find('option').each(function(i) {
+      if (i === 0) {
+       $(this).attr('selected','selected');
+       $(this).prop('selected',true);
+      }
+      else {
+       $(this).removeAttr('selected'); 
+      }
+    });
+    $('select').on('change',function() {
+      var selectedOption = $(this).find('option:selected')
+      var option = selectedOption.text();
+      var newPrice = selectedOption.attr('price');
+     $(this).parent().parent().parent().find('.price').text(newPrice)
+    });
+  });
+</script>
+
+

@@ -1,0 +1,26 @@
+<section class="content content-area">
+
+  {% include 'breadcrumbs' %}
+
+  <div class="page-title">
+    <h1 class="label">{{ 'general.404.title' | t }}</h1>
+  </div>
+
+  {% capture link %}
+    <a href="/">{{ 'general.404.home_link' | t }}</a>
+  {% endcapture %}
+  <p class="message empty">{{ 'general.404.subtext_html' | t: link: link }}</p>
+
+  {% if settings.display-404-products %}
+  <!-- Featured products
+  ============================================= -->
+  <section class="products">
+
+      <ul class="product-list">
+      {% for product in collections.[settings.404-products-collection].products limit: 4 %}{% include 'product-item' %}{% endfor %}
+      </ul>
+
+  </section>
+  {% endif %}
+
+</section>

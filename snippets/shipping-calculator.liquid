@@ -1,0 +1,33 @@
+<div id="shipping-calculator" class="clearfix">
+
+  <div class="wrapper-setup">
+    <p>
+      <label for="address_country">{{ 'customer.addresses.country' | t }}</label><select class="styled-select address-country" id="address_country" name="address[country]" data-default="{% if shop.customer_accounts_enabled and customer and customer.default_address.country.length > 1 %}{{ customer.default_address.country }}{% else if settings.shipping_calculator_default_country != '' %}{{ settings.shipping_calculator_default_country }}{% endif %}">{{ country_option_tags }}</select>
+    </p>
+    <p id="address_province_container" style="display:none;">
+      <label for="address_province" id="address_province_label">{{ 'customer.addresses.province' | t }}</label><select class="styled-select address-province" id="address_province" class="address_form" name="address[province]" data-default="{% if shop.customer_accounts_enabled and customer and customer.default_address.province != '' %}{{ customer.default_address.province }}{% endif %}"></select>
+    </p>
+    <p>
+      <label for="address_zip">{{ 'customer.addresses.zip' | t }}</label><input type="text" class="field address-zip" id="address_zip" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
+    </p>
+
+    <p class="clearfix"><span class="input-wrap"><input type="button" class="get-rates action-button desaturated" value="{{ 'cart.shipping_calculator.submit' | t }}" /></span></p>
+
+  </div><div class="wrapper-response"></div>
+
+</div>
+
+{{ "/services/javascripts/countries.js" | script_tag }}
+{{ "shopify_common.js" | shopify_asset_url | script_tag }}
+{{ "jquery.cart.min.js" | asset_url | script_tag }}
+
+<script>
+
+Shopify.Cart.ShippingCalculator.show( {
+  submitButton: "{{ 'cart.shipping_calculator.submit' | t }}",
+  submitButtonDisabled: "{{ 'cart.shipping_calculator.working' | t }}"{% if shop.customer_accounts_enabled and customer %},
+  customerIsLoggedIn: true{% endif %},
+  moneyFormat: {{ shop.money_with_currency_format | json }}
+} );
+
+</script>
