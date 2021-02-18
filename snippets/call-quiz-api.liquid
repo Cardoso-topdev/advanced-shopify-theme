@@ -1,0 +1,47 @@
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+   replace:'\/','/' | 
+   replace:'%20',' ' | 
+   replace:'\u0026','&'
+-%}
+{%- assign quizType = "skincare_quiz" -%}
+
+{%- if pageUrl contains "?" -%}
+	
+	<script>
+      let data = {
+        name: "skincare_quiz",
+          	customer_id: "{{customer.id}}",
+          	customer_email: "{{customer.email}}"
+        };
+	</script>
+	{%- if pageUrl contains "deodorant-quiz" -%}
+		<script>
+          data = {
+          name: "deodorant_quiz",
+              customer_id: "{{customer.id}}",
+              customer_email: "{{customer.email}}"
+          };
+		</script>
+	{% endif %}
+ {%- assign pageQuerystring = pageUrl | split:'?' | last -%}
+  {%- if pageQuerystring == "result=true" -%}
+	<script>
+      let url = "https://trigger-custom-rule.herokuapp.com/api/v1/trigger";
+  
+      
+console.log(data);
+      jQuery.ajax({
+        type: "POST",
+        url: url,
+        data: JSON.stringify(data),
+        headers : {
+          "Content-Type": "application/json"
+        },
+        success: function(res) {
+          console.log("success! result = " + res);
+        }
+      });
+	</script>
+{% endif %}
+{% endif %}
